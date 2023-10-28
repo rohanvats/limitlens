@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      PROMPT
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()" >
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-padding ion-margin-top">
+    <ion-textarea #prompt
+      [value]="createPrompt"
+      label="Enter prompt"
+      labelPlacement="floating" fill="outline"
+      placeholder="Example : This photo as Harley Quinn"
+      maxlength="1000"
+      [counter]="true"
+      rows="15"
+      [clearOnEdit]="true">
+    </ion-textarea>
+    <ion-button expand="block" color="primary" (click)="onSave()" >SAVE</ion-button>
+</div>
+
+</ion-content>

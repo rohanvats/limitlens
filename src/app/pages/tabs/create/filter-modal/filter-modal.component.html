@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{filterType | uppercase }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ng-container *ngIf="filterType === 'format'">
+    <form [formGroup]="formatForm" (ngSubmit)="onSaveFormat()">
+    <ion-list [inset]="true">
+      <ion-list-header>
+          <h1>Choose the purpose:</h1>
+      </ion-list-header>
+        <ion-radio-group formControlName="imageType">
+        <ion-item *ngFor="let purpose of purposeOptions">
+          <ion-thumbnail slot="start"  class="thumbnail">
+            <ion-icon size="large" name="{{purpose.iconName}}" class="icon"></ion-icon>
+          </ion-thumbnail>
+          <ion-radio [value]="purpose">{{purpose.name | uppercase}}</ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list> 
+
+        <!-- <ion-row>
+          <ion-col *ngFor="let purpose of purposeOptions">
+            <app-custom-card-button>
+              <div>
+                <ion-icon size="large" name={{purpose.iconName}}></ion-icon>
+              </div>
+            </app-custom-card-button>
+            <ion-text class="ion-text-center">
+              <p>{{purpose.name | uppercase}}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row> -->
+
+        <!-- <ion-list [inset]="true">
+          <ion-item>
+            <h2>Choose the ratio:</h2>
+          </ion-item>
+        </ion-list> -->
+
+        <!-- <ion-row>
+          <ion-radio-group>
+          <ion-col *ngFor="let ratio of ratioOptions">
+            <ion-radio>
+            <ion-img style="height: 70px;" src="{{ratio.image}}"></ion-img>
+            <div class="ion-text-center">
+              <ion-text >
+                <p>{{ratio.name}}</p>
+                <input type="radio">
+              </ion-text>
+            </div>
+          </ion-radio>
+          </ion-col>
+        </ion-radio-group>
+        </ion-row> -->
+
+
+        <ion-list [inset]="true">
+          <ion-list-header>
+              <h1>Choose the ratio:</h1>
+          </ion-list-header>
+            <ion-radio-group formControlName="ratio">
+            <ion-item *ngFor="let ratio of ratioOptions">
+              <ion-thumbnail slot="start">
+                  <img  alt="{{ratio.name}}" src="{{ratio.image}}" />
+              </ion-thumbnail>
+              <ion-radio [value]="ratio">{{ratio.name | uppercase}}</ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </form>
+
+        <ion-row>
+          <ion-col >
+            <ion-list [inset]="true">
+              <ion-button expand="block" [disabled]="!formatForm.valid" (click)="onSaveFormat()" type="submit">Save</ion-button>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+  </ng-container>
+
+  <ng-container *ngIf="filterType === 'styling'">
+
+    <form [formGroup]="styleForm" (ngSubmit)="onSaveStyling()">
+    <ion-searchbar placeholder="Search Artist"></ion-searchbar>
+
+    <ion-list [inset]="true">
+      <ion-list-header>
+          <h1>Styles:</h1>
+      </ion-list-header>
+        <ion-radio-group formControlName="style">
+        <ion-item *ngFor="let style of styling">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </ion-thumbnail>
+          <ion-radio [value]="style">{{style.name}}</ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </form>
+
+  </ng-container>
+  
+</ion-content>
+
+<ion-footer *ngIf="filterType === 'styling'">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="onSaveStyling()" [disabled]="!styleForm.valid" type="submit">SAVE</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,12 @@
+.custom-card{
+    // background-image: url('https://ionicframework.com/docs/img/demos/card-media.png');
+    background-size: cover; /* You can specify additional properties like background-size */
+    background-repeat: no-repeat; /* Control how the image repeats, if at all */
+    background-position: center;
+    height: 10.875vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1.25rem;
+}
