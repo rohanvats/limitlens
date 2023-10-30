@@ -29,7 +29,6 @@ export class CreatePage implements OnInit {
   ngOnInit() {
     this.image = 'https://picsum.photos/300/300?random=1';
     this.userPrompt = 'Example : This photos as Indiana Jones';
-    // this.filterOptions = ['format', 'styling']
   }
 
   openPromptModal(){
@@ -78,6 +77,7 @@ export class CreatePage implements OnInit {
         
         this.filterOptions.map((el:any) => {
           if(el.value === 'styling'){
+            el.styleImage = result.data.style.styleImage;
             return el.name = result.data.style.name;
           }
         })
@@ -97,14 +97,11 @@ export class CreatePage implements OnInit {
   }
 
   onSavePrompt(){
-    // console.log(this.promptForm.value);
     console.log({
       image: 'dummy',
       prompt: this.userPrompt,
       filters: this.filterOptions
     });
-    
-    
   }
 
 }
