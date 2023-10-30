@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-custom-card-button',
@@ -7,8 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomCardButtonComponent  implements OnInit {
 
+
+  @Input() stylingImage:string = '';
+
+  onChanges(changes: SimpleChanges){
+    if(changes['stylingImage']){
+      console.log('styling image: ', this.stylingImage);
+    }
+  }
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  backgroundImageStyle: object = {
+    'background-image': 'url("your-image-url.jpg")'
+  };
 
 }

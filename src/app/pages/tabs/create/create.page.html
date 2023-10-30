@@ -6,7 +6,6 @@
 
   <ion-card (click)="openPromptModal()">
     <ion-card-header>
-      <!-- <ion-card-title>Your Prompt</ion-card-title> -->
       <ion-card-subtitle>Your Prompt</ion-card-subtitle>
     </ion-card-header>
   
@@ -17,9 +16,21 @@
 
   <ion-row>
     <ion-col *ngFor="let item of filterOptions">
-      <app-custom-card-button (click)="openFilterModal(item.value)">
-        <ion-icon class="ion-text-center" size="large" name="{{item.iconName}}" *ngIf="item.value === 'format'"></ion-icon>
-        {{item.name  | uppercase}}
+      <app-custom-card-button (click)="openFilterModal(item.value)" [stylingImage]="item.styleImage">
+        <span *ngIf="item.name === 'format'; else elseBlock">
+          <!-- <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item.value === 'format'"></ion-icon> -->
+          {{item.name  | uppercase}}
+        </span>
+        <ng-template #elseBlock>
+          <span >
+          <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item.value === 'format'"></ion-icon>
+          <div >
+            {{item.name  | uppercase}}
+          </div>
+        </span>
+        </ng-template>
+        <span>
+        </span>
       </app-custom-card-button>
     </ion-col>
   </ion-row>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-filter-modal',
@@ -10,8 +11,6 @@ import { ModalController } from '@ionic/angular';
 export class FilterModalComponent  implements OnInit {
 
   @Input() filterType: any;
-  // @ViewChild('stylingValue') stylingValue:any;
-
 
   styleForm = new FormGroup({
     style: new FormControl(null, [Validators.required])
@@ -23,56 +22,47 @@ export class FilterModalComponent  implements OnInit {
   })
 
   selectedValue = '';
+  styling: any = [];
+  radioOptions:any = [];
+  purposeOptions:any = [];
 
-  styling = [
-    {name: 'HYPER REALISTIC'},
-    {name: 'DYNAMIC COMPOSITION'},
-    {name: 'RETRO ILLUSTRATION'},
-    {name: 'VINTAGE LOOK'},
-    {name: 'CARTOON'},
-    {name: 'AVANTGARDE FASHION'},
-    {name: 'ALBUM COVER'},
-    {name: 'POLITICAL PROPAGANDA'},
-    {name: 'HORROR'},
-    {name: 'DYSTOPIAN'},
-    {name: 'STOCK PHOTO'},
-    {name: 'ART'},
-    {name: 'VIDEO GAME'},
-    {name: 'AIRBRUSH ART'},
-    {name: 'MOVIE'}
-  ]
+  constructor(
+    private modalCtrl: ModalController,
+    private dataService: DataService
+    ) { }
 
+  ngOnInit() {
+    this.getStyleData();
+    this.getFormatRatioData();
+    this.getFormatPurposeData();
+  }
 
-  purposeOptions=[
-    {name:'screen image', value: 'screen image', iconName: 'image'},
-    {name:'printable image', value: 'printable image', iconName: 'print'}
-  ]
+  getStyleData(){
+    this.dataService.getStylingData().subscribe(data => {
+      this.styling = data;
+    })
+  }
 
-  ratioOptions = [
-    {name: 'portrait', value: 'portrait', image: '../../../../../assets/icon/Portrait.png'},
-    {name: 'square', value: 'square', image: '../../../../../assets/icon/Square.png'},
-    {name: 'landscape', value: 'landscape', image: '../../../../../assets/icon/Landscape.png'}
-  ]
+  getFormatRatioData(){
+    this.dataService.getRadioOptions().subscribe(data => {
+      this.radioOptions = data;
+    })
+  }
 
-
-  constructor(private modalCtrl: ModalController) { }
-
-  ngOnInit() {}
+  getFormatPurposeData(){
+    this.dataService.getPurposeData().subscribe(data => {
+      this.purposeOptions = data;
+    })
+  }
 
   onCancel(){
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  selectStyle(style: any){
-    console.log('style: ',style);
-    
-  }
-
   onSaveFormat(){
-    console.log(this.formatForm.value);
     this.modalCtrl.dismiss(this.formatForm.value, 'confirmFormat');
   } 
-
+  
   onSaveStyling(){
     console.log(this.styleForm.value)
     this.modalCtrl.dismiss(this.styleForm.value, 'confirmStyle')

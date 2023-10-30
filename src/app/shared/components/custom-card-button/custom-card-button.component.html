@@ -1,3 +1,5 @@
-<ion-card class="ion-no-margin ion-margin-start ion-margin-end custom-card">
-  <ng-content></ng-content>
+<ion-card
+  [ngStyle]="{ 'background-image': 'url(' + stylingImage + ')' }"
+  class="ion-no-margin ion-margin-start ion-margin-end custom-card custom-image">
+    <ng-content></ng-content>
 </ion-card>

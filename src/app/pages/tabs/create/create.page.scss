@@ -14,6 +14,15 @@ ion-fab-button::part(native) {
   }
 
 
+.icon {
+  position: absolute;
+  top: 50%; /* Position the icon vertically at 50% of the parent's height */
+  left: 50%; /* Position the icon horizontally at 50% of the parent's width */
+  transform: translate(-50%, -50%); /* Center the icon perfectly */
+  font-size: 30px; /* Adjust the icon size as needed */
+    // color: grey;
+}
+
 //   ion-card-content{
 //     height: 15vh;
 //   }
