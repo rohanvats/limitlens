@@ -1,0 +1,23 @@
+.image-container{
+    position: relative;
+}
+
+.icon-container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 5%; /* Adjust the vertical position */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.icon-background{
+    background-color: black;
+    padding: 3%;
+    border-radius: 20%;
+}
+
+.edit-icon{
+    margin: 0 12%;
+}
