@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: GalleryPage
+  },  {
+    path: 'image-details',
+    loadChildren: () => import('./image-details/image-details.module').then( m => m.ImageDetailsPageModule)
   }
+
 ];
 
 @NgModule({
