@@ -1,0 +1,10 @@
+  <app-main-image
+   role="button"
+  (click)="onPickImage()"
+   *ngIf="selectedImage"
+    [image]="selectedImage" ></app-main-image>
+  <app-main-image
+      role="button"
+      (click)="onPickImage()"
+      *ngIf="!selectedImage" [image]="'https://picsum.photos/200'"
+   ></app-main-image>

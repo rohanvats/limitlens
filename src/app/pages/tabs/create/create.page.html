@@ -2,7 +2,9 @@
 
   <form [formGroup]="promptForm" (ngSubmit)="onSavePrompt()">
 
-  <app-main-image [image]="image"></app-main-image>
+  <!-- <app-main-image [image]="image"></app-main-image> -->
+
+  <app-image-picker (imagePick)="onImagePicked($event)" ></app-image-picker>
 
   <ion-card (click)="openPromptModal()">
     <ion-card-header>
