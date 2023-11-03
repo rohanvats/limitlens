@@ -50,8 +50,10 @@ export class CreatePage implements OnInit {
         this.userPrompt = data.data;
       }
     })
-    
-    
+  }
+
+  onImagePicked(imagedata: any){
+    console.log(imagedata)
   }
   
   getfilter(item: any){

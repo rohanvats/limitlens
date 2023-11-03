@@ -1,5 +1,7 @@
 {
   "name": "limitlens",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

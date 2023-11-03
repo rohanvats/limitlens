@@ -4,13 +4,15 @@ import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { CustomCardButtonComponent } from "./components/custom-card-button/custom-card-button.component";
 import { MainActionButtonComponent } from "./components/main-action-button/main-action-button.component";
+import { ImagePickerComponent } from "./components/image-picker/image-picker.component";
 
 
 @NgModule({
     declarations:[
         MainImageComponent,
         CustomCardButtonComponent,
-        MainActionButtonComponent
+        MainActionButtonComponent,
+        ImagePickerComponent
     ],
     imports:[
         CommonModule,
@@ -19,7 +21,8 @@ import { MainActionButtonComponent } from "./components/main-action-button/main-
     exports:[
         MainImageComponent,
         CustomCardButtonComponent,
-        MainActionButtonComponent
+        MainActionButtonComponent,
+        ImagePickerComponent
     ]
 })
 export class SharedModule {
