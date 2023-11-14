@@ -47,4 +47,112 @@ export class DataService{
         return of(ratioOptions);
     }
 
+
+    getGlobalFeedData(){
+        const globalFeedImages = [
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'},
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'},
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'}
+          ]
+          return of(globalFeedImages)
+
+    }
+
+    getGalleryData(){
+        const galleryData = [
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'},
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'},
+            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
+            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
+            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
+            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
+            {name: 'CARTOON', url: 'https://picsum.photos/500'},
+            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
+            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
+            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
+            {name: 'HORROR',url: 'https://picsum.photos/900'},
+            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
+            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
+            {name: 'ART',url: 'https://picsum.photos/300'},
+            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
+            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
+            {name: 'MOVIE',url: 'https://picsum.photos/800'}
+          ]
+          return of(galleryData)
+
+    }
+
+
+
+
 }

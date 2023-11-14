@@ -8,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ImageDetailsPage implements OnInit {
 
-  imageDetails: any = {}
-
+  imageDetails: any;
+  
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {

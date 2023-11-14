@@ -64,11 +64,7 @@
         </ion-grid>
       </ion-buttons>
   </ion-header>
-  
-        <div class="images">
-          <div class="one-image" *ngFor="let item of fakeArray">
-            <ion-img [src]="item"></ion-img>
-          </div>
-        </div>
-        
+
+  <app-masonry-gallery [data]="globalData"></app-masonry-gallery>
+
 </ion-content>
