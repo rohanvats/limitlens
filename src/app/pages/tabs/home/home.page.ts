@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,52 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  globalData:any = []
 
-  fakeArray = [
-    'http://placehold.it/300x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x200',
-    'http://placehold.it/150x300',
-    'http://placehold.it/200x200',
-    'http://placehold.it/175x175',
-    'http://placehold.it/175x175',
+  constructor(private dataService:DataService) {}
 
-  ]
+  ngOnInit(){
+    this.getGlobalFeedData();
+  }
+
+  getGlobalFeedData(){
+    this.dataService.getGlobalFeedData().subscribe(data => {
+      this.globalData = data;
+    })
+  }
 
 }
