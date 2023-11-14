@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Plugins, Capacitor } from '@capacitor/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Platform } from '@ionic/angular';
 
 @Component({
@@ -37,7 +37,8 @@ export class ImagePickerComponent  implements OnInit {
   async takePicture() {
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
+      source: CameraSource.Prompt,
+      // allowEditing: true,
       resultType: CameraResultType.Uri
     });
     this.selectedImage = image.webPath;
