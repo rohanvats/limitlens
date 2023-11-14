@@ -3,12 +3,12 @@
   <div *ngFor="let item of data; let i = index">
       <ion-grid *ngIf="i%3 === 0" class="ion-no-padding">
         <ion-row *ngIf="i%9 === 0">
-          <ion-col size="8">
-            <div class="image-container image-container1" (click)="sendItem(item)" [style.background-image]="'url('  + item?.url + ')'" ></div>
-          </ion-col>
           <ion-col size="4">
             <div *ngIf="data[i + 1]" class="image-container ct1" (click)="sendItem(data[i+1])" [style.background-image]="'url('+ data[i+1].url  +')'" ></div>
             <div *ngIf="data[i + 2]" class="image-container ct2" (click)="sendItem(data[i+2])" [style.background-image]="'url('+ data[i+2].url  +')'" ></div>
+          </ion-col>
+          <ion-col size="8">
+            <div class="image-container image-container1" (click)="sendItem(item)" [style.background-image]="'url('  + item?.url + ')'" ></div>
           </ion-col>
         </ion-row>
 
