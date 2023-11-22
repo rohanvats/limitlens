@@ -1,5 +1,17 @@
 <ion-card
-  [ngStyle]="{ 'background-image': 'url(' + stylingImage + ')' }"
-  class="ion-no-margin ion-margin-start ion-margin-end custom-card custom-image">
-    <ng-content></ng-content>
-</ion-card>
+
+  [button]=enableAsButton
+
+  [ngStyle]="{
+              'height': cardHeight,
+              'background-image': 'url(' + cardBackgroundImage + ')'
+             }"
+
+  [ngClass]="classes">          
+
+
+         <ng-content></ng-content>
+
+         <ng-content select="subscription"></ng-content>
+
+  </ion-card>

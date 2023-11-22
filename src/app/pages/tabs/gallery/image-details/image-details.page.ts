@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-image-details',
@@ -10,13 +11,46 @@ export class ImageDetailsPage implements OnInit {
 
   imageDetails: any;
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private alertController: AlertController
+    ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(image => {
       console.log(image)
-      this.imageDetails = image
+      this.imageDetails = image;
     })
+  }
+
+  onClick(){
+    console.log('On print')
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Rename the picture',
+      buttons: [{
+        text: 'OK',
+        handler: (data) => {
+          console.log('Renamed image', data);
+        }
+      },{
+        text:'CANCEL',
+        handler: () => {
+          this.alertController.dismiss();
+        }
+      }],
+      inputs: [
+        {
+          name: 'imageName',
+          type: 'text',
+          placeholder: 'Name',
+        }
+      ],
+    });
+
+    await alert.present();
   }
 
 }

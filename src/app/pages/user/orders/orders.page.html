@@ -1,0 +1,77 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
+    </ion-buttons>
+    <ion-title>ORDERS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <app-custom-card-button
+          [height]="'18vh'"
+          [background-image]="'https://picsum.photos/500'"
+          [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         >
+          <div>
+            <h2>
+              <ion-icon name="timer-outline"></ion-icon>
+              ORDERS
+            </h2>
+          </div>
+        </app-custom-card-button>
+
+              <app-custom-card-button
+                   [height]="'27vh'"
+                >
+                  <div subscription>
+                      <ion-row>
+                        <ion-col class="ion-text-center ion-padding-top">
+                            <img alt="Silhouette of mountains" style="height: 14vh;" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                        </ion-col>
+                        <ion-col>
+                          <ion-text>
+                            <h3 >Samurai Rom</h3>
+                            <p class="ion-no-margin">Screen Landscape</p>
+                            <p class="ion-no-margin">€4.99</p>
+                            <ion-badge>X16</ion-badge>
+                        </ion-text>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="ion-margin-start ion-padding-start">
+                        <h3>Status: Delivered to email</h3>
+                      </ion-col>
+                    </ion-row>
+                </div>
+              </app-custom-card-button>
+
+
+              <app-custom-card-button
+               [height]="'27vh'"
+               >
+                <div subscription>
+                    <ion-row>
+                      <ion-col class="ion-text-center ion-padding-top">
+                            <img alt="Silhouette of mountains" style="height: 14vh;" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                      </ion-col>
+                      <ion-col>
+                        <ion-text>
+                          <h3>T-Shirt</h3>
+                          <p class="ion-no-margin">Size M</p>
+                          <p class="ion-no-margin">€19.99</p>
+                        </ion-text>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="ion-margin-start ion-padding-start">
+                        <h3>Order No.: <a href="#">00A99UUU</a> </h3>
+                      </ion-col>
+                    </ion-row>
+                </div>
+              </app-custom-card-button>
+
+
+
+</ion-content>

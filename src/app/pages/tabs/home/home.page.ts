@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class HomePage {
 
   globalData:any = []
 
-  constructor(private dataService:DataService) {}
+  constructor(
+    private dataService:DataService,
+    private navCtrl: NavController
+    ) {}
 
   ngOnInit(){
     this.getGlobalFeedData();
@@ -20,6 +24,13 @@ export class HomePage {
     this.dataService.getGlobalFeedData().subscribe(data => {
       this.globalData = data;
     })
+  }
+
+  toImageDetails(image: any){
+    this.navCtrl.navigateForward(['/tabs/home/global-feed-details'], {
+      queryParams: image,
+    })
+    console.log('From home: ',image);
   }
 
 }

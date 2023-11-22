@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
+  },  {
+    path: 'global-feed-details',
+    loadChildren: () => import('./global-feed-details/global-feed-details.module').then( m => m.GlobalFeedDetailsPageModule)
   }
+
 ];
 
 @NgModule({
