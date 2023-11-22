@@ -1,0 +1,110 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
+    </ion-buttons>
+    <ion-title>USER</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <app-custom-card-button
+         [enableAsButton]="true"
+         routerLink="user-account"
+         [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         [height]="'18vh'"
+         [background-image]="'https://picsum.photos/500'"
+         >
+          <div>
+            <h2>
+              <ion-icon name="person"></ion-icon>
+              USER ACCOUNT
+            </h2>
+          </div>
+        </app-custom-card-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-custom-card-button
+         [enableAsButton]="true"
+         routerLink="subscription"
+         [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         [height]="'18vh'"
+         [background-image]="'https://picsum.photos/600'"
+        >
+          <div>
+            <h2>
+              <ion-icon name="key"></ion-icon>
+              SUBSCRIPTION
+            </h2>
+          </div>
+        </app-custom-card-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-custom-card-button
+         [enableAsButton]="true"
+         routerLink="orders"
+         [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         [height]="'18vh'"
+         [background-image]="'https://picsum.photos/400'"
+        >
+          <div>
+            <h2>
+              <ion-icon name="timer"></ion-icon>
+              ORDERS
+            </h2>
+          </div>
+        </app-custom-card-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-custom-card-button
+         [enableAsButton]="true"
+         routerLink="settings"
+         [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         [height]="'18vh'"
+         [background-image]="'https://picsum.photos/500'"
+         >
+          <div>
+            <h2>
+              <ion-icon name="settings"></ion-icon>
+              SETTINGS
+            </h2>
+          </div>
+        </app-custom-card-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-custom-card-button
+         [enableAsButton]="true"
+         routerLink="help"
+         [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+         [height]="'18vh'"
+         [background-image]="'https://picsum.photos/300'"
+        >
+          <div>
+            <h2>
+              <ion-icon name="information-circle"></ion-icon>
+              HELP
+            </h2>
+          </div>
+        </app-custom-card-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

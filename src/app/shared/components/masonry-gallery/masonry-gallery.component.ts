@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-masonry-gallery',
@@ -8,14 +9,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class MasonryGalleryComponent  implements OnInit {
 
   @Input() data: any;
-  @Output() item = new EventEmitter<any>;
-
-  constructor() { }
+  @Output() imageDetail = new EventEmitter<any>;
+ 
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {}
 
-  sendItem(item: any){
-    this.item.emit(item)
+  sendItem(item: any){    
+    this.imageDetail.emit(item)
   }
 
 }

@@ -2,9 +2,7 @@
 
   <form [formGroup]="promptForm" (ngSubmit)="onSavePrompt()">
 
-  <!-- <app-main-image [image]="image"></app-main-image> -->
-
-  <app-image-picker (imagePick)="onImagePicked($event)" ></app-image-picker>
+  <app-image-picker (imagePick)="onImagePicked($event)"></app-image-picker>
 
   <ion-card (click)="openPromptModal()">
     <ion-card-header>
@@ -16,11 +14,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-row>
+  <ion-row *ngIf="!usingGlobalFeed">
     <ion-col *ngFor="let item of filterOptions">
-      <app-custom-card-button (click)="openFilterModal(item.value)" [stylingImage]="item.styleImage">
+      <app-custom-card-button
+        (click)="openFilterModal(item.value)"
+        [background-image]="item?.styleImage"
+        classes="ion-no-margin ion-margin-start ion-margin-end custom-card"
+        [height]="'12vh'"
+        >
         <span *ngIf="item.name === 'format'; else elseBlock">
-          <!-- <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item.value === 'format'"></ion-icon> -->
           {{item.name  | uppercase}}
         </span>
         <ng-template #elseBlock>
@@ -39,7 +41,6 @@
 
   <ion-row>
     <ion-col>
-      <!-- <app-main-action-button>save</app-main-action-button> -->
       <ion-button expand="block" type="submit">Save</ion-button>
     </ion-col>
   </ion-row>

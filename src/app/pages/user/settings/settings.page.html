@@ -1,0 +1,36 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
+    </ion-buttons>
+    <ion-title>SETTINGS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-select label="Language: " label-placement="fixed" placeholder="Select Language">
+        <ion-select-option value="english">English</ion-select-option>
+        <ion-select-option value="french">French</ion-select-option>
+        <ion-select-option value="hindi">Hindi</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-toggle justify="space-between">Notifications</ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-toggle justify="space-between">Enable Dark Mode</ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-toggle justify="space-between">Negative Prompt</ion-toggle>
+    </ion-item>
+  
+  </ion-list>
+
+
+</ion-content>

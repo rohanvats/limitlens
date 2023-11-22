@@ -23,6 +23,11 @@ export class ImagePickerComponent  implements OnInit {
     console.log('hybrid: ', this.platform.is('hybrid'));
   }
 
+  checkPlatformForWeb(){
+    if(Capacitor.getPlatform() === 'web') return true;
+    return false;
+  }
+
   onPickImage(){
     if(!Capacitor.isPluginAvailable('Camera')){
       return;
@@ -35,14 +40,19 @@ export class ImagePickerComponent  implements OnInit {
   }
 
   async takePicture() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      source: CameraSource.Prompt,
-      // allowEditing: true,
-      resultType: CameraResultType.Uri
-    });
-    this.selectedImage = image.webPath;
-    this.imagePick.emit(image.base64String)
+    try{
+      const image = await Camera.getPhoto({
+        quality: 90,
+        source: CameraSource.Prompt,
+        // allowEditing: true,
+        resultType:CameraResultType.Uri
+        // resultType: this.checkPlatformForWeb() ? CameraResultType.DataUrl : CameraResultType.Uri
+      });
+      this.selectedImage = image.webPath;
+      this.imagePick.emit(image.webPath)
+    }catch(error){
+        console.log('error occured: ', error)
+    }
 
   }
 

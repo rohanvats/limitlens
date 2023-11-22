@@ -1,0 +1,64 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
+    </ion-buttons>
+    <ion-title>USER ACCOUNT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  
+        <app-custom-card-button
+          [height]="'18vh'"
+          [classes]="'custom-card custom-image'"
+          [background-image]="'https://picsum.photos/500'"
+         >
+          <div>
+            <h2>
+              <ion-icon name="person"></ion-icon>
+              USER ACCOUNT
+            </h2>
+          </div>
+        </app-custom-card-button>
+
+
+        <ion-list [inset]="true">
+
+          <ion-item>
+            <ion-input label="Name" labelPlacement="floating"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Email" type="email" labelPlacement="floating"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Phone Number" labelPlacement="floating"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Password" type="password" labelPlacement="floating"></ion-input>
+          </ion-item>
+          
+          <ion-item-group>
+              <ion-item>
+                <ion-input label="Address" labelPlacement="floating"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Zip Code" labelPlacement="floating"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="City" labelPlacement="floating"></ion-input>
+              </ion-item>
+        </ion-item-group>
+
+          <ion-item>
+            <ion-input label="Country" labelPlacement="floating"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+</ion-content>

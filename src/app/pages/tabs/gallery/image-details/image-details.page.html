@@ -12,9 +12,9 @@
   <div class=" image-container">
     <app-main-image [image]="imageDetails['url']" ></app-main-image>
     <div class="icon-container">
-      <ion-fab-button size="small">
+      <!-- <ion-fab-button size="small">
         <ion-icon size="small" name="heart"></ion-icon>
-      </ion-fab-button>
+      </ion-fab-button> -->
       <ion-fab-button size="small">
         <ion-icon size="small" name="expand"></ion-icon>
       </ion-fab-button >
@@ -28,8 +28,8 @@
   </div>
 
     <div class="ion-text-center ion-margin-top">
-    <ion-chip>
-      <ion-label>Unknown Khalesi</ion-label>
+    <ion-chip (click)="presentAlert()" >
+      <ion-label>{{imageDetails?.name}}</ion-label>
       <ion-icon name="pencil"></ion-icon>
     </ion-chip>
   </div>
@@ -52,7 +52,7 @@
         <ion-button expand="block">{{'download' | uppercase}}</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block">{{'print' | uppercase}}</ion-button>
+        <ion-button (click)="onClick()"  expand="block">{{'print' | uppercase}}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

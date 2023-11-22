@@ -12,7 +12,10 @@
     </ion-row>
   </ion-grid> -->
 
-<app-masonry-gallery (item)="getItem($event)" [data]="galleryData"></app-masonry-gallery>
+<app-masonry-gallery
+  (imageDetail)="toImageDetails($event)"
+  [data]="galleryData">
+</app-masonry-gallery>
 
 
 </ion-content>

@@ -29,19 +29,19 @@ export class GalleryPage implements OnInit {
     })
   }
 
-  go(item:any){
-    console.log('go');
-    this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
-      queryParams: item,
-    })
-  }
+  // go(item:any){
+  //   console.log('go');
+  //   this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
+  //     queryParams: item,
+  //   })
+  // }
 
   toggleLike(){
     console.log(this.liked);
     this.liked = !this.liked;
   }
 
-  getItem(event: any){
+  toImageDetails(event: any){
     console.log('item: ',event, typeof(event));
     this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
       queryParams: event,

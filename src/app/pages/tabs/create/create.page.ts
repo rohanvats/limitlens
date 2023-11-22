@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -13,6 +15,8 @@ export class CreatePage implements OnInit {
 
   image = '';
   userPrompt = '';
+  usingGlobalFeed = false;
+  private $querySubscription: any;
   filterOptions:any = [
     {name: 'format', value: 'format'},
     {name: 'styling', value: 'styling'}
@@ -24,12 +28,39 @@ export class CreatePage implements OnInit {
     filters: new FormControl('')
   })
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.image = 'https://picsum.photos/300/300?random=1';
     this.userPrompt = 'Example : This photos as Indiana Jones';
   }
+
+  ionViewWillEnter() {
+    // Code to run when the page is about to enter
+
+    const currentRoute = this.route.snapshot.routeConfig?.path;
+    console.log('current Route: ', currentRoute);
+
+    console.log('ion view will enter');
+    this.$querySubscription = this.route.queryParams.subscribe(data => {
+      if(data){
+        this.usingGlobalFeed = data['globalFeed'] ? data['globalFeed'] : false;
+      }
+      console.log('query: ', data);
+    })
+  }
+
+  ionViewWillLeave() {
+    // Code to run when the page is about to leave
+    console.log('ion view will leave');
+    if (this.$querySubscription) {
+      this.usingGlobalFeed = false;
+      this.$querySubscription.unsubscribe();
+    }
+  }
+  
 
   openPromptModal(){
     this.modalCtrl.create({
@@ -53,12 +84,9 @@ export class CreatePage implements OnInit {
   }
 
   onImagePicked(imagedata: any){
-    console.log(imagedata)
-  }
-  
-  getfilter(item: any){
-    if(item === 'styling'){
-
+    console.log( 'image recieved: ', imagedata)
+    if(imagedata){
+      this.image = imagedata;
     }
   }
 
@@ -100,7 +128,7 @@ export class CreatePage implements OnInit {
 
   onSavePrompt(){
     console.log({
-      image: 'dummy',
+      image: this.image,
       prompt: this.userPrompt,
       filters: this.filterOptions
     });
