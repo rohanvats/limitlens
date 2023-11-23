@@ -1,13 +1,59 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar>
-    <ion-title>cart</ion-title>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
+    </ion-buttons>
+    <ion-title>CART</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <app-custom-card-button
+                   *ngFor="let cartItem of cartItems"
+                   [height]="'22vh'"
+                >
+                  <div subscription>
+                      <ion-row>
+                        <ion-col class="ion-text-center ion-padding-top">
+                            <img alt="Silhouette of mountains" style="height: 16vh;" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                        </ion-col>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col size="9">
+                              <ion-text>
+                                <h5>{{cartItem?.name}}</h5>
+                                <p class="ion-no-margin">Screen Landscape</p>
+                                <h5 class="ion-no-margin">€{{cartItem?.price}}</h5>
+                                <ion-badge>X{{cartItem?.upscale}}</ion-badge>
+                            </ion-text>
+                            </ion-col>
+                            <ion-col size="3" class="ion-padding-top">
+                              <ion-icon size="large" name="trash-bin"></ion-icon>
+                            </ion-col>
+                          </ion-row>
+                      </ion-col>
+                    </ion-row>
+                    <!-- <ion-row>
+                      <ion-col class="ion-margin-start ion-padding-start">
+                        <div class="quantity ion-padding-end">
+                          <h4>Quantity : </h4>
+                          <h4>
+                            <ion-icon size="large" name="remove-circle"></ion-icon>
+                              <span class="ion-padding">{{cartItem?.quantity}}</span>
+                            <ion-icon size="large" name="add-circle"></ion-icon></h4>
+                        </div>
+                      </ion-col>
+                    </ion-row> -->
+                </div>
+              </app-custom-card-button>
+
+      <ion-card>
+        <ion-item lines="none">
+          <h1>Total : </h1>
+          <h2>{{cartItems.length}}</h2>
+        </ion-item>
+      </ion-card>
+
+
 </ion-content>
