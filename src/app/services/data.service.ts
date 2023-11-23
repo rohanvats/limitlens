@@ -100,6 +100,47 @@ export class DataService{
 
     }
 
+
+    getCartData(){
+        const cartData = [
+
+            {
+                name: 'Samurai Rom',
+                url: 'https://picsum.photos/200',
+                price: '12.99',
+                upscale: 3,
+                size: 'L',
+                quantity: 5
+            },
+            {
+                name: 'Estelle Quin',
+                url: 'https://picsum.photos/200',
+                price: '1.99',
+                upscale: 3,
+                size: 'M',
+                quantity: 3
+            },
+            {
+                name: 'Samurai Rom',
+                url: 'https://picsum.photos/200',
+                price: '12.99',
+                upscale: 3,
+                size: 'L',
+                quantity: 2
+            },
+            {
+                name: 'Samurai Rom',
+                url: 'https://picsum.photos/200',
+                price: '12.99',
+                upscale: 3,
+                size: 'L',
+                quantity: 5
+            },
+
+        ]
+        return of(cartData);
+    }
+
     getGalleryData(){
         const galleryData = [
             {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},

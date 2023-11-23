@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CartPageRoutingModule } from './cart-routing.module';
 
 import { CartPage } from './cart.page';
@@ -13,6 +13,7 @@ import { CartPage } from './cart.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     CartPageRoutingModule
   ],
   declarations: [CartPage]
