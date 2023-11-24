@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar class="ion-padding-start">
     <ion-title>
       <ion-img src="../../../../assets/icon/Header_logo.png"></ion-img>
@@ -65,6 +65,18 @@
         </ion-buttons>
     </ion-header>
   </ion-toolbar>
+</ion-header> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-padding-start">
+    <ion-img  style="height: 2.875rem; width: 14.68rem;" src="../../../../assets/icon/Header_logo.png"></ion-img>
+    <!-- <ion-title>Header</ion-title> -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/user">
+        <ion-icon aria-hidden="true" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content >
@@ -109,7 +121,7 @@
                   <ion-label>Fav</ion-label>
                 </ion-chip>
               </ion-button>
-            </ion-col>  
+            </ion-col>   
       
             <ion-col size-xs="3" size-sm="3" class="ion-padding-none">
               <ion-button>
