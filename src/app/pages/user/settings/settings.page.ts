@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
+  themeToggle = false;
+  prefersDark:any
+
   constructor() { }
 
   ngOnInit() {
+  } 
+
+  enableDark(event: any){
+    this.toggleDarkTheme(event.detail.checked)
+  }
+
+  toggleDarkTheme(shouldAdd: any) {
+    document.body.classList.toggle('dark', shouldAdd);
   }
 
 }
