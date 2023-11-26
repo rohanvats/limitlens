@@ -17,7 +17,7 @@
     <form [formGroup]="formatForm" (ngSubmit)="onSaveFormat()">
     <ion-list [inset]="true">
       <ion-list-header>
-          <h1>Choose the purpose:</h1>
+          <h2>Choose the purpose:</h2>
       </ion-list-header>
         <ion-radio-group formControlName="imageType">
         <ion-item *ngFor="let purpose of purposeOptions">
@@ -28,46 +28,9 @@
         </ion-item>
       </ion-radio-group>
     </ion-list> 
-
-        <!-- <ion-row>
-          <ion-col *ngFor="let purpose of purposeOptions">
-            <app-custom-card-button>
-              <div>
-                <ion-icon size="large" name={{purpose.iconName}}></ion-icon>
-              </div>
-            </app-custom-card-button>
-            <ion-text class="ion-text-center">
-              <p>{{purpose.name | uppercase}}</p>
-            </ion-text>
-          </ion-col>
-        </ion-row> -->
-
-        <!-- <ion-list [inset]="true">
-          <ion-item>
-            <h2>Choose the ratio:</h2>
-          </ion-item>
-        </ion-list> -->
-
-        <!-- <ion-row>
-          <ion-radio-group>
-          <ion-col *ngFor="let ratio of ratioOptions">
-            <ion-radio>
-            <ion-img style="height: 70px;" src="{{ratio.image}}"></ion-img>
-            <div class="ion-text-center">
-              <ion-text >
-                <p>{{ratio.name}}</p>
-                <input type="radio">
-              </ion-text>
-            </div>
-          </ion-radio>
-          </ion-col>
-        </ion-radio-group>
-        </ion-row> -->
-
-
         <ion-list [inset]="true">
           <ion-list-header>
-              <h1>Choose the ratio:</h1>
+              <h2>Choose the ratio:</h2>
           </ion-list-header>
             <ion-radio-group formControlName="ratio">
             <ion-item *ngFor="let ratio of radioOptions">
@@ -81,9 +44,9 @@
       </form>
 
         <ion-row>
-          <ion-col >
+          <ion-col class="ion-padding-horizontal" >
             <ion-list [inset]="true">
-              <ion-button expand="block" [disabled]="!formatForm.valid" (click)="onSaveFormat()" type="submit">Save</ion-button>
+              <app-main-action-button class="ion-padding-horizontal" [disableButton]="!formatForm.valid" (click)="onSaveFormat()" type="submit">SAVE</app-main-action-button>
             </ion-list>
           </ion-col>
         </ion-row>
@@ -97,12 +60,11 @@
 
     <ion-list [inset]="true">
       <ion-list-header>
-          <h1>Styles:</h1>
+          <h2>Styles:</h2>
       </ion-list-header>
         <ion-radio-group formControlName="style">
         <ion-item *ngFor="let style of styling">
           <ion-thumbnail slot="start">
-            <!-- <img src="../../../../../assets/icon/favicon.png"> -->
             <img alt="style.name" [src]="style.styleImage" />
           </ion-thumbnail>
           <ion-radio [value]="style">{{style.name}}</ion-radio>
@@ -117,6 +79,6 @@
 
 <ion-footer *ngIf="filterType === 'styling'">
   <ion-toolbar>
-    <ion-button expand="block" (click)="onSaveStyling()" [disabled]="!styleForm.valid" type="submit">SAVE</ion-button>
+    <app-main-action-button (click)="onSaveStyling()" [disableButton]="!styleForm.valid" type="submit">SAVE</app-main-action-button>
   </ion-toolbar>
 </ion-footer>

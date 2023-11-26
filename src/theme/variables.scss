@@ -2,9 +2,11 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
+  
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #d1236f;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -83,7 +85,7 @@
    */
 
   body {
-    --ion-color-primary: #428cff;
+    --ion-color-primary: #d1236f;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;
     --ion-color-primary-contrast-rgb: 255,255,255;
@@ -166,7 +168,7 @@
     --ion-color-step-250: #404040;
     --ion-color-step-300: #4d4d4d;
     --ion-color-step-350: #595959;
-    --ion-color-step-400: #666666;
+    --ion-color-step-400: var(--ion-background-color);
     --ion-color-step-450: #737373;
     --ion-color-step-500: #808080;
     --ion-color-step-550: #8c8c8c;
@@ -216,7 +218,7 @@
     --ion-color-step-450: #7d7d7d;
     --ion-color-step-500: #898989;
     --ion-color-step-550: #949494;
-    --ion-color-step-600: #a0a0a0;
+    --ion-color-step-600: var(--ion-text-color);
     --ion-color-step-650: #acacac;
     --ion-color-step-700: #b8b8b8;
     --ion-color-step-750: #c4c4c4;
@@ -244,7 +246,7 @@ http://ionicframework.com/docs/theming/ */
  */
 
  body.dark {
-  --ion-color-primary: #428cff;
+  --ion-color-primary: #d1236f;
   --ion-color-primary-rgb: 66, 140, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -327,11 +329,11 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-step-250: #404040;
   --ion-color-step-300: #4d4d4d;
   --ion-color-step-350: #595959;
-  --ion-color-step-400: #666666;
+  --ion-color-step-400: var(--ion-text-color);
   --ion-color-step-450: #737373;
   --ion-color-step-500: #808080;
   --ion-color-step-550: #8c8c8c;
-  --ion-color-step-600: #999999;
+  --ion-color-step-600: var(--ion-text-color);
   --ion-color-step-650: #a6a6a6;
   --ion-color-step-700: #b3b3b3;
   --ion-color-step-750: #bfbfbf;
@@ -376,7 +378,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-step-450: #7d7d7d;
   --ion-color-step-500: #898989;
   --ion-color-step-550: #949494;
-  --ion-color-step-600: #a0a0a0;
+  --ion-color-step-600: var(--ion-text-color);
   --ion-color-step-650: #acacac;
   --ion-color-step-700: #b8b8b8;
   --ion-color-step-750: #c4c4c4;

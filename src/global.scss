@@ -26,6 +26,9 @@
 @import "@ionic/angular/css/flex-utils.css";
 @import "./theme/fonts.scss";
 
+@import "./theme/variables.scss";
+
+
 * {
   font-family: Lato;
 }
@@ -34,3 +37,11 @@ html {
     --ion-dynamic-font: var(--ion-default-dynamic-font);
     --ion-font-family: 'Mulish';
   }
+
+.nav-icon-background{
+    position: absolute;
+    left: 6px;
+    top:6px;
+    background-color: lightgray;
+    border-radius: 17%;
+}  

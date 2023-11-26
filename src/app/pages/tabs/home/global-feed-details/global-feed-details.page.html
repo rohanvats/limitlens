@@ -7,14 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-
   <div class=" image-container">
     <app-main-image [image]="image['url']" ></app-main-image>
     <div class="icon-container">
       <ion-fab-button size="small">
         <ion-icon size="small" name="heart"></ion-icon>
+      </ion-fab-button >
+      <ion-fab-button size="small">
+        <ion-icon size="small" name="expand"></ion-icon>
       </ion-fab-button >
       <ion-fab-button size="small">
         <ion-icon size="small" name="share-social"></ion-icon>
@@ -37,7 +38,7 @@
     </ion-item>
   </ion-card-content>
   </ion-card>
-
-  <ion-button expand="block" (click)="onCreate()" >Create Your Own</ion-button>
-  
+  <div class="ion-padding-horizontal">
+    <app-main-action-button  (click)="onCreate()">CREATE YOUR OWN</app-main-action-button>
+  </div>
 </ion-content>

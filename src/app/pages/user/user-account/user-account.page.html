@@ -1,19 +1,12 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
-    </ion-buttons>
-    <ion-title>USER ACCOUNT</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content >
-  
         <app-custom-card-button
           [height]="'18vh'"
           [classes]="'custom-card custom-image'"
           [background-image]="'https://picsum.photos/500'"
          >
+              <span class="nav-icon-background" routerLink="../">
+                <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+              </span>
           <div>
             <h2>
               <ion-icon name="person"></ion-icon>
@@ -26,7 +19,11 @@
         <ion-list [inset]="true">
 
           <ion-item>
-            <ion-input label="Name" labelPlacement="floating"></ion-input>
+            <ion-input label="First Name" labelPlacement="floating"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Last Name" labelPlacement="floating"></ion-input>
           </ion-item>
 
           <ion-item>

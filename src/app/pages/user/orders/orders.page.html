@@ -1,11 +1,11 @@
-<ion-header >
+<!-- <ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
     </ion-buttons>
     <ion-title>ORDERS</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
 
@@ -14,6 +14,9 @@
           [background-image]="'https://picsum.photos/500'"
           [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
          >
+         <span class="nav-icon-background" routerLink="../">
+          <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+         </span>
           <div>
             <h2>
               <ion-icon name="timer-outline"></ion-icon>
