@@ -17,19 +17,19 @@
   <ion-row *ngIf="!usingGlobalFeed">
     <ion-col *ngFor="let item of filterOptions">
       <app-custom-card-button
-        (click)="openFilterModal(item.value)"
+        (click)="openFilterModal(item?.value)"
         [background-image]="item?.styleImage"
         classes="ion-no-margin ion-margin-start ion-margin-end custom-card"
         [height]="'12vh'"
         >
         <span *ngIf="item.name === 'format'; else elseBlock">
-          {{item.name  | uppercase}}
+          {{item?.name  | uppercase}}
         </span>
         <ng-template #elseBlock>
           <span >
-          <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item.value === 'format'"></ion-icon>
+          <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item?.value === 'format'"></ion-icon>
           <div >
-            {{item.name  | uppercase}}
+            {{item?.name  | uppercase}}
           </div>
         </span>
         </ng-template>
@@ -40,8 +40,8 @@
   </ion-row>
 
   <ion-row>
-    <ion-col>
-      <ion-button expand="block" type="submit">Save</ion-button>
+    <ion-col class="ion-padding-horizontal">
+      <app-main-action-button type="submit">SAVE</app-main-action-button>
     </ion-col>
   </ion-row>
 </form>

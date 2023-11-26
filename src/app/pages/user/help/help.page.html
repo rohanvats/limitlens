@@ -1,19 +1,12 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
-    </ion-buttons>
-    <ion-title>HELP</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
   <app-custom-card-button
           [height]="'18vh'"
           [background-image]="'https://picsum.photos/500'"
-          [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
+          [classes]="'custom-card custom-image'"
          >
+         <span class="nav-icon-background" routerLink="../">
+          <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+         </span>
           <div>
             <h2>
               <ion-icon name="information-circle"></ion-icon>
@@ -43,6 +36,4 @@
             </h2>
           </div>
         </app-custom-card-button>
-
-
 </ion-content>

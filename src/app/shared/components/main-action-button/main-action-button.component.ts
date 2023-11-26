@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-action-button',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-action-button.component.scss'],
 })
 export class MainActionButtonComponent  implements OnInit {
+
+  @Input() disableButton:any;
 
   constructor() { }
 
