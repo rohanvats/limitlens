@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { Share } from '@capacitor/share';
 @Component({
   selector: 'app-image-details',
   templateUrl: './image-details.page.html',
@@ -22,6 +22,12 @@ export class ImageDetailsPage implements OnInit {
       this.imageDetails = image;
     })
   }
+
+  async shareImage(){
+    await Share.share({
+    url: this.imageDetails?.url,
+  });
+}
 
   onClick(){
     console.log('On print')
