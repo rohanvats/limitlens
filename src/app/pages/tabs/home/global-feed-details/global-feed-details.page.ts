@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Share } from '@capacitor/share';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -23,6 +24,12 @@ export class GlobalFeedDetailsPage implements OnInit {
       this.image = imageDetails;
     })
   }
+
+  async shareImage(){
+    await Share.share({
+    url: this.image?.url,
+  });
+}
 
   onCreate(){
     this.navCtrl.navigateForward(['/tabs','create'],
