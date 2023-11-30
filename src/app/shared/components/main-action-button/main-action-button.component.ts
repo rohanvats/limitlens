@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MainActionButtonComponent  implements OnInit {
 
   @Input() disableButton:any;
+  @Input('type') buttonType: any;
 
   constructor() { }
 

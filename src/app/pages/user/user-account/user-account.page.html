@@ -1,22 +1,25 @@
 <ion-content >
         <app-custom-card-button
           [height]="'18vh'"
-          [classes]="'custom-card custom-image'"
-          [background-image]="'https://picsum.photos/500'"
+          [classes]="'ion-no-margin custom-card custom-image'"
+          [background-image]="'assets/UI_Images/Regular_Size/App_UI_Buttons_small_size_Opaque-assets/User_Info.png'"
          >
               <span class="nav-icon-background" routerLink="../">
-                <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+                <ion-icon class="main-header-text" size="large" name="arrow-back-outline"></ion-icon>
               </span>
           <div>
-            <h2>
-              <ion-icon name="person"></ion-icon>
-              USER ACCOUNT
+            <h2 class="main-header-text">
+              MY INFO
             </h2>
           </div>
         </app-custom-card-button>
 
 
         <ion-list [inset]="true">
+
+          <ion-item>
+            <ion-input label="User Name" labelPlacement="floating"></ion-input>
+          </ion-item>
 
           <ion-item>
             <ion-input label="First Name" labelPlacement="floating"></ion-input>
@@ -31,16 +34,20 @@
           </ion-item>
 
           <ion-item>
-            <ion-input label="Phone Number" labelPlacement="floating"></ion-input>
+            <ion-input label="Password" type="password" labelPlacement="floating"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input label="Password" type="password" labelPlacement="floating"></ion-input>
+            <ion-input label="Phone Number" labelPlacement="floating"></ion-input>
           </ion-item>
           
           <ion-item-group>
               <ion-item>
-                <ion-input label="Address" labelPlacement="floating"></ion-input>
+                <ion-input label="Address Line 1" labelPlacement="floating"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Address Line 2" labelPlacement="floating"></ion-input>
               </ion-item>
 
               <ion-item>
@@ -50,6 +57,11 @@
               <ion-item>
                 <ion-input label="City" labelPlacement="floating"></ion-input>
               </ion-item>
+
+              <ion-item>
+                <ion-input label="State/Region" labelPlacement="floating"></ion-input>
+              </ion-item>
+
         </ion-item-group>
 
           <ion-item>

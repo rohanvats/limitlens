@@ -9,6 +9,7 @@ export class CustomCardButtonComponent  implements OnInit {
 
   @Input('background-image') cardBackgroundImage:string = '';
   @Input('height') cardHeight = '';
+  @Input('width') cardWidth = ''
   @Input() enableAsButton:boolean = false;
   @Input() classes = '';
 

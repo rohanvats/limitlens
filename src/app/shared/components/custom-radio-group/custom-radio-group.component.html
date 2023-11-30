@@ -1,0 +1,18 @@
+<ion-grid>
+  <ion-row>
+    
+    <ion-col *ngFor="let data of filter" class="ion-text-center" size="6" >
+        <ion-radio-group formControlName="controlName">
+          <ion-radio [value]="data">
+          <div class="img-card ion-padding label">
+              <ion-img style="border-radius: 20px;" [src]="data.styleImage"></ion-img>
+          <ion-text>
+            <h6>{{data.name | uppercase}}</h6>
+          </ion-text>
+           </div>
+          </ion-radio>
+        </ion-radio-group>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
