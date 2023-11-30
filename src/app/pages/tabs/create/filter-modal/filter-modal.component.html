@@ -1,17 +1,22 @@
-<ion-header>
-  <ion-toolbar class="vackgorund">
-    <ion-title>
-      {{filterType | uppercase }}
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onCancel()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+ 
+  <app-custom-card-button
+          [height]="'18vh'"
+          [classes]="'ion-no-margin custom-card custom-image'"
+          [background-image]="backgroundImage"
+         >
+         <span class="nav-icon-background" (click)="onCancel()" >
+          <ion-icon size="large" class="main-header-text"  name="close"></ion-icon>
+        </span>
+            <h2 class="main-header-text">
+              {{filterType | uppercase }}
+            </h2>
+          <ion-buttons slot="end">
+            <ion-button (click)="onCancel()">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </app-custom-card-button>
 
   <ng-container *ngIf="filterType === 'format'">
     <form [formGroup]="formatForm" (ngSubmit)="onSaveFormat()">
@@ -58,27 +63,168 @@
     <form [formGroup]="styleForm" (ngSubmit)="onSaveStyling()">
     <ion-searchbar placeholder="Search Artist"></ion-searchbar>
 
-    <ion-list [inset]="true">
       <ion-list-header>
           <h2>Styles:</h2>
       </ion-list-header>
-        <ion-radio-group formControlName="style">
-        <ion-item *ngFor="let style of styling">
-          <ion-thumbnail slot="start">
-            <img alt="style.name" [src]="style.styleImage" />
-          </ion-thumbnail>
-          <ion-radio [value]="style">{{style.name}}</ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
-  </form>
+      
+      <ion-grid>
+        <ion-row>
+          
+          <ion-col *ngFor="let data of styling" class="ion-text-center" size="6" >
+              <ion-radio-group formControlName="style">
+                <ion-radio [value]="data">
+                <div class="img-card ion-padding label">
+                    <img style="border-radius: 20px;" [src]="data.styleImage">
+                <ion-text class="ion-text-center">
+                  <h6>{{data.name | uppercase}}</h6>
+                </ion-text>
+                 </div>
+                </ion-radio>
+              </ion-radio-group>
+          </ion-col>
+      
+        </ion-row>
+      </ion-grid>
 
+        </form>
+        
+  </ng-container>
+
+
+  <ng-container *ngIf="filterType === 'lighting'">
+
+    <form [formGroup]="lightingForm" (ngSubmit)="onSaveLighting()">
+    <!-- <ion-searchbar placeholder="Search Artist"></ion-searchbar> -->
+
+      <ion-list-header>
+          <h2>Lighting:</h2>
+      </ion-list-header>
+      
+      <ion-grid>
+        <ion-row>
+          
+          <ion-col *ngFor="let data of lighting" class="ion-text-center" size="6" >
+              <ion-radio-group formControlName="lighting">
+                <ion-radio [value]="data">
+                <div class="img-card ion-padding label">
+                    <img style="border-radius: 20px;" [src]="data.styleImage">
+                <ion-text class="ion-text-center">
+                  <h6>{{data.name | uppercase}}</h6>
+                </ion-text>
+                 </div>
+                </ion-radio>
+              </ion-radio-group>
+          </ion-col>
+      
+        </ion-row>
+      </ion-grid>
+
+        </form>
+        
+  </ng-container>
+
+
+
+  <ng-container *ngIf="filterType === 'camera'">
+
+    <form [formGroup]="cameraForm" (ngSubmit)="onSaveCamera()">
+    <!-- <ion-searchbar placeholder="Search Artist"></ion-searchbar> -->
+
+      <ion-list-header>
+          <h2>Camera:</h2>
+      </ion-list-header>
+      
+      <ion-grid>
+        <ion-row>
+          
+          <ion-col *ngFor="let data of camera" class="ion-text-center" size="6" >
+              <ion-radio-group formControlName="camera">
+                <ion-radio [value]="data">
+                <div class="img-card ion-padding label">
+                    <img style="border-radius: 20px;" [src]="data.styleImage">
+                <ion-text class="ion-text-center">
+                  <h6>{{data.name | uppercase}}</h6>
+                </ion-text>
+                 </div>
+                </ion-radio>
+              </ion-radio-group>
+          </ion-col>
+      
+        </ion-row>
+      </ion-grid>
+
+        </form>
+        
   </ng-container>
   
 </ion-content>
 
 <ion-footer *ngIf="filterType === 'styling'">
   <ion-toolbar>
-    <app-main-action-button (click)="onSaveStyling()" [disableButton]="!styleForm.valid" type="submit">SAVE</app-main-action-button>
+    <app-main-action-button 
+      (click)="onSaveStyling()"
+      [disableButton]="!styleForm.valid"
+      type="submit">
+      SAVE
+    </app-main-action-button>
   </ion-toolbar>
 </ion-footer>
+
+<ion-footer *ngIf="filterType === 'lighting'">
+  <ion-toolbar>
+    <app-main-action-button 
+      (click)="onSaveLighting()"
+      [disableButton]="!lightingForm.valid"
+      type="submit">
+      SAVE
+    </app-main-action-button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="filterType === 'camera'">
+  <ion-toolbar>
+    <app-main-action-button 
+      (click)="onSaveCamera()"
+      [disableButton]="!cameraForm.valid"
+      type="submit">
+      SAVE
+    </app-main-action-button>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+<!-- <ion-radio-group formControlName="style">
+<ion-item *ngFor="let style of styling">
+  <ion-thumbnail slot="start" class="custom-thumbnail">
+    <img alt="style.name" [src]="style.styleImage" />
+  </ion-thumbnail>
+  <ion-radio [value]="style">{{style.name}}</ion-radio>
+</ion-item>
+</ion-radio-group> -->
+
+
+
+
+
+
+<!-- <ion-grid >
+<ion-row >
+  
+  <ion-col *ngFor="let style of styling" class="ion-text-center" size="6" >
+      <ion-radio-group formControlName="style">
+        <ion-radio [value]="style">
+        <div class="img-card ion-padding label">
+            <ion-img style="border-radius: 20px;" [src]="style.styleImage"></ion-img>
+        <ion-text>
+          <h6>{{style.name | uppercase}}</h6>
+        </ion-text>
+         </div>
+        </ion-radio>
+      </ion-radio-group>
+  </ion-col>
+
+</ion-row>
+</ion-grid> -->

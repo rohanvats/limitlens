@@ -14,34 +14,38 @@
     </ion-card-content>
   </ion-card>
 
+
   <ion-row *ngIf="!usingGlobalFeed">
-    <ion-col *ngFor="let item of filterOptions">
-      <app-custom-card-button
-        (click)="openFilterModal(item?.value)"
-        [background-image]="item?.styleImage"
-        classes="ion-no-margin ion-margin-start ion-margin-end custom-card"
-        [height]="'12vh'"
-        >
-        <span *ngIf="item.name === 'format'; else elseBlock">
-          {{item?.name  | uppercase}}
-        </span>
-        <ng-template #elseBlock>
-          <span >
-          <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item?.value === 'format'"></ion-icon>
-          <div >
-            {{item?.name  | uppercase}}
-          </div>
-        </span>
-        </ng-template>
-        <span>
-        </span>
-      </app-custom-card-button>
+    <ion-col size="6" class="ion-text-center" *ngFor="let item of filterOptions">
+
+        <img 
+          style="height: 150px; width: 150px; border-radius: 20px;"
+          (click)="openFilterModal(item?.value)"
+          [src]="item?.styleImage ? item?.styleImage : item.url">
+      
+          <ion-text *ngIf="item.name === 'format'; else elseBlock">
+            <h6>{{item?.name  | uppercase}}</h6>
+          </ion-text>
+          <ng-template #elseBlock>
+            <span >
+              <ion-text>
+                <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item?.value === 'format'"></ion-icon>    
+                <h6>{{item?.name  | uppercase}}</h6>
+              </ion-text>
+          </span>
+          </ng-template>
+          <span>
+          </span>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col class="ion-padding-horizontal">
-      <app-main-action-button type="submit">SAVE</app-main-action-button>
+      <app-main-action-button
+      [type]="'submit'"
+      [disableButton]="!promptForm.valid"
+        >SAVE
+      </app-main-action-button>
     </ion-col>
   </ion-row>
 </form>

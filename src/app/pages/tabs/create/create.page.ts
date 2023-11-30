@@ -4,7 +4,6 @@ import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -18,8 +17,10 @@ export class CreatePage implements OnInit {
   usingGlobalFeed = false;
   private $querySubscription: any;
   filterOptions:any = [
-    {name: 'format', value: 'format'},
-    {name: 'styling', value: 'styling'}
+    {name: 'format', value: 'format', url: 'assets/UI_Images/Regular_Size/App_Filters_Titles_small_size-assets/format.png'},
+    {name: 'styling', value: 'styling', url: 'assets/UI_Images/Regular_Size/App_Filters_Titles_small_size-assets/styles.png'},
+    {name: 'lighting', value: 'lighting', url: 'assets/UI_Images/Regular_Size/App_Filters_Titles_small_size-assets/lighting.png'},
+    {name: 'camera', value: 'camera', url: 'assets/UI_Images/Regular_Size/App_Filters_Titles_small_size-assets/camera.png'}
   ]
 
   promptForm = new FormGroup({
@@ -37,29 +38,27 @@ export class CreatePage implements OnInit {
     this.userPrompt = 'Example : This photos as Indiana Jones';
   }
 
-  ionViewWillEnter() {
-    // Code to run when the page is about to enter
+  // ionViewWillEnter() {
 
-    const currentRoute = this.route.snapshot.routeConfig?.path;
-    console.log('current Route: ', currentRoute);
+  //   const currentRoute = this.route.snapshot.routeConfig?.path;
+  //   console.log('current Route: ', currentRoute);
 
-    console.log('ion view will enter');
-    this.$querySubscription = this.route.queryParams.subscribe(data => {
-      if(data){
-        this.usingGlobalFeed = data['globalFeed'] ? data['globalFeed'] : false;
-      }
-      console.log('query: ', data);
-    })
-  }
+  //   console.log('ion view will enter');
+  //   this.$querySubscription = this.route.queryParams.subscribe(data => {
+  //     if(data){
+  //       this.usingGlobalFeed = data['globalFeed'] ? data['globalFeed'] : false;
+  //     }
+  //     console.log('query: ', data);
+  //   })
+  // }
 
-  ionViewWillLeave() {
-    // Code to run when the page is about to leave
-    console.log('ion view will leave');
-    if (this.$querySubscription) {
-      this.usingGlobalFeed = false;
-      this.$querySubscription.unsubscribe();
-    }
-  }
+  // ionViewWillLeave() {
+  //   console.log('ion view will leave');
+  //   if (this.$querySubscription) {
+  //     this.usingGlobalFeed = false;
+  //     this.$querySubscription.unsubscribe();
+  //   }
+  // }
   
 
   openPromptModal(){
@@ -91,6 +90,7 @@ export class CreatePage implements OnInit {
   }
 
   openFilterModal(filterType: string){
+
     this.modalCtrl.create({
       component: FilterModalComponent,
       componentProps: {
@@ -113,6 +113,28 @@ export class CreatePage implements OnInit {
         })
       }
 
+      if(result.role === 'confirmLighting'){
+        console.log(result); 
+        
+        this.filterOptions.map((el:any) => {
+          if(el.value === 'lighting'){
+            el.styleImage = result.data.lighting.styleImage;
+            return el.name = result.data.lighting.name;
+          }
+        })
+      }
+
+      if(result.role === 'confirmCamera'){
+        console.log(result); 
+        
+        this.filterOptions.map((el:any) => {
+          if(el.value === 'camera'){
+            el.styleImage = result.data.camera.styleImage;
+            return el.name = result.data.camera.name;
+          }
+        })
+      }
+
       if(result.role === 'confirmFormat'){
         console.log('res: ',result);
         
@@ -128,7 +150,7 @@ export class CreatePage implements OnInit {
 
   onSavePrompt(){
     console.log({
-      image: this.image,
+      image: this.image, 
       prompt: this.userPrompt,
       filters: this.filterOptions
     });

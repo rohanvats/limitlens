@@ -26,3 +26,29 @@ ion-fab-button::part(native) {
 //   ion-card-content{
 //     height: 15vh;
 //   }
+
+
+ion-img{
+  position: relative;
+}
+
+.img-card{
+  border-radius: 10px;
+}
+
+ion-text{
+    position: absolute;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    bottom: 1px;
+    h6{
+      font-weight: 700;
+      line-height: 14.52px;
+    }
+}
+
+ion-radio::part(container){
+  display: none;
+}

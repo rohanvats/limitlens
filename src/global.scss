@@ -40,8 +40,13 @@ html {
 
 .nav-icon-background{
     position: absolute;
-    left: 6px;
+    right: 6px;
     top:6px;
-    background-color: lightgray;
     border-radius: 17%;
-}  
+}
+
+.main-header-text{
+      color: #FFFFFF;
+      font-weight: 700;
+      line-height: 1.815rem;
+}

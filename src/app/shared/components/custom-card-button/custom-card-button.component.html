@@ -4,14 +4,15 @@
 
   [ngStyle]="{
               'height': cardHeight,
+              'width': cardWidth,
               'background-image': 'url(' + cardBackgroundImage + ')'
              }"
 
-  [ngClass]="classes">          
+  [ngClass]="classes">
 
 
          <ng-content></ng-content>
 
-         <ng-content select="subscription"></ng-content>
+         <ng-content select="abcd"></ng-content>
 
   </ion-card>
