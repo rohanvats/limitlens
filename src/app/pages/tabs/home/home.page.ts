@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { IonicSlides, NavController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { register } from 'swiper/element/bundle';
 
 @Component({
   selector: 'app-home',
@@ -8,29 +10,44 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  globalData: any = [];
+  swiperModules = [IonicSlides];
 
-  globalData:any = []
+  opts = {
+    freeMode: true,
+    slidesPerView: 2.8,
+    slidesOffsetBefore: 30,
+    slidesOffsetAfter: 100,
+  };
+
+  // register();
+
+  catgeories = [
+    { name: 'abc' },
+    { name: 'qwe' },
+    { name: 'qwdd' },
+    { name: 'ads' },
+  ];
 
   constructor(
-    private dataService:DataService,
+    private dataService: DataService,
     private navCtrl: NavController
-    ) {}
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.getGlobalFeedData();
   }
 
-  getGlobalFeedData(){
-    this.dataService.getGlobalFeedData().subscribe(data => {
+  getGlobalFeedData() {
+    this.dataService.getGlobalFeedData().subscribe((data) => {
       this.globalData = data;
-    })
+    });
   }
 
-  toImageDetails(image: any){
+  toImageDetails(image: any) {
     this.navCtrl.navigateForward(['/tabs/home/global-feed-details'], {
       queryParams: image,
-    })
-    console.log('From home: ',image);
+    });
+    console.log('From home: ', image);
   }
-
 }

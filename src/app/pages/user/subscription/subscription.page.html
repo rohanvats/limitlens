@@ -1,123 +1,140 @@
 <ion-content>
-  
   <app-custom-card-button
-          [height]="'18vh'"
-          [background-image]="'assets/UI_Images/Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Subscription.png'"
-          [classes]="'ion-no-margin custom-card custom-image'"
-         >
-          <span class="nav-icon-background" routerLink="../">
-            <ion-icon size="large" class="main-header-text" name="arrow-back-outline"></ion-icon>
-          </span>
-          <div>
-            <h2 class="main-header-text">
-              SUBSCRIPTION
-            </h2>
-          </div>
-        </app-custom-card-button>
+    [height]="'18vh'"
+    [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Subscription.webp'"
+    [classes]="'ion-no-margin custom-card custom-image'"
+  >
+    <span class="nav-icon-background" routerLink="../">
+      <ion-icon
+        size="large"
+        class="main-header-text"
+        name="arrow-back-outline"
+      ></ion-icon>
+    </span>
+    <div>
+      <h2 class="main-header-text">SUBSCRIPTION</h2>
+    </div>
+  </app-custom-card-button>
 
-              <app-custom-card-button
-               [height]="'18vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                        <ion-badge>FREE</ion-badge>
-                        <h4>0,00€/mo</h4>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3 class="ion-no-margin">What you get :</h3>
-                          <p class="ion-no-margin"> 3 image generation</p>
-                          <p class="ion-no-margin"> 1 X2 upscaling</p>
-                          <p class="ion-no-margin"> up to 10 images in your gallery</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-    
-              <app-custom-card-button
-               [height]="'18vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                        <ion-badge>BRONZE</ion-badge>
-                        <h4>3,99€/mo</h4>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3 class="ion-no-margin">What you get :</h3>
-                          <p class="ion-no-margin"> 15 image generation</p>
-                          <p class="ion-no-margin"> 3 X 4 upscaling</p>
-                          <p class="ion-no-margin"> up to 20 images in your gallery</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-            
-              <app-custom-card-button
-               [height]="'18vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                        <ion-badge>SILVER</ion-badge>
-                        <h4>5,99€/mo</h4>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3 class="ion-no-margin">What you get :</h3>
-                          <p class="ion-no-margin"> 30 image generation</p>
-                          <p class="ion-no-margin"> 5 X 8 upscaling</p>
-                          <p class="ion-no-margin"> up to 30 images in your gallery</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-            
-              <app-custom-card-button
-               [height]="'18vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                        <ion-badge>GOLD</ion-badge>
-                        <h4>7,99€/mo</h4>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3 class="ion-no-margin">What you get :</h3>
-                          <p class="ion-no-margin"> 50 image generation</p>
-                          <p class="ion-no-margin"> 5 X 16 upscaling</p>
-                          <p class="ion-no-margin"> up to 50 images in your gallery</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-            
-              <app-custom-card-button
-               [height]="'18vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                        <ion-badge>ADVANCED</ion-badge>
-                        <h4>3,99€/week</h4>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3 class="ion-no-margin">What you get :</h3>
-                          <p class="ion-no-margin"> Unlimited generation</p>
-                          <p class="ion-no-margin"> 10 X 16 upscaling</p>
-                          <p class="ion-no-margin"> unlimited images in your gallery</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-          
+  <div class="main-container">
+    <div class="ion-padding">
+      <app-custom-card-button
+        [height]="'18vh'"
+        [classes]="'custom-card-border-radius'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <ion-badge>FREE</ion-badge>
+              <h4>0,00€/mo</h4>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3 class="ion-no-margin">What you get :</h3>
+                <p class="ion-no-margin">3 image generation</p>
+                <p class="ion-no-margin">1 X2 upscaling</p>
+                <p class="ion-no-margin">up to 10 images in your gallery</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-custom-card-button
+        [height]="'18vh'"
+        [classes]="'custom-card-border-radius'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <ion-badge>BRONZE</ion-badge>
+              <h4>3,99€/mo</h4>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3 class="ion-no-margin">What you get :</h3>
+                <p class="ion-no-margin">15 image generation</p>
+                <p class="ion-no-margin">3 X 4 upscaling</p>
+                <p class="ion-no-margin">up to 20 images in your gallery</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-custom-card-button
+        [height]="'18vh'"
+        [classes]="'custom-card-border-radius'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <ion-badge>SILVER</ion-badge>
+              <h4>5,99€/mo</h4>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3 class="ion-no-margin">What you get :</h3>
+                <p class="ion-no-margin">30 image generation</p>
+                <p class="ion-no-margin">5 X 8 upscaling</p>
+                <p class="ion-no-margin">up to 30 images in your gallery</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-custom-card-button
+        [height]="'18vh'"
+        [classes]="'custom-card-border-radius'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <ion-badge>GOLD</ion-badge>
+              <h4>7,99€/mo</h4>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3 class="ion-no-margin">What you get :</h3>
+                <p class="ion-no-margin">50 image generation</p>
+                <p class="ion-no-margin">5 X 16 upscaling</p>
+                <p class="ion-no-margin">up to 50 images in your gallery</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-custom-card-button
+        [height]="'18vh'"
+        [classes]="'custom-card-border-radius'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <ion-badge>ADVANCED</ion-badge>
+              <h4>3,99€/week</h4>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3 class="ion-no-margin">What you get :</h3>
+                <p class="ion-no-margin">Unlimited generation</p>
+                <p class="ion-no-margin">10 X 16 upscaling</p>
+                <p class="ion-no-margin">unlimited images in your gallery</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div>
+  </div>
 </ion-content>

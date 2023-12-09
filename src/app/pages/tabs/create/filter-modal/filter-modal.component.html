@@ -1,200 +1,221 @@
 <ion-content>
- 
   <app-custom-card-button
-          [height]="'18vh'"
-          [classes]="'ion-no-margin custom-card custom-image'"
-          [background-image]="backgroundImage"
-         >
-         <span class="nav-icon-background" (click)="onCancel()" >
-          <ion-icon size="large" class="main-header-text"  name="close"></ion-icon>
-        </span>
-            <h2 class="main-header-text">
-              {{filterType | uppercase }}
-            </h2>
-          <ion-buttons slot="end">
-            <ion-button (click)="onCancel()">
-              <ion-icon name="close"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </app-custom-card-button>
+    [height]="'18vh'"
+    [classes]="'ion-no-margin custom-card custom-image'"
+    [background-image]="backgroundImage"
+  >
+    <span class="nav-icon-background" (click)="onCancel()">
+      <ion-icon size="large" class="main-header-text" name="close"></ion-icon>
+    </span>
+    <h2 class="main-header-text">
+      {{ filterType | uppercase }}
+    </h2>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </app-custom-card-button>
 
   <ng-container *ngIf="filterType === 'format'">
     <form [formGroup]="formatForm" (ngSubmit)="onSaveFormat()">
-    <ion-list [inset]="true">
-      <ion-list-header>
+      <ion-list [inset]="true">
+        <ion-list-header>
           <h2>Choose the purpose:</h2>
-      </ion-list-header>
+        </ion-list-header>
         <ion-radio-group formControlName="imageType">
-        <ion-item *ngFor="let purpose of purposeOptions">
-          <ion-thumbnail slot="start"  class="thumbnail">
-            <ion-icon size="large" name="{{purpose.iconName}}" class="icon"></ion-icon>
-          </ion-thumbnail>
-          <ion-radio [value]="purpose">{{purpose.name | uppercase}}</ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list> 
+          <ion-item *ngFor="let purpose of purposeOptions">
+            <ion-thumbnail slot="start" class="thumbnail">
+              <ion-icon
+                size="large"
+                name="{{ purpose.iconName }}"
+                class="icon"
+              ></ion-icon>
+            </ion-thumbnail>
+            <ion-radio [value]="purpose">{{
+              purpose.name | uppercase
+            }}</ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list [inset]="true">
+        <ion-list-header>
+          <h2>Choose the ratio:</h2>
+        </ion-list-header>
+        <ion-radio-group formControlName="ratio">
+          <ion-item *ngFor="let ratio of radioOptions">
+            <ion-thumbnail slot="start">
+              <img
+                class="custom-img-btn"
+                alt="{{ ratio.name }}"
+                src="{{ ratio.image }}"
+              />
+            </ion-thumbnail>
+            <ion-radio [value]="ratio">{{ ratio.name | uppercase }}</ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </form>
+
+    <ion-row>
+      <ion-col class="ion-padding-horizontal">
         <ion-list [inset]="true">
-          <ion-list-header>
-              <h2>Choose the ratio:</h2>
-          </ion-list-header>
-            <ion-radio-group formControlName="ratio">
-            <ion-item *ngFor="let ratio of radioOptions">
-              <ion-thumbnail slot="start">
-                  <img  alt="{{ratio.name}}" src="{{ratio.image}}" />
-              </ion-thumbnail>
-              <ion-radio [value]="ratio">{{ratio.name | uppercase}}</ion-radio>
-            </ion-item>
-          </ion-radio-group>
+          <app-main-action-button
+            class="ion-padding-horizontal"
+            [disableButton]="!formatForm.valid"
+            (click)="onSaveFormat()"
+            type="submit"
+            >SAVE</app-main-action-button
+          >
         </ion-list>
-      </form>
-
-        <ion-row>
-          <ion-col class="ion-padding-horizontal" >
-            <ion-list [inset]="true">
-              <app-main-action-button class="ion-padding-horizontal" [disableButton]="!formatForm.valid" (click)="onSaveFormat()" type="submit">SAVE</app-main-action-button>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-
+      </ion-col>
+    </ion-row>
   </ng-container>
 
   <ng-container *ngIf="filterType === 'styling'">
-
     <form [formGroup]="styleForm" (ngSubmit)="onSaveStyling()">
-    <ion-searchbar placeholder="Search Artist"></ion-searchbar>
+      <ion-searchbar placeholder="Search Artist"></ion-searchbar>
 
-      <ion-list-header>
-          <h2>Styles:</h2>
-      </ion-list-header>
-      
       <ion-grid>
         <ion-row>
-          
-          <ion-col *ngFor="let data of styling" class="ion-text-center" size="6" >
-              <ion-radio-group formControlName="style">
-                <ion-radio [value]="data">
-                <div class="img-card ion-padding label">
-                    <img style="border-radius: 20px;" [src]="data.styleImage">
-                <ion-text class="ion-text-center">
-                  <h6>{{data.name | uppercase}}</h6>
+          <ion-col
+            *ngFor="let data of styling; let i = index"
+            class="ion-text-center"
+            size="4"
+          >
+            <ion-radio-group
+              formControlName="style"
+              (click)="onSelectImg(data)"
+            >
+              <ion-radio
+                #ionRadio
+                [value]="data"
+                [ngClass]="{ 'radio-label-placement-start': false }"
+              >
+                <!-- <div >
+                  <div> -->
+                <img
+                  [ngClass]="{
+                    selected: styleForm.value.style === data
+                  }"
+                  class="custom-img-btn custom-drop-shadow radio-checked"
+                  [src]="data.styleImage"
+                />
+                <!-- </div> -->
+                <ion-text class="ion-text-center custom-img-btn-text">
+                  <p>{{ data.name | uppercase }}</p>
                 </ion-text>
-                 </div>
-                </ion-radio>
-              </ion-radio-group>
+                <!-- </div> -->
+              </ion-radio>
+            </ion-radio-group>
           </ion-col>
-      
         </ion-row>
       </ion-grid>
-
-        </form>
-        
+    </form>
   </ng-container>
-
 
   <ng-container *ngIf="filterType === 'lighting'">
-
     <form [formGroup]="lightingForm" (ngSubmit)="onSaveLighting()">
-    <!-- <ion-searchbar placeholder="Search Artist"></ion-searchbar> -->
-
-      <ion-list-header>
-          <h2>Lighting:</h2>
-      </ion-list-header>
-      
       <ion-grid>
-        <ion-row>
-          
-          <ion-col *ngFor="let data of lighting" class="ion-text-center" size="6" >
-              <ion-radio-group formControlName="lighting">
-                <ion-radio [value]="data">
-                <div class="img-card ion-padding label">
-                    <img style="border-radius: 20px;" [src]="data.styleImage">
-                <ion-text class="ion-text-center">
-                  <h6>{{data.name | uppercase}}</h6>
-                </ion-text>
-                 </div>
-                </ion-radio>
-              </ion-radio-group>
+        <ion-row class="ion-padding">
+          <ion-col
+            *ngFor="let data of lighting"
+            class="ion-text-center"
+            size="4"
+          >
+            <ion-radio-group
+              formControlName="lighting"
+              (click)="onSelectImg(data)"
+            >
+              <ion-radio [value]="data">
+                <div class="ion-padding-bottom a">
+                  <div class="img-container">
+                    <img
+                      [ngClass]="{
+                        selected: lightingForm.value.lighting === data
+                      }"
+                      class="custom-border custom-img-btn custom-drop-shadow"
+                      [src]="data?.styleImage"
+                    />
+                  </div>
+                  <ion-text class="ion-text-center custom-img-btn-text">
+                    <p>{{ data?.name | uppercase }}</p>
+                  </ion-text>
+                </div>
+              </ion-radio>
+            </ion-radio-group>
           </ion-col>
-      
         </ion-row>
       </ion-grid>
-
-        </form>
-        
+    </form>
   </ng-container>
-
-
 
   <ng-container *ngIf="filterType === 'camera'">
-
     <form [formGroup]="cameraForm" (ngSubmit)="onSaveCamera()">
-    <!-- <ion-searchbar placeholder="Search Artist"></ion-searchbar> -->
-
-      <ion-list-header>
-          <h2>Camera:</h2>
-      </ion-list-header>
-      
       <ion-grid>
-        <ion-row>
-          
-          <ion-col *ngFor="let data of camera" class="ion-text-center" size="6" >
-              <ion-radio-group formControlName="camera">
-                <ion-radio [value]="data">
-                <div class="img-card ion-padding label">
-                    <img style="border-radius: 20px;" [src]="data.styleImage">
-                <ion-text class="ion-text-center">
-                  <h6>{{data.name | uppercase}}</h6>
-                </ion-text>
-                 </div>
-                </ion-radio>
-              </ion-radio-group>
+        <ion-row class="ion-padding">
+          <ion-col *ngFor="let data of camera" class="ion-text-center" size="4">
+            <ion-radio-group
+              formControlName="camera"
+              (click)="onSelectImg(data)"
+            >
+              <ion-radio [value]="data">
+                <div class="ion-padding-bottom">
+                  <img
+                    [ngClass]="{
+                      selected: cameraForm.value.camera === data
+                    }"
+                    class="custom-img-btn custom-drop-shadow"
+                    [src]="data.styleImage"
+                  />
+                  <ion-text class="ion-text-center custom-img-btn-text">
+                    <p>{{ data.name | uppercase }}</p>
+                  </ion-text>
+                </div>
+              </ion-radio>
+            </ion-radio-group>
           </ion-col>
-      
         </ion-row>
       </ion-grid>
-
-        </form>
-        
+    </form>
   </ng-container>
-  
 </ion-content>
 
-<ion-footer *ngIf="filterType === 'styling'">
+<!-- <ion-footer *ngIf="filterType === 'styling'">
   <ion-toolbar>
-    <app-main-action-button 
+    <app-main-action-button
       (click)="onSaveStyling()"
       [disableButton]="!styleForm.valid"
-      type="submit">
+      type="submit"
+    >
       SAVE
     </app-main-action-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
 
-<ion-footer *ngIf="filterType === 'lighting'">
+<!-- <ion-footer *ngIf="filterType === 'lighting'">
   <ion-toolbar>
-    <app-main-action-button 
+    <app-main-action-button
       (click)="onSaveLighting()"
       [disableButton]="!lightingForm.valid"
-      type="submit">
+      type="submit"
+    >
       SAVE
     </app-main-action-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
 
-<ion-footer *ngIf="filterType === 'camera'">
+<!-- <ion-footer *ngIf="filterType === 'camera'">
   <ion-toolbar>
-    <app-main-action-button 
+    <app-main-action-button
       (click)="onSaveCamera()"
       [disableButton]="!cameraForm.valid"
-      type="submit">
+      type="submit"
+    >
       SAVE
     </app-main-action-button>
   </ion-toolbar>
-</ion-footer>
-
-
-
-
+</ion-footer> -->
 
 <!-- <ion-radio-group formControlName="style">
 <ion-item *ngFor="let style of styling">
@@ -204,11 +225,6 @@
   <ion-radio [value]="style">{{style.name}}</ion-radio>
 </ion-item>
 </ion-radio-group> -->
-
-
-
-
-
 
 <!-- <ion-grid >
 <ion-row >

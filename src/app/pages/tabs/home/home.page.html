@@ -1,14 +1,47 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="ion-padding-start">
-    <ion-img  style="height: 2.875rem; width: 14.68rem;" src="../../../../assets/icon/Header_logo.png"></ion-img>
+    <ion-img
+      style="height: 2.875rem; width: 14.68rem"
+      src="../../../../assets/icon/Header_logo.png"
+    ></ion-img>
     <ion-buttons slot="end">
       <ion-button routerLink="/user">
-        <ion-icon aria-hidden="true" name="person"></ion-icon>
+        <ion-icon size="large" aria-hidden="true" name="person"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-segment [scrollable]="true" value="latest">
+    <ion-segment-button value="latest">
+      <ion-label>Latest</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="hot">
+      <ion-label>Hot</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="favourites">
+      <ion-label>Favourites</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="catgeories">
+      <ion-label>Catgeories</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-<ion-content >
-  <app-masonry-gallery (imageDetail)="toImageDetails($event)" [data]="globalData"></app-masonry-gallery>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="4"
+        *ngFor="let item of globalData"
+        (click)="toImageDetails(item)"
+      >
+        <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
+          <ion-img [src]="item.url"></ion-img>
+          <!-- <span class="icon-background" (click)="toggleLike()">
+              <ion-icon [ngClass]="{'turnRed': liked }" name="heart"></ion-icon>
+            </span> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <app-masonry-gallery (imageDetail)="toImageDetails($event)" [data]="globalData"></app-masonry-gallery> -->
 </ion-content>

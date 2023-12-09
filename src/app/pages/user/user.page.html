@@ -7,42 +7,46 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content >
-
+<ion-content>
   <app-custom-card-button
-          [height]="'18vh'"
-          [background-image]="'assets/UI_Images/Regular_Size/App_UI_Buttons_small_size_Opaque-assets/User_account.png'"
-          [classes]="'ion-no-margin custom-card custom-image'"
-         >
-         <span class="nav-icon-background" routerLink="../">
-          <ion-icon size="large" class="main-header-text" name="arrow-back-outline"></ion-icon>
-         </span>
-          <div>
-            <h2 class="main-header-text">
-              MY ACCOUNT
-            </h2>
-          </div>
-        </app-custom-card-button>
+    [height]="'18vh'"
+    [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/User_account.webp'"
+    [classes]="'ion-no-margin custom-card custom-image'"
+  >
+    <span class="nav-icon-background" routerLink="../">
+      <ion-icon
+        size="large"
+        class="main-header-text"
+        name="arrow-back-outline"
+      ></ion-icon>
+    </span>
+    <div>
+      <h2 class="main-header-text">MY ACCOUNT</h2>
+    </div>
+  </app-custom-card-button>
 
-  <ion-row>
-    <ion-col size="6" class="ion-text-center" *ngFor="let item of userOptions()">
+  <div class="main-container ion-text-center">
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          size="6"
+          class="ion-padding"
+          *ngFor="let item of userOptions()"
+        >
+          <img
+            style="height: auto; width: 100%; border-radius: 20px"
+            [routerLink]="item.name === 'my info' ? 'user-info' : item.name "
+            [src]="item?.url"
+          />
 
-        <img 
-          style="height: 150px; width: 150px; border-radius: 20px;"
-          [routerLink]="item.name === 'my info' ? 'user-info' : item.name "
-          [src]="item?.url">
-      
           <ion-text>
-            <h6>{{item?.name  | uppercase}}</h6>
+            <h6>{{item?.name | uppercase}}</h6>
           </ion-text>
-          <span>
-          </span>
-    </ion-col>
-  </ion-row>
-
-
-
-
+          <span> </span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <!-- <ion-grid>
 
     <ion-row>

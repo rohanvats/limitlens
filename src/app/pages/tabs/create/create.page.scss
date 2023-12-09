@@ -1,54 +1,38 @@
-ion-fab-button::part(native) {
-    background-color: #b7f399;
-    border-radius: 15px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    color: black;
-  }
-  
-  ion-fab-button::part(native):hover::after {
-    background-color: #a3e681;
-  }
-  
-  ion-fab-button::part(native):active::after {
-    background-color: #87d361;
-  }
-
-
-.icon {
-  position: absolute;
-  top: 50%; /* Position the icon vertically at 50% of the parent's height */
-  left: 50%; /* Position the icon horizontally at 50% of the parent's width */
-  transform: translate(-50%, -50%); /* Center the icon perfectly */
-  font-size: 30px; /* Adjust the icon size as needed */
-    // color: grey;
+img {
+  height: auto;
+  min-width: 100%;
 }
 
-//   ion-card-content{
-//     height: 15vh;
-//   }
+// ion-row ion-col {
+//   padding: 0%;
+//   margin: 0%;
+// }
 
+// ion-col {
+//   padding: 20px;
+// }
 
-ion-img{
-  position: relative;
+.filter-card {
+  padding: 10px;
 }
 
-.img-card{
-  border-radius: 10px;
+ion-card {
+  padding: 0%;
+  margin: 0%;
 }
 
-ion-text{
-    position: absolute;
-    color: white;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    bottom: 1px;
-    h6{
-      font-weight: 700;
-      line-height: 14.52px;
-    }
+.style-row-container {
+  padding: 10px 0 0 0;
 }
 
-ion-radio::part(container){
-  display: none;
+.prompt-card-container {
+  padding: 12px 10px 0 10px;
+}
+
+.main-button-container {
+  padding: 10px 10px 20px 10px;
+}
+
+ion-card {
+  height: 12.32vh;
 }

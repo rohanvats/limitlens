@@ -6,21 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  // themeToggle = false;
+  prefersDark: any;
 
-  themeToggle = false;
-  prefersDark:any
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  } 
-
-  enableDark(event: any){
-    this.toggleDarkTheme(event.detail.checked)
+  enableDark(event: any) {
+    this.toggleDarkTheme(true);
   }
 
   toggleDarkTheme(shouldAdd: any) {
-    document.body.classList.toggle('dark', shouldAdd);
+    document.body.classList.toggle('dark', true);
   }
-
 }

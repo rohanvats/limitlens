@@ -1,69 +1,91 @@
-
 <ion-content>
-
   <app-custom-card-button
-          [height]="'18vh'"
-          [background-image]="'assets/UI_Images/Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Orders.png'"
-          [classes]="'ion-no-margin custom-card custom-image'"
-         >
-         <span class="nav-icon-background" routerLink="../">
-          <ion-icon size="large" class="main-header-text" name="arrow-back-outline"></ion-icon>
-         </span>
-            <h2 class="main-header-text">
-              ORDERS
-            </h2>
-        </app-custom-card-button>
+    [height]="'18vh'"
+    [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Orders.webp'"
+    [classes]="'ion-no-margin custom-card custom-image'"
+  >
+    <span class="nav-icon-background" routerLink="../">
+      <ion-icon
+        size="large"
+        class="main-header-text"
+        name="arrow-back-outline"
+      ></ion-icon>
+    </span>
+    <h2 class="main-header-text">ORDERS</h2>
+  </app-custom-card-button>
 
-              <app-custom-card-button
-                   [height]="'27vh'"
-                >
-                  <div subscription>
-                      <ion-row>
-                        <ion-col class="ion-text-center ion-padding-top">
-                            <img alt="Silhouette of mountains" style="height: 14vh;" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                        </ion-col>
-                        <ion-col>
-                          <ion-text>
-                            <h3 >Samurai Rom</h3>
-                            <p class="ion-no-margin">Screen Landscape</p>
-                            <p class="ion-no-margin">€4.99</p>
-                            <ion-badge>X16</ion-badge>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col class="ion-margin-start ion-padding-start">
-                        <h3>Status: Delivered to email</h3>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
+  <div class="main-container">
+    <!-- <div class="ion-padding">
+      <app-custom-card-button
+        [classes]="'custom-card-border-radius'"
+        [height]="'27vh'"
+      >
+        <div subscription>
+          <ion-row>
+            <ion-col class="ion-text-center ion-padding-top">
+              <img
+                alt="Silhouette of mountains"
+                style="height: 14vh"
+                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              />
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <h3>Samurai Rom</h3>
+                <p class="ion-no-margin">Screen Landscape</p>
+                <p class="ion-no-margin">€4.99</p>
+                <ion-badge>X16</ion-badge>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-margin-start ion-padding-start">
+              <h3>Status: Delivered to email</h3>
+            </ion-col>
+          </ion-row>
+        </div>
+      </app-custom-card-button>
+    </div> -->
 
-
-              <app-custom-card-button
-               [height]="'27vh'"
-               >
-                <div subscription>
-                    <ion-row>
-                      <ion-col class="ion-text-center ion-padding-top">
-                            <img alt="Silhouette of mountains" style="height: 14vh;" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                      </ion-col>
-                      <ion-col>
-                        <ion-text>
-                          <h3>T-Shirt</h3>
-                          <p class="ion-no-margin">Size M</p>
-                          <p class="ion-no-margin">€19.99</p>
-                        </ion-text>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col class="ion-margin-start ion-padding-start">
-                        <h3>Order No.: <a href="#">00A99UUU</a> </h3>
-                      </ion-col>
-                    </ion-row>
-                </div>
-              </app-custom-card-button>
-
-
-
+    <div class="ion-padding" *ngFor="let item of orderItems">
+      <app-custom-card-button
+        [classes]="'ion-padding custom-card-border-radius'"
+      >
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img
+              alt="Silhouette of mountains"
+              src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+            />
+          </ion-thumbnail>
+          <ion-label class="content-container">
+            <!-- <ion-icon class="remove-btn" name="close-outline"></ion-icon> -->
+            <ion-text>
+              <h5 class="ion-no-margin">{{item?.name}}</h5>
+              <p class="ion-no-margin" *ngIf="item?.dimentions">
+                {{item?.dimentions}}
+              </p>
+              <p class="ion-no-margin" *ngIf="item?.sizeAndQuantity">
+                Size: {{item?.sizeAndQuantity?.size}}
+              </p>
+              <h5 class="ion-no-margin">€{{item?.price}}</h5>
+              <ion-badge>X{{item?.upscale}}</ion-badge>
+            </ion-text>
+            <!-- <ion-button
+              *ngIf="item?.sizeAndQuantity"
+              class="micro-button ion-no-margin"
+              fill="outline"
+              >Size: {{item?.sizeAndQuantity?.size}} | Qty:
+              {{item?.sizeAndQuantity?.quantity}}</ion-button
+            > -->
+          </ion-label>
+        </ion-item>
+        <div class="ion-padding-horizontal ion-padding-bottom">
+          <h3 class="ion-no-margin ion-no-padding">
+            Order No.: <a href="#">00A99UUU</a>
+          </h3>
+        </div>
+      </app-custom-card-button>
+    </div>
+  </div>
 </ion-content>

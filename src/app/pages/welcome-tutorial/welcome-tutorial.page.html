@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+  <!-- <app-image [welcomeImage]="instructions[currentIndex].image"></app-image> -->
+  <app-main-image [image]="instructions[currentIndex].image"></app-main-image>
+  <ion-grid class="ion-padding-horizontal ion-margin-horizontal">
+    <ion-row>
+      <ion-col size-sm="3" offset-sm="3" size-md="8" offset-md="2">
+        <div style="height: 114px">
+          <ion-text class="ion-text-center">
+            <h1>{{instructions[currentIndex].text1}}</h1>
+            <p>{{instructions[currentIndex].text2}}</p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+    <div>
+      <ion-row>
+        <ion-col>
+          <app-main-action-button (click)="nextScreen()"
+            >{{ instructions[currentIndex].buttonText }}</app-main-action-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="ion-text-start">
+            <ion-button
+              fill="clear"
+              [disabled]="this.currentIndex === 0"
+              (click)="prevScreen()"
+              >Prev.</ion-button
+            >
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="ion-text-end">
+            <ion-button *ngIf="!getStarted" fill="clear" (click)="onSkipInst()"
+              >Skip</ion-button
+            >
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

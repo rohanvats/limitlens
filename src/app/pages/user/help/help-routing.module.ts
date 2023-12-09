@@ -6,8 +6,15 @@ import { HelpPage } from './help.page';
 const routes: Routes = [
   {
     path: '',
-    component: HelpPage
-  }
+    component: HelpPage,
+  },
+  {
+    path: 'upscaling-guide',
+    loadChildren: () =>
+      import('./upscaling-guide/upscaling-guide.module').then(
+        (m) => m.UpscalingGuidePageModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -1,53 +1,61 @@
-<ion-content [fullscreen]="true">
-
+<ion-content>
   <form [formGroup]="promptForm" (ngSubmit)="onSavePrompt()">
+    <app-image-picker (imagePick)="onImagePicked($event)"></app-image-picker>
+    <div class="main-container">
+      <div class="prompt-card-container">
+        <ion-card (click)="openPromptModal()" class="custom-card-border-radius">
+          <ion-card-header>
+            <ion-card-subtitle>Your Prompt</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content> {{userPrompt}} </ion-card-content>
+        </ion-card>
+      </div>
 
-  <app-image-picker (imagePick)="onImagePicked($event)"></app-image-picker>
+      <div class="style-row-container">
+        <ion-row *ngIf="!usingGlobalFeed">
+          <ion-col
+            size="6"
+            class="ion-text-center filter-card"
+            *ngFor="let item of filterOptions"
+          >
+            <img
+              class="custom-drop-shadow custom-img-btn"
+              (click)="openFilterModal(item?.value)"
+              [src]="item?.styleImage ? item?.styleImage : item.url"
+            />
+            <ion-text
+              class="custom-img-btn-text"
+              *ngIf="item.name === 'format'; else elseBlock"
+            >
+              <h6>{{item?.name | uppercase}}</h6>
+            </ion-text>
+            <ng-template #elseBlock>
+              <span>
+                <ion-text class="custom-img-btn-text">
+                  <ion-icon
+                    size="large"
+                    name="{{item?.iconName}}"
+                    *ngIf="item?.value === 'format'"
+                  ></ion-icon>
+                  <h6>{{item?.name | uppercase}}</h6>
+                </ion-text>
+              </span>
+            </ng-template>
+          </ion-col>
+        </ion-row>
+      </div>
 
-  <ion-card (click)="openPromptModal()">
-    <ion-card-header>
-      <ion-card-subtitle>Your Prompt</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      {{userPrompt}}
-    </ion-card-content>
-  </ion-card>
-
-
-  <ion-row *ngIf="!usingGlobalFeed">
-    <ion-col size="6" class="ion-text-center" *ngFor="let item of filterOptions">
-
-        <img 
-          style="height: 150px; width: 150px; border-radius: 20px;"
-          (click)="openFilterModal(item?.value)"
-          [src]="item?.styleImage ? item?.styleImage : item.url">
-      
-          <ion-text *ngIf="item.name === 'format'; else elseBlock">
-            <h6>{{item?.name  | uppercase}}</h6>
-          </ion-text>
-          <ng-template #elseBlock>
-            <span >
-              <ion-text>
-                <ion-icon  size="large" name="{{item.iconName}}" *ngIf="item?.value === 'format'"></ion-icon>    
-                <h6>{{item?.name  | uppercase}}</h6>
-              </ion-text>
-          </span>
-          </ng-template>
-          <span>
-          </span>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col class="ion-padding-horizontal">
-      <app-main-action-button
-      [type]="'submit'"
-      [disableButton]="!promptForm.valid"
-        >SAVE
-      </app-main-action-button>
-    </ion-col>
-  </ion-row>
-</form>
-
+      <!-- <ion-row>
+        <ion-col class="ion-padding"> -->
+      <div class="main-button-container">
+        <app-main-action-button
+          [type]="'submit'"
+          [disableButton]="!promptForm.valid"
+          >{{'generate' | uppercase}}
+        </app-main-action-button>
+      </div>
+      <!-- </ion-col>
+      </ion-row> -->
+    </div>
+  </form>
 </ion-content>

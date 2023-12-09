@@ -7,20 +7,25 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  cartItems: any = [];
 
-
-  cartItems:any= []
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.getCartData()
+    this.getCartData();
   }
 
-  getCartData(){
-    this.dataService.getCartData().subscribe(data => {
+  getCartData() {
+    this.dataService.getCartData().subscribe((data) => {
       this.cartItems = data;
-    })
+    });
   }
 
+  getTotalPrice() {
+    if (this.cartItems.length > 0) {
+      return this.cartItems.reduce((acc: number, el: any) => {
+        return acc + el?.price;
+      }, 0);
+    }
+  }
 }

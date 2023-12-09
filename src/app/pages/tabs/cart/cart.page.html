@@ -1,34 +1,72 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
-    </ion-buttons>
-    <ion-title>CART</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-            <ion-list-header>
-              <h2>{{cartItems.length}} items in bag </h2>
-            </ion-list-header>
-              <app-custom-card-button
-                   *ngFor="let cartItem of cartItems"
-                >
-                <ion-item>
-                  <ion-thumbnail slot="start" class="ion-no-padding">
-                    <img alt="Silhouette of mountains"  src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                  </ion-thumbnail>
-                  <ion-label>
-                    <ion-text >
-                      <h5 class="ion-no-margin">{{cartItem?.name}}</h5>
-                      <p class="ion-no-margin">Screen Landscape</p>
-                      <h5 class="ion-no-margin">€{{cartItem?.price}}</h5>
-                      <ion-badge>X{{cartItem?.upscale}}</ion-badge>
-                  </ion-text>
-                  </ion-label>
-                </ion-item>
-                <div class="ion-float-right ion-padding-end">
-                  <h5>Remove</h5>
-                </div>
-              </app-custom-card-button>
+  <app-custom-card-button
+    [height]="'18vh'"
+    [background-image]="'assets/UI_Images/WebP_Regular_Size/App_Filters_Titles_small_size_opaque-assets/cart.webp'"
+    [classes]="'ion-no-margin custom-card custom-image custom-drop-shadow'"
+  >
+    <span class="nav-icon-background" routerLink="../">
+      <ion-icon
+        size="large"
+        class="main-header-text"
+        name="arrow-back-outline"
+      ></ion-icon>
+    </span>
+    <div>
+      <h2 class="main-header-text">CART</h2>
+    </div>
+  </app-custom-card-button>
+
+  <div class="main-container">
+    <ion-list-header>
+      <h2>{{cartItems.length}} items in bag</h2>
+    </ion-list-header>
+    <div *ngFor="let cartItem of cartItems" class="ion-padding">
+      <app-custom-card-button
+        [classes]="'ion-padding custom-card-border-radius'"
+      >
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img
+              alt="Silhouette of mountains"
+              src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+            />
+          </ion-thumbnail>
+          <ion-label class="content-container">
+            <ion-icon class="remove-btn" name="close-outline"></ion-icon>
+            <ion-text>
+              <h5 class="ion-no-margin">{{cartItem?.name}}</h5>
+              <p class="ion-no-margin" *ngIf="cartItem?.dimentions">
+                {{cartItem?.dimentions}}
+              </p>
+              <p class="ion-no-margin" *ngIf="cartItem?.sizeAndQuantity">
+                Size: {{cartItem?.sizeAndQuantity?.size}}
+              </p>
+              <h5 class="ion-no-margin">€{{cartItem?.price}}</h5>
+              <ion-badge>X{{cartItem?.upscale}}</ion-badge>
+            </ion-text>
+            <ion-button
+              *ngIf="cartItem?.sizeAndQuantity"
+              class="micro-button ion-no-margin"
+              fill="outline"
+              >Size: {{cartItem?.sizeAndQuantity?.size}} | Qty:
+              {{cartItem?.sizeAndQuantity?.quantity}}</ion-button
+            >
+          </ion-label>
+        </ion-item>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-custom-card-button
+        [classes]="'ion-padding custom-card-border-radius'"
+      >
+        <div class="ion-padding totalCard">
+          <h2 class="ion-padding-horizontal ion-no-margin">Total</h2>
+          <h2 class="ion-padding-horizontal ion-no-margin">
+            €{{getTotalPrice()}}
+          </h2>
+        </div>
+      </app-custom-card-button>
+    </div>
+  </div>
 </ion-content>

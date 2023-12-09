@@ -1,243 +1,476 @@
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-export class DataService{
+export class DataService {
+  getLightingData() {
+    const lighting = [
+      {
+        name: 'artificial',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/artificial.webp',
+      },
+      {
+        name: 'background',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/background.webp',
+      },
+      {
+        name: 'backlight',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/backlight.webp',
+      },
+      {
+        name: 'blur',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/blur.webp',
+      },
+      {
+        name: 'bokeh',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/bokeh.webp',
+      },
+      //   {
+      //     name: 'close up',
+      //     styleImage:
+      //       'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/close_up.webp',
+      //   },
+      {
+        name: 'diffused',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/diffused.webp',
+      },
+      {
+        name: 'direct',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/direct.webp',
+      },
+      {
+        name: 'dawn',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/dawn.webp',
+      },
+      {
+        name: 'dusk',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/dusk.webp',
+      },
+      {
+        name: 'gelled',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/gelled.webp',
+      },
+      {
+        name: 'hard light',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/hard_light.webp',
+      },
+      //   {
+      //     name: 'heroic fantasy',
+      //     styleImage:
+      //       'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/heroic_fantasy.webp',
+      //   },
+      {
+        name: 'high key',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/high_key.webp',
+      },
+      {
+        name: 'low key',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/low_key.webp',
+      },
+      {
+        name: 'mixed',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/mixed.webp',
+      },
+      {
+        name: 'moonlight',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/moonlight.webp',
+      },
+      {
+        name: 'neon',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/neon.webp',
+      },
+      {
+        name: 'rembrandt',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/rembrandt.webp',
+      },
+      {
+        name: 'rim light',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/rim_light.webp',
+      },
+      {
+        name: 'side light',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/side_light.webp',
+      },
+      {
+        name: 'soft light',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/soft_light.webp',
+      },
+      {
+        name: 'sunlight',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/sunlight.webp',
+      },
+      {
+        name: 'top',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/top.webp',
+      },
+      {
+        name: 'direct',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/direct.webp',
+      },
+      {
+        name: 'window',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Lighting/window.webp',
+      },
+    ];
+    return of(lighting);
+  }
 
-    getLightingData(){
-        const lighting = [
-            {name: 'artificial', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/artificial.png'},
-            {name: 'background', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/background.png'},
-            {name: 'backlight', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/backlight.png'},
-            {name: 'blur',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/blur.png'},
-            {name: 'bokeh', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/bokeh.png'},
-            {name: 'close up',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/close_up.png'},
-            {name: 'diffused',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/diffused.png'},
-            {name: 'direct',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/direct.png'},
-            {name: 'dawn',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/dawn.png'},
-            {name: 'dusk',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/dusk.png'},
-            {name: 'gelled',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/gelled.png'},
-            {name: 'hard light',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/hard_light.png'},
-            {name: 'heroic fantasy',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/heroic_fantasy.png'},
-            {name: 'high key',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/high_key.png'},
-            {name: 'low key',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/low_key.png'},
-            {name: 'mixed',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/mixed.png'},
-            {name: 'moonlight',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/moonlight.png'},
-            {name: 'neon',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/neon.png'},
-            {name: 'rim_light',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/rim_light.png'},
-            {name: 'side_light',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/side_light.png'},
-            {name: 'soft light',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/soft_light.png'},
-            {name: 'sunlight',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/sunlight.png'},
-            {name: 'top',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/top.png'},
-            {name: 'direct',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/direct.png'},
-            {name: 'window',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/window.png'},
+  getCameraData() {
+    const camera = [
+      {
+        name: 'eye level',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/eye_level.webp',
+      },
+      {
+        name: 'fish eye',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/fish_eye.webp',
+      },
+      {
+        name: 'low angle',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/low_angle.webp',
+      },
+      {
+        name: 'high angle',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/high_angle.webp',
+      },
+      {
+        name: 'side view',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/side_view.webp',
+      },
+      {
+        name: 'dutch angle',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/dutch_angle.webp',
+      },
+      {
+        name: 'close up',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Camera/close_up.webp',
+      },
+    ];
+    return of(camera);
+  }
 
-        ]
-        return of(lighting)
-    }
+  getStylingData(): Observable<any> {
+    const styling = [
+      {
+        name: '3d',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/3D.webp',
+      },
+      {
+        name: 'black & white',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/black___white.webp',
+      },
+      {
+        name: 'blueprint',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/blueprint.webp',
+      },
+      {
+        name: 'charcoal',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/charcoal_drawing.webp',
+      },
+      {
+        name: 'comics',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/comic.webp',
+      },
+      {
+        name: 'cyberpunk',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/cyberpunk.webp',
+      },
+      {
+        name: 'gothic',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/gothic.webp',
+      },
+      {
+        name: 'graffiti',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/graffiti.webp',
+      },
+      {
+        name: 'heroic fantasy',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/heroic_fantasy.webp',
+      },
+      {
+        name: 'japan art',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/japan_art.webp',
+      },
+      {
+        name: 'movie',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/movie.webp',
+      },
+      {
+        name: 'oil painting',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/oil_painting.webp',
+      },
+      {
+        name: 'pastel',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/pastel_drawing.webp',
+      },
+      {
+        name: 'polaroid',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/polaroid.webp',
+      },
+      {
+        name: 'pop art',
+        styleImage:
+          'assets/UI_Images/WebP_Regular_Size/App_Filters_small_size-assets/Styles/pop_art.webp',
+      },
+    ];
+    return of(styling);
+  }
 
-    getCameraData(){
-        const camera= [
-            {name: 'eye level', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/eye_level.png'},
-            {name: 'fish eye', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/fish_eye.png'},
-            {name: 'low angle', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/low_angle.png'},
-            {name: 'high angle', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/high_angle.png'},
-            {name: 'side view', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/side_view.png'},
-            {name: 'dutch angle', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/dutch_angle.png'},
-            {name: 'close up', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/close_up.png'},
-            
-        ]
-        return of(camera)
-    }
+  getPurposeData(): Observable<any> {
+    const purposeOptions = [
+      { name: 'screen image', value: 'screen image', iconName: 'image' },
+      { name: 'printable image', value: 'printable image', iconName: 'print' },
+    ];
+    return of(purposeOptions);
+  }
 
-    getStylingData(): Observable<any> {
-        const styling = [
-            {name: '3d', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/3D.png'},
-            {name: 'black & white', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/black_white.png'},
-            {name: 'blueprint', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/blueprint.png'},
-            {name: 'charcoal',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/charcoal_drawing.png'},
-            {name: 'comics', styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/comic.png'},
-            {name: 'cyberpunk',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/cyberpunk.png'},
-            {name: 'gothic',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/gothic.png'},
-            {name: 'graffiti',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/graffiti.png'},
-            {name: 'heroic fantasy',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/heroic_fantasy.png'},
-            {name: 'japan art',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/japan_art.png'},
-            {name: 'movie',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/movie.png'},
-            {name: 'oil painting',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/oil_painting.png'},
-            {name: 'pastel',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/pastel_drawing.png'},
-            {name: 'polaroid',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/polaroid.png'},
-            {name: 'pop art',styleImage: 'assets/UI_Images/Regular_Size/App_Filters_small_size-assets/pop_art.png'},
-          ]
-          return of(styling)
-    }
+  getRadioOptions(): Observable<any> {
+    const ratioOptions = [
+      {
+        name: 'portrait',
+        value: 'portrait',
+        image: '../../../../../assets/icon/Portrait.png',
+      },
+      {
+        name: 'square',
+        value: 'square',
+        image: '../../../../../assets/icon/Square.png',
+      },
+      {
+        name: 'landscape',
+        value: 'landscape',
+        image: '../../../../../assets/icon/Landscape.png',
+      },
+    ];
+    return of(ratioOptions);
+  }
 
+  getGlobalFeedData() {
+    const globalFeedImages = [
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+    ];
+    return of(globalFeedImages);
+  }
 
-    getPurposeData(): Observable<any>{
-        const purposeOptions=[
-            {name:'screen image', value: 'screen image', iconName: 'image'},
-            {name:'printable image', value: 'printable image', iconName: 'print'}
-          ]
-        return of(purposeOptions)
-    }
+  getCartData() {
+    const cartData = [
+      {
+        name: 'Samurai Rom',
+        url: 'https://picsum.photos/200',
+        price: 12.99,
+        dimentions: 'Screen Landscape',
+        upscale: 3,
+      },
+      {
+        name: 'Estelle Quin',
+        url: 'https://picsum.photos/200',
+        price: 1.99,
+        upscale: 3,
+        sizeAndQuantity: {
+          size: 'M',
+          quantity: 3,
+        },
+      },
+      {
+        name: 'Samurai Rom',
+        url: 'https://picsum.photos/200',
+        dimentions: 'Screen Landscape',
+        price: 12.99,
+        upscale: 3,
+      },
+      {
+        name: 'Samurai Rom',
+        url: 'https://picsum.photos/200',
+        price: 12.99,
+        upscale: 3,
+        sizeAndQuantity: {
+          size: 'L',
+          quantity: 5,
+        },
+      },
+    ];
+    return of(cartData);
+  }
 
+  getGalleryData() {
+    const galleryData = [
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+      { name: 'HYPER REALISTIC', url: 'https://picsum.photos/200' },
+      { name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300' },
+      { name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100' },
+      { name: 'VINTAGE LOOK', url: 'https://picsum.photos/400' },
+      { name: 'CARTOON', url: 'https://picsum.photos/500' },
+      { name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600' },
+      { name: 'ALBUM COVER', url: 'https://picsum.photos/700' },
+      { name: 'POLITICAL PROPAGANDA', url: 'https://picsum.photos/800' },
+      { name: 'HORROR', url: 'https://picsum.photos/900' },
+      { name: 'DYSTOPIAN', url: 'https://picsum.photos/100' },
+      { name: 'STOCK PHOTO', url: 'https://picsum.photos/400' },
+      { name: 'ART', url: 'https://picsum.photos/300' },
+      { name: 'VIDEO GAME', url: 'https://picsum.photos/600' },
+      { name: 'AIRBRUSH ART', url: 'https://picsum.photos/300' },
+      { name: 'MOVIE', url: 'https://picsum.photos/800' },
+    ];
+    return of(galleryData);
+  }
 
-    getRadioOptions(): Observable<any>{
-        const ratioOptions = [
-            {name: 'portrait', value: 'portrait', image: '../../../../../assets/icon/Portrait.png'},
-            {name: 'square', value: 'square', image: '../../../../../assets/icon/Square.png'},
-            {name: 'landscape', value: 'landscape', image: '../../../../../assets/icon/Landscape.png'}
-        ]
-        return of(ratioOptions);
-    }
+  private instructions: {
+    image: string;
+    text1: string;
+    text2: string;
+    buttonText: string;
+  }[] = [
+    {
+      image: 'https://picsum.photos/300/300?random=1',
+      text1: 'Take a photo and add your text customization',
+      text2:
+        'Take a picture on the spot or use an old one. Or just ask what you need',
+      buttonText: 'NEXT',
+    },
+    {
+      image: 'https://picsum.photos/300/300?random=2',
+      text1: 'Adjust Filters',
+      text2:
+        'Realistic or Anime ? In the style of Vincent Van Gogh? Pick your choice, well do the rest !',
+      buttonText: 'NEXT',
+    },
+    {
+      image: 'https://picsum.photos/300/300?random=3',
+      text1: 'Get fast results !',
+      text2:
+        'Ready to see yourself or your uncle as a badass biker ? Lets goand click below!',
+      buttonText: 'NEXT',
+    },
+    {
+      image: 'https://picsum.photos/300/300?random=4',
+      text1: 'Enhancing and printing',
+      text2:
+        'Like what you see ? Download the result, enhance it and print it as wall art !',
+      buttonText: 'GET STARTED',
+    },
+  ];
 
-
-    getGlobalFeedData(){
-        const globalFeedImages = [
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'},
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'},
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'}
-          ]
-          return of(globalFeedImages)
-
-    }
-
-
-    getCartData(){
-        const cartData = [
-
-            {
-                name: 'Samurai Rom',
-                url: 'https://picsum.photos/200',
-                price: '12.99',
-                upscale: 3,
-                size: 'L',
-                quantity: 5
-            },
-            {
-                name: 'Estelle Quin',
-                url: 'https://picsum.photos/200',
-                price: '1.99',
-                upscale: 3,
-                size: 'M',
-                quantity: 3
-            },
-            {
-                name: 'Samurai Rom',
-                url: 'https://picsum.photos/200',
-                price: '12.99',
-                upscale: 3,
-                size: 'L',
-                quantity: 2
-            },
-            {
-                name: 'Samurai Rom',
-                url: 'https://picsum.photos/200',
-                price: '12.99',
-                upscale: 3,
-                size: 'L',
-                quantity: 5
-            },
-
-        ]
-        return of(cartData);
-    }
-
-    getGalleryData(){
-        const galleryData = [
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'},
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'},
-            {name: 'HYPER REALISTIC', url: 'https://picsum.photos/200'},
-            {name: 'DYNAMIC COMPOSITION', url: 'https://picsum.photos/300'},
-            {name: 'RETRO ILLUSTRATION', url: 'https://picsum.photos/100'},
-            {name: 'VINTAGE LOOK', url: 'https://picsum.photos/400'},
-            {name: 'CARTOON', url: 'https://picsum.photos/500'},
-            {name: 'AVANTGARDE FASHION', url: 'https://picsum.photos/600'},
-            {name: 'ALBUM COVER', url: 'https://picsum.photos/700'},
-            {name: 'POLITICAL PROPAGANDA',url: 'https://picsum.photos/800'},
-            {name: 'HORROR',url: 'https://picsum.photos/900'},
-            {name: 'DYSTOPIAN',url: 'https://picsum.photos/100'},
-            {name: 'STOCK PHOTO', url: 'https://picsum.photos/400'},
-            {name: 'ART',url: 'https://picsum.photos/300'},
-            {name: 'VIDEO GAME',url: 'https://picsum.photos/600'},
-            {name: 'AIRBRUSH ART',url: 'https://picsum.photos/300'},
-            {name: 'MOVIE',url: 'https://picsum.photos/800'}
-          ]
-          return of(galleryData)
-
-    }
-
-
+  getInstructions() {
+    return this.instructions;
+  }
 }
