@@ -1,55 +1,74 @@
-<ion-header >
+<!-- <ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-icon size="large" name="arrow-back-outline" [routerLink]="['/tabs/gallery']" ></ion-icon>
     </ion-buttons>
     <ion-title>Image Details</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <div class=" image-container">
-    <app-main-image [image]="imageDetails['url']" ></app-main-image>
+  <div class="image-container">
+    <app-main-image [image]="imageDetails['url']"></app-main-image>
+    <ion-fab-button
+      size="small"
+      routerLink="../"
+      class="custom-sm-btn-background back-btn"
+    >
+      <ion-icon size="small" name="arrow-back"></ion-icon>
+    </ion-fab-button>
     <div class="icon-container">
-      <ion-fab-button size="small">
+      <ion-fab-button size="small" class="custom-sm-btn-background">
         <ion-icon size="small" name="expand"></ion-icon>
-      </ion-fab-button >
-      <ion-fab-button size="small" (click)="shareImage()">
-        <ion-icon size="small" name="share-social"></ion-icon>
-      </ion-fab-button >
-      <ion-fab-button size="small">
+      </ion-fab-button>
+      <ion-fab-button size="small" class="custom-sm-btn-background">
         <ion-icon size="small" name="close"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        size="small"
+        class="custom-sm-btn-background"
+        (click)="shareImage()"
+      >
+        <ion-icon size="small" name="share-social"></ion-icon>
       </ion-fab-button>
     </div>
   </div>
 
-    <div class="ion-text-center ion-margin-top">
-    <ion-chip (click)="presentAlert()" >
-      <ion-label>{{imageDetails?.name}}</ion-label>
-      <ion-icon name="pencil"></ion-icon>
-    </ion-chip>
-  </div>
+  <div class="main-container ion-text-center">
+    <div class="ion-padding">
+      <ion-chip (click)="presentAlert()" class="custom-drop-shadow">
+        <ion-label>{{imageDetails?.name}}</ion-label>
+        <ion-icon name="pencil"></ion-icon>
+      </ion-chip>
+    </div>
 
-  <div class="ion-text-center ion-margin-top">
-    <ion-chip>
-      <ion-label>Screen Image 360 x 360</ion-label>
-    <ion-badge class="ion-margin-start" color="warning">XO</ion-badge>
-    </ion-chip>
-  </div>
+    <div class="ion-padding">
+      <ion-chip class="custom-drop-shadow">
+        <ion-label>Screen Image 360 x 360</ion-label>
+        <ion-badge class="ion-margin-start" color="warning">XO</ion-badge>
+      </ion-chip>
+    </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <app-main-action-button>{{'Share in global feed' | uppercase}}</app-main-action-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <app-main-action-button>{{'download' | uppercase}}</app-main-action-button>
-      </ion-col>
-      <ion-col>
-        <app-main-action-button (click)="onClick()">{{'print' | uppercase}}</app-main-action-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-padding">
+          <app-main-action-button
+            >{{'Share in global feed' | uppercase}}</app-main-action-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-padding">
+          <app-main-action-button
+            >{{'download' | uppercase}}</app-main-action-button
+          >
+        </ion-col>
+        <ion-col class="ion-padding">
+          <app-main-action-button (click)="onClick()"
+            >{{'print' | uppercase}}</app-main-action-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

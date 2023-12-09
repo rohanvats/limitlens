@@ -1,214 +1,197 @@
-ion-col{
-    padding: 0%;
-    margin: 0%;
-}
-
-// ion-img{
-//   position: relative;
+// ion-col {
+//   padding: 0%;
+//   margin: 0%;
 // }
 
-// .img-card{
-//   border-radius: 10px;
-// }
-
-// ion-text{
-//     position: absolute;
-//     color: white;
-//     transform: translate(-50%,-37%);
-//     text-align: center;
-//     bottom: 1px;
-//     h6{
-//       font-weight: 700;
-//       line-height: 14.52px;
-//     }
-// }
-
-// ion-radio::part(container){
-//   display: none;
-// }
-
-ion-card{
-    border: 1px solid green;
-    align-items: center;
-    ion-card-content{
-        width: 81px;
-        height: 81px;
-        position: relative;
-    }
-}
-
-.centered-text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-ion-text{
-    font-size: 10px;
-    line-height: 12.1px;
-    font-weight: 500;
-}
-
-// ion-radio{
-//     .native-wrapper .radio-icon {
-//         // /* width: 0.9375rem; *
-//         height: 1.5rem;
-//     }
-// }
-
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.radio-tile-group{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.input-container{
+ion-card {
+  border: 1px solid green;
+  align-items: center;
+  ion-card-content {
+    width: 81px;
+    height: 81px;
     position: relative;
-    height: 7rem;
-    width: 7rem;
-    margin: 0.5rem;
+  }
 }
 
-.input-container input{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0;
+.centered-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.input-container .radio-tile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    border: 2px solid green;
-    border-radius: 8px;
-    transition: all 300ms ease;
+ion-text {
+  font-size: 10px;
+  line-height: 12.1px;
+  font-weight: 500;
 }
 
-.input-container ion-icon{
-    color: green;
-    font-size: 3rem;
+ion-radio {
+  .native-wrapper .radio-icon {
+    // /* width: 0.9375rem; *
+    height: 1.5rem;
+  }
 }
 
-.input-container label{
-    color: green;
-    font-size: 0.80rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-input:checked + .radio-tile{
-    background-color: green;
-    box-shadow: 0 0 12px green;
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-input:hover + .radio-tile{
-    box-shadow: 0 0 12px var(--primary-color);
+.input-container {
+  position: relative;
+  height: 7rem;
+  width: 7rem;
+  margin: 0.5rem;
+}
+
+.input-container input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.input-container .radio-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  border: 2px solid green;
+  border-radius: 8px;
+  transition: all 300ms ease;
+}
+
+.input-container ion-icon {
+  color: green;
+  font-size: 3rem;
+}
+
+.input-container label {
+  color: green;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+input:checked + .radio-tile {
+  background-color: green;
+  box-shadow: 0 0 12px green;
+}
+
+input:hover + .radio-tile {
+  box-shadow: 0 0 12px var(--primary-color);
 }
 
 input:checked + .radio-tile ion-icon,
 input:checked + .radio-tile label {
-    color: white;
+  color: white;
 }
 
+.custom-radio-group {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
+.custom-radio-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
 
+.custom-radio-item ion-label {
+  flex: 1;
+}
 
+.custom-radio-item ion-radio {
+  margin-right: 10px;
+}
 
+.custom-thumbnail {
+  width: 90px; /* Set your desired width */
+  height: 90px; /* Set your desired height */
+}
 
-// .custom-radio-group {
-//     border: 1px solid #ccc;
-//     border-radius: 5px;
-//     padding: 10px;
-//     display: flex;
-//     flex-direction: column;
-//   }
-  
-  .custom-radio-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .custom-radio-item ion-label {
-    flex: 1;
-  }
-  
-  .custom-radio-item ion-radio {
-    margin-right: 10px;
-  }
+.thumbnail {
+  background-color: grey;
+  border-radius: 1.5rem;
+  width: 80px; /* Adjust the thumbnail size as needed */
+  height: 80px; /* Adjust the thumbnail size as needed */
+  position: relative; /* Needed for absolute positioning of the icon */
+}
 
-  .custom-thumbnail {
-    width: 90px;  /* Set your desired width */
-    height: 90px; /* Set your desired height */
-  }
+.icon {
+  position: absolute;
+  top: 50%; /* Position the icon vertically at 50% of the parent's height */
+  left: 50%; /* Position the icon horizontally at 50% of the parent's width */
+  transform: translate(-50%, -50%); /* Center the icon perfectly */
+  font-size: 30px; /* Adjust the icon size as needed */
+  // color: grey;
+}
 
+.ion-card {
+  position: relative;
+}
 
-  .thumbnail {
-    background-color: grey;
-    border-radius: 1.5rem;
-    width: 80px; /* Adjust the thumbnail size as needed */
-    height: 80px; /* Adjust the thumbnail size as needed */
-    position: relative; /* Needed for absolute positioning of the icon */
-  }
-  
-  .icon {
-    position: absolute;
-    top: 50%; /* Position the icon vertically at 50% of the parent's height */
-    left: 50%; /* Position the icon horizontally at 50% of the parent's width */
-    transform: translate(-50%, -50%); /* Center the icon perfectly */
-    font-size: 30px; /* Adjust the icon size as needed */
-    // color: grey;
-  }
+ion-text {
+  position: absolute;
+  bottom: 4px;
+  color: white;
+  font-weight: bold;
+}
 
-  // .ion-card{
-  //   // position: relative;
-  // }
+filter modal css img {
+  border-radius: 20px;
+}
 
-  // ion-text{
-    // position: absolute;
-    // bottom: 4px;
-  //   color: white;
-  //   font-weight: bold;
-  // }
+ion-text {
+  left: 45%;
+  bottom: 20px;
+}
 
+.select-border {
+  border: 4px solid red;
+}
 
+// ion-radio::part(container) {
+//   display: none;
+//   // border: 4px solid red;
+// }
 
-  // filter modal css
+// ion-radio.radio-checked {
+//   border: 5px solid red;
+// }
 
-  img{
-    border-radius: 20px;
-  }
-  
-  ion-text{
-      position: absolute;
-      color: white; 
-      left: 45%;
-      transform: translateX(-50%);
-      bottom: 20px;
-      h6{
-        font-weight: 700;
-        line-height: 14.52px;
-      }
-  }
-  
-  ion-radio::part(container){
-    display: none;
-  }
+ion-radio-group img .ng-invalid {
+  border: 2px solid red;
+}
+
+.selected {
+  border: 0.001px solid #fff; /* Set your border properties here */
+  border-radius: 25px; /* Set your border-radius here */
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
+  // box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+div.label-text-wrapper {
+  padding: 0;
+}

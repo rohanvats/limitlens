@@ -28,25 +28,135 @@
 
 @import "./theme/variables.scss";
 
+// :root {
+//   --ion-padding-start: 0;
+//   --ion-padding-end: 0;
+//   --ion-padding-top: 0;
+//   --ion-padding-bottom: 0;
+// }
 
 * {
   font-family: Lato;
 }
 
+// ion-grid,
+// ion-row,
+// ion-col {
+//   padding: 0%;
+//   margin: 0%;
+// }
+
+:root {
+  --ion-padding: 10px; /* redefine ion-padding */
+  --ion-margin: 10px; /* redefine ion-margin */
+}
+
+ion-grid {
+  padding: 0;
+}
+
+.main-container {
+  padding: 10px;
+}
+
+// ion-grid ion-row ion-col {
+//   padding: 0%;
+//   margin: 0%;
+// }
+
+// ion-padding {
+//   --ion-padding-start: 20px;
+//   --ion-padding-end: 20px;
+//   --ion-padding-top: 20px;
+//   --ion-padding-bottom: 20px;
+// }
+
 html {
-    --ion-dynamic-font: var(--ion-default-dynamic-font);
-    --ion-font-family: 'Mulish';
+  --ion-dynamic-font: var(--ion-default-dynamic-font);
+  --ion-font-family: "Mulish";
+}
+
+ion-button {
+  // --padding: 0;
+  margin: 0;
+}
+
+.nav-icon-background {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  border-radius: 17%;
+}
+
+.main-header-text {
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.815rem;
+}
+
+.custom-sm-btn-background {
+  --background: rgba(48, 48, 48, 0.8);
+  --background-activated: #303030;
+  --background-hover: #303030;
+  --border-radius: 10px;
+  --color: #ffffff;
+}
+
+.main-img-action-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 2%; /* Adjust the vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main-img-nav-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.custom-drop-shadow {
+  // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+// custom img buttons
+.custom-img-btn {
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+}
+
+.custom-img-btn-text {
+  position: absolute;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  bottom: 20px;
+  h6 {
+    font-weight: 700;
+    line-height: 14.52px;
   }
-
-.nav-icon-background{
-    position: absolute;
-    right: 6px;
-    top:6px;
-    border-radius: 17%;
 }
 
-.main-header-text{
-      color: #FFFFFF;
-      font-weight: 700;
-      line-height: 1.815rem;
+// for radio buttons
+ion-radio::part(container) {
+  display: none;
 }
+
+ion-radio::part(flex) {
+  display: none;
+}
+
+//for cards
+.custom-card-border-radius {
+  border-radius: 20px;
+}
+
+// ion-radio {
+//   text-align: center !important;
+// }

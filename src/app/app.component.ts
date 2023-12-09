@@ -9,14 +9,13 @@ import { Platform } from '@ionic/angular';
 export class AppComponent {
   constructor(private platform: Platform) {
     this.initializeApp();
+    // this.toggleDarkTheme(true);
+    document.body.classList.toggle('dark', true);
   }
 
-
-  initializeApp(){
+  initializeApp() {
     this.platform.ready().then(() => {
       console.log('app now running');
-      
-    })
+    });
   }
-
 }

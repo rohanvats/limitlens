@@ -1,4 +1,42 @@
-.quantity{
-    display: flex;
-    justify-content: space-between;
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+// img {
+//   height: auto;
+//   min-width: 100%;
+//   border-radius: 20px;
+// }
+
+.content-container {
+  position: relative;
+}
+
+.remove-btn {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+}
+
+// .sizeAndQuantity {
+//   position: absolute;
+//   display: flex;
+//   right: 1px;
+//   bottom: 5px;
+// }
+
+.micro-button {
+  font-size: 10px;
+  //   padding: 4px 8px;
+  min-width: auto;
+  position: absolute;
+  display: flex;
+  right: 1px;
+  bottom: 5px;
+}
+
+.totalCard {
+  display: flex;
+  justify-content: space-between;
 }

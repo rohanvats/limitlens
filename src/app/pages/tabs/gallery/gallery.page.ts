@@ -29,12 +29,12 @@ export class GalleryPage implements OnInit {
     })
   }
 
-  // go(item:any){
-  //   console.log('go');
-  //   this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
-  //     queryParams: item,
-  //   })
-  // }
+  go(item:any){
+    console.log('go');
+    this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
+      queryParams: item,
+    })
+  }
 
   toggleLike(){
     console.log(this.liked);

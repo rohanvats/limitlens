@@ -1,13 +1,18 @@
-.custom-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    border-radius: 0 0 1.25rem 1.25rem;
+ion-card {
+  margin: 0;
+  padding: 0;
 }
 
-.custom-image{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0 0 1.25rem 1.25rem;
+}
+
+.custom-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

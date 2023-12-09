@@ -1,10 +1,12 @@
   <app-main-image
-   role="button"
-  (click)="onPickImage()"
-   *ngIf="selectedImage"
-    [image]="selectedImage" ></app-main-image>
+    role="button"
+    (click)="onPickImage()"
+    *ngIf="selectedImage"
+    [image]="selectedImage">
+    class="custom-drop-shadow"
+  </app-main-image>
 
-   <div class="image-select"
+   <div class="image-select custom-drop-shadow"
       role="button"
       (click)="onPickImage()"
       *ngIf="!selectedImage"

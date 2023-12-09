@@ -1,23 +1,39 @@
-.image-container{
-    position: relative;
+.image-container {
+  position: relative;
 }
 
-.icon-container{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 5%; /* Adjust the vertical position */
-    left: 50%;
-    transform: translateX(-50%);
+.icon-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 5%; /* Adjust the vertical position */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.icon-background{
-    background-color: black;
-    padding: 3%;
-    border-radius: 20%;
+.icon-background {
+  background-color: black;
+  padding: 3%;
+  border-radius: 20%;
 }
 
-.edit-icon{
-    margin: 0 12%;
+.edit-icon {
+  margin: 0 12%;
+}
+
+.custom-sm-btn-background {
+  --background: rgba(48, 48, 48, 0.8);
+  --background-activated: #303030;
+  --background-hover: #303030;
+  // --opacity: 0.5;
+  --border-radius: 10px;
+  // --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --color: #ffffff;
+}
+
+.back-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
