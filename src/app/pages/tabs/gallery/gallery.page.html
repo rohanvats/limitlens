@@ -20,9 +20,9 @@
       <ion-col size="4" *ngFor="let item of galleryData" (click)="go(item)">
         <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
           <ion-img [src]="item.url"></ion-img>
-          <span class="icon-background" (click)="toggleLike()">
+          <!-- <span class="icon-background" (click)="toggleLike()">
             <ion-icon [ngClass]="{'turnRed': liked }" name="heart"></ion-icon>
-          </span>
+          </span> -->
         </ion-card>
       </ion-col>
     </ion-row>

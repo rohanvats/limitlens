@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
@@ -17,7 +10,6 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class FilterModalComponent implements OnInit {
   @Input() filterType: any;
-  @ViewChild('ionRadio') ionRadio: any;
 
   selectedValue = '';
   styling: any = [];
@@ -27,7 +19,6 @@ export class FilterModalComponent implements OnInit {
   lighting: any = [];
   camera: any = [];
   backgroundImage: string = '';
-  isRadioSelected: boolean = false;
 
   styleForm = new FormGroup({
     style: new FormControl(null, [Validators.required]),
@@ -48,9 +39,7 @@ export class FilterModalComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private dataService: DataService,
-    private renderer: Renderer2,
-    private el: ElementRef
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
@@ -61,27 +50,6 @@ export class FilterModalComponent implements OnInit {
     this.getCameraData();
     this.getLightingData();
     this.selectBackgroundImage();
-
-    // this.ionRadio.nativeElement.class.remove('radio-label-placement-start');
-  }
-
-  ngAfterViewInit() {
-    // Find the ion-radio element within the component
-    const ionRadioElement = this.el.nativeElement.querySelector('ion-radio');
-
-    console.log('ion-radio: ', ionRadioElement);
-
-    // Remove the 'radio-label-placement-start' class
-    // const a = this.renderer.removeClass(
-    //   ionRadioElement,
-    //   'radio-label-placement-start'
-    // );
-
-    const a = this.ionRadio.classList.remove('radio-label-placement-start');
-
-    console.log('a: ', a);
-
-    // const a = ionRadioElement.classList.remove('radio-label-placement-start');
   }
 
   selectBackgroundImage() {
@@ -166,28 +134,16 @@ export class FilterModalComponent implements OnInit {
 
   onSaveLighting() {
     console.log(this.lightingForm.value);
-
     this.modalCtrl.dismiss(this.lightingForm.value, 'confirmLighting');
   }
 
   onSaveCamera() {
     console.log(this.cameraForm.value);
-
     this.modalCtrl.dismiss(this.cameraForm.value, 'confirmCamera');
   }
 
-  handleRadioFocus(event: any, index: any) {
-    console.log('here is the focus ', event, index);
-    this.isRadioSelected = true;
-  }
-
-  handleRadioblur() {
-    this.isRadioSelected = false;
-    console.log('blur');
-  }
-
-  // onRadioChange(event: any) {
-  //   console.log('style: ', this.styleForm.value.style);
-  //   console.log(event.detail.value);
+  // handleRadioFocus(event: any, index: any) {
+  //   console.log('here is the focus ', event, index);
+  //   this.isRadioSelected = true;
   // }
 }

@@ -1,16 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon
-        size="large"
-        name="arrow-back-outline"
-        [routerLink]="['/tabs/home']"
-      ></ion-icon>
-    </ion-buttons>
-    <ion-title>Global Feed Image Detail</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <div class="image-container">
     <app-main-image [image]="image['url']"></app-main-image>
@@ -38,27 +25,30 @@
     </div>
   </div>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-avatar size="large" slot="start">
-          <img
-            alt="Silhouette of a person's head"
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-          />
-        </ion-avatar>
-        <ion-label>
-          <h1>Dakaz</h1>
-          <h2>{{image?.name}}</h2>
-          <p>Screen Image</p>
-          <p>360 X 360</p>
-        </ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <div class="ion-padding-horizontal">
-    <app-main-action-button (click)="onCreate()"
-      >CREATE YOUR OWN</app-main-action-button
-    >
+  <div class="main-container">
+    <div class="ion-padding">
+      <app-custom-card-button [classes]="'custom-card-border-radius'">
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img
+              alt="Silhouette of a person's head"
+              src="https://ionicframework.com/docs/img/demos/avatar.svg"
+            />
+          </ion-avatar>
+          <ion-label>
+            <h1>Dakaz</h1>
+            <h2>{{image?.name}}</h2>
+            <p>Screen Image</p>
+            <p>360 X 360</p>
+          </ion-label>
+        </ion-item>
+      </app-custom-card-button>
+    </div>
+
+    <div class="ion-padding">
+      <app-main-action-button (click)="onCreate()"
+        >CREATE YOUR OWN</app-main-action-button
+      >
+    </div>
   </div>
 </ion-content>
