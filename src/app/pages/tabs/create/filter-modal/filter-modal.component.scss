@@ -3,22 +3,22 @@
 //   margin: 0%;
 // }
 
-ion-card {
-  border: 1px solid green;
-  align-items: center;
-  ion-card-content {
-    width: 81px;
-    height: 81px;
-    position: relative;
-  }
-}
+// ion-card {
+//   border: 1px solid green;
+//   align-items: center;
+//   ion-card-content {
+//     width: 81px;
+//     height: 81px;
+//     position: relative;
+//   }
+// }
 
-.centered-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+// .centered-text {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 ion-text {
   font-size: 10px;
@@ -73,23 +73,23 @@ ion-radio {
   transition: all 300ms ease;
 }
 
-.input-container ion-icon {
-  color: green;
-  font-size: 3rem;
-}
+// .input-container ion-icon {
+//   color: green;
+//   font-size: 3rem;
+// }
 
-.input-container label {
-  color: green;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+// .input-container label {
+//   color: green;
+//   font-size: 0.8rem;
+//   font-weight: 600;
+//   text-transform: uppercase;
+//   letter-spacing: 1px;
+// }
 
-input:checked + .radio-tile {
-  background-color: green;
-  box-shadow: 0 0 12px green;
-}
+// input:checked + .radio-tile {
+//   background-color: green;
+//   box-shadow: 0 0 12px green;
+// }
 
 input:hover + .radio-tile {
   box-shadow: 0 0 12px var(--primary-color);
@@ -148,9 +148,9 @@ input:checked + .radio-tile label {
   // color: grey;
 }
 
-.ion-card {
-  position: relative;
-}
+// .ion-card {
+//   position: relative;
+// }
 
 ion-text {
   position: absolute;
@@ -159,39 +159,24 @@ ion-text {
   font-weight: bold;
 }
 
-filter modal css img {
-  border-radius: 20px;
-}
-
-ion-text {
-  left: 45%;
-  bottom: 20px;
-}
-
-.select-border {
-  border: 4px solid red;
-}
-
-// ion-radio::part(container) {
-//   display: none;
-//   // border: 4px solid red;
+// filter modal css img {
+//   border-radius: 20px;
 // }
 
-// ion-radio.radio-checked {
-//   border: 5px solid red;
+// ion-text {
+//   left: 45%;
+//   bottom: 20px;
 // }
 
-ion-radio-group img .ng-invalid {
-  border: 2px solid red;
-}
+// .select-border {
+//   border: 4px solid red;
+// }
+
+// ion-radio-group img .ng-invalid {
+//   border: 2px solid red;
+// }
 
 .selected {
-  border: 0.001px solid #fff; /* Set your border properties here */
-  border-radius: 25px; /* Set your border-radius here */
-  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
-  // box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
-}
-
-div.label-text-wrapper {
-  padding: 0;
+  border-radius: 25px;
+  box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.5);
 }

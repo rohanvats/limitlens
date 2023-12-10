@@ -1,15 +1,16 @@
-  <app-main-image
-    role="button"
-    (click)="onPickImage()"
-    *ngIf="selectedImage"
-    [image]="selectedImage">
-    class="custom-drop-shadow"
-  </app-main-image>
+<app-main-image
+  role="button"
+  (click)="onPickImage()"
+  *ngIf="selectedImage"
+  [image]="selectedImage"
+>
+</app-main-image>
 
-   <div class="image-select custom-drop-shadow"
-      role="button"
-      (click)="onPickImage()"
-      *ngIf="!selectedImage"
-      >
-    <ion-icon name="add-circle-outline"></ion-icon>
-   </div>
+<div
+  class="image-select custom-drop-shadow"
+  role="button"
+  (click)="onPickImage()"
+  *ngIf="!selectedImage"
+>
+  <ion-icon name="add-circle-outline"></ion-icon>
+</div>
