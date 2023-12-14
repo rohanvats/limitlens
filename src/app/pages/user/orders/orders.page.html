@@ -50,6 +50,7 @@
     <div class="ion-padding" *ngFor="let item of orderItems">
       <app-custom-card-button
         [classes]="'ion-padding custom-card-border-radius'"
+        height="'auto'"
       >
         <ion-item lines="none">
           <ion-thumbnail slot="start">
@@ -68,7 +69,7 @@
               <p class="ion-no-margin" *ngIf="item?.sizeAndQuantity">
                 Size: {{item?.sizeAndQuantity?.size}}
               </p>
-              <h5 class="ion-no-margin">€{{item?.price}}</h5>
+              <p class="ion-no-margin price">€{{item?.price}}</p>
               <ion-badge>X{{item?.upscale}}</ion-badge>
             </ion-text>
             <!-- <ion-button
@@ -82,7 +83,7 @@
         </ion-item>
         <div class="ion-padding-horizontal ion-padding-bottom">
           <h5 class="ion-no-margin ion-no-padding">
-            Order No.: <a href="#">00A99UUU</a>
+            Order No: <a href="#">00A99UUU</a>
           </h5>
         </div>
       </app-custom-card-button>

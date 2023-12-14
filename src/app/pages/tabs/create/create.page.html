@@ -3,12 +3,21 @@
     <app-image-picker (imagePick)="onImagePicked($event)"></app-image-picker>
     <div class="main-container">
       <div class="prompt-card-container">
-        <ion-card (click)="openPromptModal()" class="custom-card-border-radius">
+        <app-custom-card-button
+          (click)="openPromptModal()"
+          [mode]="'ios'"
+          [classes]="'ion-padding custom-card-border-radius'"
+          height="auto"
+        >
           <ion-card-header>
             <ion-card-subtitle>Your Prompt</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content> {{userPrompt}} </ion-card-content>
-        </ion-card>
+          <ion-card-content>
+            <ion-text>
+              <p>{{userPrompt}}</p>
+            </ion-text>
+          </ion-card-content>
+        </app-custom-card-button>
       </div>
 
       <div class="style-row-container">
@@ -45,8 +54,6 @@
         </ion-row>
       </div>
 
-      <!-- <ion-row>
-        <ion-col class="ion-padding"> -->
       <div class="main-button-container">
         <app-main-action-button
           [type]="'submit'"
@@ -54,8 +61,6 @@
           >{{'generate' | uppercase}}
         </app-main-action-button>
       </div>
-      <!-- </ion-col>
-      </ion-row> -->
     </div>
   </form>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Plugins, Capacitor } from '@capacitor/core';
+import { Capacitor } from '@capacitor/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Platform } from '@ionic/angular';
 
@@ -8,12 +8,11 @@ import { Platform } from '@ionic/angular';
   templateUrl: './image-picker.component.html',
   styleUrls: ['./image-picker.component.scss'],
 })
-export class ImagePickerComponent  implements OnInit {
-
+export class ImagePickerComponent implements OnInit {
   @Output() imagePick = new EventEmitter<any>();
   selectedImage: any;
 
-  constructor(private platform: Platform) { }
+  constructor(private platform: Platform) {}
 
   ngOnInit() {
     console.log('Mobile: ', this.platform.is('mobile'));
@@ -23,37 +22,35 @@ export class ImagePickerComponent  implements OnInit {
     console.log('hybrid: ', this.platform.is('hybrid'));
   }
 
-  checkPlatformForWeb(){
-    if(Capacitor.getPlatform() === 'web') return true;
+  checkPlatformForWeb() {
+    if (Capacitor.getPlatform() === 'web') return true;
     return false;
   }
 
-  onPickImage(){
-    if(!Capacitor.isPluginAvailable('Camera')){
+  onPickImage() {
+    if (!Capacitor.isPluginAvailable('Camera')) {
       return;
     }
-    try{
+    try {
       this.takePicture();
-    }catch(err){
+    } catch (err) {
       console.log('error: ', err);
-    }  
+    }
   }
 
   async takePicture() {
-    try{
+    try {
       const image = await Camera.getPhoto({
         quality: 90,
         source: CameraSource.Prompt,
         // allowEditing: true,
-        resultType:CameraResultType.Uri
+        resultType: CameraResultType.Uri,
         // resultType: this.checkPlatformForWeb() ? CameraResultType.DataUrl : CameraResultType.Uri
       });
       this.selectedImage = image.webPath;
-      this.imagePick.emit(image.webPath)
-    }catch(error){
-        console.log('error occured: ', error)
+      this.imagePick.emit(image.webPath);
+    } catch (error) {
+      console.log('error occured: ', error);
     }
-
   }
-
 }

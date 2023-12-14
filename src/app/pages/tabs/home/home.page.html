@@ -4,16 +4,16 @@
       style="height: 2.875rem; width: 14.68rem"
       src="../../../../assets/icon/Header_logo.png"
     ></ion-img>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button routerLink="/user">
         <ion-icon size="large" aria-hidden="true" name="person"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-segment [scrollable]="true" value="latest">
-    <ion-segment-button value="latest">
+  <ion-segment mode="ios" [scrollable]="true" value="latest">
+    <ion-segment-button mode="ios" value="latest">
       <ion-label>Latest</ion-label>
     </ion-segment-button>
     <ion-segment-button value="hot">
@@ -21,9 +21,6 @@
     </ion-segment-button>
     <ion-segment-button value="favourites">
       <ion-label>Favourites</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="catgeories">
-      <ion-label>Categories</ion-label>
     </ion-segment-button>
   </ion-segment>
 

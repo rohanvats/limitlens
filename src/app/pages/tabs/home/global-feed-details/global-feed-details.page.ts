@@ -9,31 +9,24 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./global-feed-details.page.scss'],
 })
 export class GlobalFeedDetailsPage implements OnInit {
-
-  image:any;
+  image: any;
 
   constructor(
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private router: Router
-    ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(imageDetails =>{
-      console.log('query: ',imageDetails);
+    this.route.queryParams.subscribe((imageDetails) => {
+      console.log('query: ', imageDetails);
       this.image = imageDetails;
-    })
+    });
   }
 
-  async shareImage(){
+  async shareImage() {
     await Share.share({
-    url: this.image?.url,
-  });
-}
-
-  onCreate(){
-    this.navCtrl.navigateForward(['/tabs','create'],
-    {queryParams: {prompt: 'prompt', globalFeed: 'true'}}, 
-    );
+      url: this.image?.url,
+    });
   }
 }

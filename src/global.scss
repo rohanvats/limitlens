@@ -35,20 +35,38 @@
 //   --ion-padding-bottom: 0;
 // }
 
+html {
+  --ion-dynamic-font: var(--ion-default-dynamic-font);
+  --ion-font-family: "Mulish";
+  font-size: 62.5%;
+}
+
 * {
   font-family: Lato;
 }
 
-// ion-grid,
-// ion-row,
-// ion-col {
-//   padding: 0%;
-//   margin: 0%;
-// }
+p {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+h6 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+ion-note {
+  color: #ffffff;
+}
+
+ion-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+}
 
 :root {
-  --ion-padding: 10px; /* redefine ion-padding */
-  --ion-margin: 10px; /* redefine ion-margin */
+  --ion-padding: 1rem;
+  --ion-margin: 1rem;
 }
 
 ion-grid {
@@ -59,23 +77,6 @@ ion-grid {
   padding: 10px;
 }
 
-// ion-grid ion-row ion-col {
-//   padding: 0%;
-//   margin: 0%;
-// }
-
-// ion-padding {
-//   --ion-padding-start: 20px;
-//   --ion-padding-end: 20px;
-//   --ion-padding-top: 20px;
-//   --ion-padding-bottom: 20px;
-// }
-
-html {
-  --ion-dynamic-font: var(--ion-default-dynamic-font);
-  --ion-font-family: "Mulish";
-}
-
 ion-button {
   // --padding: 0;
   margin: 0;
@@ -83,13 +84,14 @@ ion-button {
 
 .nav-icon-background {
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: 0.6rem;
+  top: 0.6rem;
   border-radius: 17%;
 }
 
 .main-header-text {
   color: #ffffff;
+  font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.815rem;
 }
@@ -98,7 +100,7 @@ ion-button {
   --background: rgba(48, 48, 48, 0.8);
   --background-activated: #303030;
   --background-hover: #303030;
-  --border-radius: 10px;
+  --border-radius: 1rem;
   --color: #ffffff;
 }
 
@@ -114,20 +116,20 @@ ion-button {
 
 .main-img-nav-btn {
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0.2rem;
+  right: 0.2rem;
 }
 
 .custom-drop-shadow {
   // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
 }
 
 // custom img buttons
 .custom-img-btn {
-  height: 100px;
-  width: 100px;
-  border-radius: 20px;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 2rem;
 }
 
 .custom-img-btn-text {
@@ -136,10 +138,10 @@ ion-button {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  bottom: 20px;
+  bottom: 2rem;
   h6 {
     font-weight: 700;
-    line-height: 14.52px;
+    line-height: 1.452rem;
   }
 }
 
@@ -154,7 +156,7 @@ ion-radio::part(flex) {
 
 //for cards
 .custom-card-border-radius {
-  border-radius: 20px;
+  border-radius: 2rem;
 }
 
 // ion-radio {

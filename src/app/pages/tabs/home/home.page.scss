@@ -22,3 +22,7 @@ ion-segment {
   top: 0px;
   z-index: 10000;
 }
+
+ion-segment-button.ios::part(indicator-background) {
+  background-color: #d1236f;
+}
