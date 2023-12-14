@@ -7,29 +7,37 @@ const routes: Routes = [
   {
     path: '',
     component: TabsPage,
-    children:[
+    children: [
       {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+        loadChildren: () =>
+          import('./home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'create',
-        loadChildren: () => import('./create/create.module').then( m => m.CreatePageModule)
+        loadChildren: () =>
+          import('./create/create.module').then((m) => m.CreatePageModule),
       },
       {
         path: 'gallery',
-        loadChildren: () => import('./gallery/gallery.module').then( m => m.GalleryPageModule)
+        loadChildren: () =>
+          import('./gallery/gallery.module').then((m) => m.GalleryPageModule),
       },
+      // {
+      //   path: 'cart',
+      //   loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
+      // },
       {
-        path: 'cart',
-        loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
+        path: 'user',
+        loadChildren: () =>
+          import('../user/user.module').then((m) => m.UserPageModule),
       },
       {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: '',

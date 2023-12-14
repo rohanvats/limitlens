@@ -1,18 +1,14 @@
 <ion-card
-
-  [button]=enableAsButton
-
+  [mode]="mode"
+  [button]="enableAsButton"
   [ngStyle]="{
-              'height': cardHeight,
-              'width': cardWidth,
-              'background-image': 'url(' + cardBackgroundImage + ')'
-             }"
+    height: cardHeight,
+    width: cardWidth,
+    'background-image': 'url(' + cardBackgroundImage + ')'
+  }"
+  [ngClass]="classes"
+>
+  <ng-content></ng-content>
 
-  [ngClass]="classes">
-
-
-         <ng-content></ng-content>
-
-         <ng-content select="abcd"></ng-content>
-
-  </ion-card>
+  <ng-content select="abcd"></ng-content>
+</ion-card>

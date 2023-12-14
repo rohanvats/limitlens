@@ -52,6 +52,8 @@ export class FilterModalComponent implements OnInit {
     this.selectBackgroundImage();
   }
 
+  searchArtist(event: any) {}
+
   selectBackgroundImage() {
     if (this.filterType === 'camera') {
       this.backgroundImage =

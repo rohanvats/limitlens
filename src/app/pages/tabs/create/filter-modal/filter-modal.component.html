@@ -74,7 +74,7 @@
 
   <ng-container *ngIf="filterType === 'styling'">
     <form [formGroup]="styleForm" (ngSubmit)="onSaveStyling()">
-      <ion-searchbar placeholder="Search Artist"></ion-searchbar>
+      <ion-searchbar (ionInput)="searchArtist($event)"></ion-searchbar>
       <div class="main-container">
         <ion-grid>
           <ion-row>
@@ -96,8 +96,11 @@
                       class="custom-img-btn custom-drop-shadow"
                       [src]="data.styleImage"
                     />
-                    <ion-text class="ion-text-center custom-img-btn-text">
-                      <p>{{ data.name | uppercase }}</p>
+                    <ion-text
+                      class="ion-text-center ion-text-wrap custom-img-btn-text"
+                    >
+                      <!-- <p>{{ data.name | uppercase }}</p> -->
+                      <ion-note>{{ data?.name | uppercase }}</ion-note>
                     </ion-text>
                   </ion-radio>
                 </div>
@@ -131,8 +134,11 @@
                     class="custom-img-btn custom-drop-shadow"
                     [src]="data?.styleImage"
                   />
-                  <ion-text class="ion-text-center custom-img-btn-text">
-                    <p>{{ data?.name | uppercase }}</p>
+                  <ion-text
+                    class="ion-text-center ion-text-wrap custom-img-btn-text"
+                  >
+                    <!-- <p>{{ data?.name | uppercase }}</p> -->
+                    <ion-note>{{ data?.name | uppercase }}</ion-note>
                   </ion-text>
                 </ion-radio>
               </ion-radio-group>
@@ -153,23 +159,33 @@
               class="ion-text-center"
               size="4"
             >
-              <ion-radio-group
-                formControlName="camera"
-                (click)="onSelectImg(data)"
-              >
-                <ion-radio labelPlacement="none" [value]="data">
-                  <img
-                    [ngClass]="{
-                      selected: cameraForm.value.camera === data
-                    }"
-                    class="custom-img-btn custom-drop-shadow"
-                    [src]="data.styleImage"
-                  />
-                  <ion-text class="ion-text-center custom-img-btn-text">
-                    <p>{{ data.name | uppercase }}</p>
-                  </ion-text>
-                </ion-radio>
-              </ion-radio-group>
+              <div class="ion-activatable">
+                <ion-radio-group
+                  formControlName="camera"
+                  (click)="onSelectImg(data)"
+                >
+                  <!-- <ion-item [button]="true"> -->
+
+                  <ion-radio labelPlacement="none" [value]="data">
+                    <img
+                      [ngClass]="{
+                        selected: cameraForm.value.camera === data
+                      }"
+                      class="custom-img-btn custom-drop-shadow"
+                      [src]="data.styleImage"
+                    />
+                    <ion-text
+                      class="ion-text-center ion-text-wrap custom-img-btn-text"
+                    >
+                      <!-- <p>{{ data.name | uppercase }}</p> -->
+                      <ion-note>{{ data?.name | uppercase }}</ion-note>
+                    </ion-text>
+                  </ion-radio>
+                  <ion-ripple-effect></ion-ripple-effect>
+                  <!-- </ div> -->
+                  <!-- </ion-item> -->
+                </ion-radio-group>
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>

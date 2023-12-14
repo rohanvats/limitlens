@@ -3,17 +3,23 @@ img {
   min-width: 100%;
 }
 
-// ion-row ion-col {
-//   padding: 0%;
-//   margin: 0%;
-// }
+ion-card-subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+}
 
-// ion-col {
-//   padding: 20px;
-// }
+h6 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
 
 .filter-card {
-  padding: 10px;
+  padding: 1rem;
 }
 
 ion-card {
@@ -22,17 +28,13 @@ ion-card {
 }
 
 .style-row-container {
-  padding: 10px 0 0 0;
+  padding: 1rem 0 0 0;
 }
 
 .prompt-card-container {
-  padding: 12px 10px 0 10px;
+  padding: 1.2rem 1rem 0 1rem;
 }
 
 .main-button-container {
-  padding: 10px 10px 20px 10px;
-}
-
-ion-card {
-  height: 12.32vh;
+  padding: 1rem 1rem 2rem 1rem;
 }
