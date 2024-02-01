@@ -130,17 +130,17 @@ export class FilterModalComponent implements OnInit {
   }
 
   onSaveStyling() {
-    console.log(this.styleForm);
+    // console.log(this.styleForm);
     this.modalCtrl.dismiss(this.styleForm.value, 'confirmStyle');
   }
 
   onSaveLighting() {
-    console.log(this.lightingForm.value);
+    // console.log(this.lightingForm.value);
     this.modalCtrl.dismiss(this.lightingForm.value, 'confirmLighting');
   }
 
   onSaveCamera() {
-    console.log(this.cameraForm.value);
+    // console.log(this.cameraForm.value);
     this.modalCtrl.dismiss(this.cameraForm.value, 'confirmCamera');
   }
 

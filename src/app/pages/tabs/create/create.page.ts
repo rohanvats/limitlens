@@ -4,7 +4,7 @@ import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { throwError } from 'rxjs';
+// import { throwError } from 'rxjs';
 @Component({
   selector: 'app-create',
   templateUrl: './create.page.html',
@@ -53,28 +53,6 @@ export class CreatePage implements OnInit {
     this.userPrompt = 'Example : This photos as Indiana Jones';
   }
 
-  // ionViewWillEnter() {
-
-  //   const currentRoute = this.route.snapshot.routeConfig?.path;
-  //   console.log('current Route: ', currentRoute);
-
-  //   console.log('ion view will enter');
-  //   this.$querySubscription = this.route.queryParams.subscribe(data => {
-  //     if(data){
-  //       this.usingGlobalFeed = data['globalFeed'] ? data['globalFeed'] : false;
-  //     }
-  //     console.log('query: ', data);
-  //   })
-  // }
-
-  // ionViewWillLeave() {
-  //   console.log('ion view will leave');
-  //   if (this.$querySubscription) {
-  //     this.usingGlobalFeed = false;
-  //     this.$querySubscription.unsubscribe();
-  //   }
-  // }
-
   openPromptModal() {
     this.modalCtrl
       .create({
@@ -87,18 +65,18 @@ export class CreatePage implements OnInit {
       })
       .then((data) => {
         console.log(data);
-        if (data.role === 'confirm') {
-          if (data.data === '') {
+        if (data?.role === 'confirm') {
+          if (data?.data === '') {
             this.userPrompt = 'Example : This photos as Indiana Jones';
             return;
           }
-          this.userPrompt = data.data;
+          this.userPrompt = data?.data;
         }
       });
   }
 
   onImagePicked(imagedata: any) {
-    console.log('image recieved: ', imagedata);
+    // console.log('image recieved: ', imagedata);
     if (imagedata) {
       this.image = imagedata;
     }
@@ -118,7 +96,7 @@ export class CreatePage implements OnInit {
       })
       .then((result) => {
         if (result.role === 'confirmStyle') {
-          console.log('style1: ', result);
+          // console.log('style1: ', result);
 
           this.filterOptions.map((el: any) => {
             if (el.value === 'styling') {
@@ -129,8 +107,7 @@ export class CreatePage implements OnInit {
         }
 
         if (result.role === 'confirmLighting') {
-          console.log(result);
-
+          // console.log(result);
           this.filterOptions.map((el: any) => {
             if (el.value === 'lighting') {
               el.styleImage = result?.data?.lighting?.styleImage;
@@ -164,10 +141,17 @@ export class CreatePage implements OnInit {
   }
 
   onSavePrompt() {
+    const filterOptions = this.filterOptions.reduce(
+      (result: any, currentObject: any) => {
+        result[currentObject.value] = currentObject.name;
+        return result;
+      },
+      {}
+    );
     console.log({
       image: this.image,
       prompt: this.userPrompt,
-      filters: this.filterOptions,
+      filters: filterOptions,
     });
   }
 }

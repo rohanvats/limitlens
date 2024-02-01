@@ -17,66 +17,8 @@
   </app-custom-card-button>
 
   <div class="main-container">
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-input label="User Name" labelPlacement="floating"></ion-input>
-      </ion-item>
+    <app-user-signup></app-user-signup>
 
-      <ion-item>
-        <ion-input label="First Name" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Last Name" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input
-          label="Email"
-          type="email"
-          labelPlacement="floating"
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input
-          label="Password"
-          type="password"
-          labelPlacement="floating"
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Phone Number" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Address Line 1" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Address Line 2" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Zip Code" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="City" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="State/Region" labelPlacement="floating"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Country" labelPlacement="floating"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <div class="ion-padding">
-      <app-main-action-button>CREATE ACCOUNT</app-main-action-button>
-    </div>
+    <app-user-signin *ngIf="false"></app-user-signin>
   </div>
 </ion-content>

@@ -1,0 +1,59 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-input
+        label="Email"
+        formControlName="email"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ng-container *ngIf="controls.email.errors && controls.email.touched">
+      <ion-text color="danger" *ngIf="controls.email.errors?.['required']"
+        >Email is required</ion-text
+      >
+      <ng-container *ngIf="controls.email.errors && controls.email.dirty">
+        <ion-text color="danger" *ngIf="controls.email.errors?.['pattern']"
+          >Please enter a valid email</ion-text
+        >
+      </ng-container>
+    </ng-container>
+
+    <ion-item>
+      <ion-input
+        label="Password"
+        type="password"
+        formControlName="password"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ng-container *ngIf="controls.password.errors && controls.password.touched">
+      <ion-text color="danger" *ngIf="controls.password.errors?.['required']">
+        Password is required
+      </ion-text>
+      <ng-container
+        *ngIf="
+          controls.password.errors &&
+          controls.password.touched &&
+          controls.password.dirty
+        "
+      >
+        <ion-text
+          color="danger"
+          *ngIf="controls.password.errors?.['minlength']"
+        >
+          Password must alteast have 8 characters
+        </ion-text>
+        <ion-text
+          color="danger"
+          *ngIf="controls.password.errors?.['maxlength']"
+        >
+          Password can max have 20 characters
+        </ion-text>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+
+  <div class="ion-padding">
+    <app-main-action-button type="submit">SIGN IN</app-main-action-button>
+  </div>
+</form>

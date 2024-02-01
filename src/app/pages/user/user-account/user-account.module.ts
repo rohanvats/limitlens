@@ -8,6 +8,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UserAccountPageRoutingModule } from './user-account-routing.module';
 
 import { UserAccountPage } from './user-account.page';
+import { UserSignupComponent } from './user-signup/user-signup.component';
+import { UserSigninComponent } from './user-signin/user-signin.component';
 
 @NgModule({
   imports: [
@@ -15,8 +17,8 @@ import { UserAccountPage } from './user-account.page';
     FormsModule,
     IonicModule,
     UserAccountPageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [UserAccountPage]
+  declarations: [UserAccountPage, UserSignupComponent, UserSigninComponent],
 })
 export class UserAccountPageModule {}

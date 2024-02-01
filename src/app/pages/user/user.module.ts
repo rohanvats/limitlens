@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserPageRoutingModule } from './user-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UserPage } from './user.page';
 
@@ -14,8 +15,9 @@ import { UserPage } from './user.page';
     FormsModule,
     IonicModule,
     UserPageRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
   ],
-  declarations: [UserPage]
+  declarations: [UserPage],
 })
 export class UserPageModule {}
