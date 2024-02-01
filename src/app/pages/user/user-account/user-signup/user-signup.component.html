@@ -1,0 +1,116 @@
+<form (ngSubmit)="onSubmit()" *ngIf="true" [formGroup]="userSignupForm">
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-input
+        label="Username"
+        formControlName="username"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ng-container *ngIf="controls.username.errors && controls.username.touched">
+      <ion-text color="danger" *ngIf="controls.username.errors?.['required']"
+        >Username is required</ion-text
+      >
+      <ng-container
+        *ngIf="
+          controls.username.errors &&
+          controls.username.touched &&
+          controls.username.dirty
+        "
+      >
+        <ion-text color="danger" *ngIf="controls.username.errors?.['minlength']"
+          >Username must have alteast 3 characters</ion-text
+        >
+        <ion-text color="danger" *ngIf="controls.username.errors?.['maxlength']"
+          >Username can have alteast 20 characters</ion-text
+        >
+        <ion-text color="danger" *ngIf="controls.username.errors?.['pattern']"
+          >Username must only contain alphabets</ion-text
+        >
+      </ng-container>
+    </ng-container>
+    <ion-text
+      color="danger"
+      *ngIf="controls.username.errors?.['usernameExists']"
+      >{{ "usename already exists" }}</ion-text
+    >
+
+    <ion-item>
+      <ion-input
+        label="Email"
+        formControlName="email"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ng-container *ngIf="controls.email.errors && controls.email.touched">
+      <ion-text color="danger" *ngIf="controls.email.errors?.['required']"
+        >Email is required</ion-text
+      >
+      <ng-container *ngIf="controls.email.errors && controls.email.dirty">
+        <ion-text color="danger" *ngIf="controls.email.errors?.['pattern']"
+          >Please enter a valid email</ion-text
+        >
+      </ng-container>
+    </ng-container>
+
+    <ion-item>
+      <ion-input
+        label="Password"
+        type="password"
+        formControlName="password"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ng-container *ngIf="controls.password.errors && controls.password.touched">
+      <ion-text color="danger" *ngIf="controls.password.errors?.['required']">
+        Password is required
+      </ion-text>
+      <ng-container
+        *ngIf="
+          controls.password.errors &&
+          controls.password.touched &&
+          controls.password.dirty
+        "
+      >
+        <ion-text
+          color="danger"
+          *ngIf="controls.password.errors?.['minlength']"
+        >
+          Password must alteast have 8 characters
+        </ion-text>
+        <ion-text
+          color="danger"
+          *ngIf="controls.password.errors?.['maxlength']"
+        >
+          Password can max have 20 characters
+        </ion-text>
+      </ng-container>
+    </ng-container>
+
+    <ion-item>
+      <ion-input
+        label="Password Confirmation"
+        type="password"
+        formControlName="passwordConfirmation"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="
+        controls.passwordConfirmation.touched &&
+        controls.passwordConfirmation.dirty &&
+        userSignupForm.errors
+      "
+    >
+      Passwords dont match
+    </ion-text>
+  </ion-list>
+
+  <div class="ion-padding">
+    <!-- <app-main-action-button type="submit">SIGN IN</app-main-action-button> -->
+    <app-main-action-button type="submit"
+      >CREATE ACCOUNT</app-main-action-button
+    >
+  </div>
+</form>
