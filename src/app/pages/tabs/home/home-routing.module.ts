@@ -2,16 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { FaceswapComponent } from './faceswap/faceswap.component';
+import { FaceswapCategoryComponent } from './faceswap-category/faceswap-category.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
-  },  {
-    path: 'global-feed-details',
-    loadChildren: () => import('./global-feed-details/global-feed-details.module').then( m => m.GlobalFeedDetailsPageModule)
-  }
-
+    component: HomePage,
+  },
+  {
+    path: 'faceswap',
+    component: FaceswapComponent,
+  },
+  {
+    path: 'faceswapCategory/:id',
+    component: FaceswapCategoryComponent,
+  },
 ];
 
 @NgModule({

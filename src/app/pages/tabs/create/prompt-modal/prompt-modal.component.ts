@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,24 +6,17 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './prompt-modal.component.html',
   styleUrls: ['./prompt-modal.component.scss'],
 })
-export class PromptModalComponent  implements OnInit {
+export class PromptModalComponent {
+  userPrompt: string;
+  disableSave = true;
 
-  @ViewChild('prompt') prompt: any;
-  @Input() createPrompt: any;
+  constructor(private modalCtrl: ModalController) {}
 
-  constructor(private modalCtrl: ModalController) { }
-
-  ngOnInit() {
-    console.log( this.createPrompt);
-  }
-
-  onCancel(){
+  onCancel() {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  onSave(){
-    this.modalCtrl.dismiss(this.prompt.value, 'confirm');
+  onSavePrompt() {
+    this.modalCtrl.dismiss(this.userPrompt, 'confirm');
   }
-
-
 }

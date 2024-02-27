@@ -1,66 +1,68 @@
+<app-app-header></app-app-header>
 <ion-content>
-  <form [formGroup]="promptForm" (ngSubmit)="onSavePrompt()">
-    <app-image-picker (imagePick)="onImagePicked($event)"></app-image-picker>
-    <div class="main-container">
-      <div class="prompt-card-container">
-        <app-custom-card-button
-          (click)="openPromptModal()"
-          [mode]="'ios'"
-          [classes]="'ion-padding custom-card-border-radius'"
-          height="auto"
-        >
-          <ion-card-header>
-            <ion-card-subtitle>Your Prompt</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-text>
-              <p>{{userPrompt}}</p>
-            </ion-text>
-          </ion-card-content>
-        </app-custom-card-button>
-      </div>
-
-      <div class="style-row-container">
-        <ion-row *ngIf="!usingGlobalFeed">
-          <ion-col
-            size="6"
-            class="ion-text-center filter-card"
-            *ngFor="let item of filterOptions"
-          >
-            <img
-              class="custom-drop-shadow custom-img-btn"
-              (click)="openFilterModal(item?.value)"
-              [src]="item?.styleImage ? item?.styleImage : item.url"
-            />
-            <ion-text
-              class="custom-img-btn-text"
-              *ngIf="item.name === 'format'; else elseBlock"
-            >
-              <h6>{{item?.name | uppercase}}</h6>
-            </ion-text>
-            <ng-template #elseBlock>
-              <span>
-                <ion-text class="custom-img-btn-text">
-                  <ion-icon
-                    size="large"
-                    name="{{item?.iconName}}"
-                    *ngIf="item?.value === 'format'"
-                  ></ion-icon>
-                  <h6>{{item?.name | uppercase}}</h6>
-                </ion-text>
-              </span>
-            </ng-template>
-          </ion-col>
-        </ion-row>
-      </div>
-
-      <div class="main-button-container">
-        <app-main-action-button
-          [type]="'submit'"
-          [disableButton]="!promptForm.valid"
-          >{{'generate' | uppercase}}
-        </app-main-action-button>
-      </div>
+  <div class="main-container">
+    <div class="prompt-card-container">
+      <app-custom-card-button
+        (click)="openPromptModal()"
+        [mode]="'ios'"
+        [classes]="'ion-padding custom-card-border-radius'"
+        height="auto"
+      >
+        <ion-card-header>
+          <ion-card-subtitle>Your Prompt</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text>
+            <p>{{promptPlaceholder}}</p>
+          </ion-text>
+        </ion-card-content>
+      </app-custom-card-button>
+      <app-custom-card-button
+        (click)="openPromptModal()"
+        [mode]="'ios'"
+        [classes]="'ion-padding custom-card-border-radius'"
+        height="auto"
+      >
+      </app-custom-card-button>
     </div>
-  </form>
+
+    <div class="style-row-container">
+      <ion-row *ngIf="!usingGlobalFeed">
+        <ion-col
+          size="6"
+          class="ion-text-center filter-card"
+          *ngFor="let item of displayOptions"
+        >
+          <img
+            class="custom-drop-shadow custom-img-btn"
+            (click)="openFilterModal(item?.value)"
+            [src]="item?.styleImage ? item?.styleImage : item.url"
+          />
+          <ion-text
+            class="custom-img-btn-text"
+            *ngIf="item.name === 'format'; else elseBlock"
+          >
+            <h6>{{item?.name | uppercase}}</h6>
+          </ion-text>
+          <ng-template #elseBlock>
+            <span>
+              <ion-text class="custom-img-btn-text">
+                <ion-icon
+                  size="large"
+                  name="{{item?.iconName}}"
+                  *ngIf="item?.value === 'format'"
+                ></ion-icon>
+                <h6>{{item?.name | uppercase}}</h6>
+              </ion-text>
+            </span>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="main-button-container">
+      <app-main-action-button [type]="'submit'"
+        >{{'generate' | uppercase}}
+      </app-main-action-button>
+    </div>
+  </div>
 </ion-content>

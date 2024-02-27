@@ -10,7 +10,7 @@
       <ion-icon
         size="large"
         class="main-header-text"
-        name="arrow-back-outline"
+        name="close-outline"
       ></ion-icon>
     </span>
     <div>
@@ -20,8 +20,7 @@
 
   <div class="ion-padding ion-margin-top">
     <ion-textarea
-      #prompt
-      [value]="createPrompt"
+      [(ngModel)]="userPrompt"
       label="Enter prompt"
       labelPlacement="floating"
       fill="outline"
@@ -32,6 +31,8 @@
       [clearOnEdit]="true"
     >
     </ion-textarea>
-    <app-main-action-button (click)="onSave()">SAVE</app-main-action-button>
+    <app-main-action-button (click)="onSavePrompt()"
+      >SAVE</app-main-action-button
+    >
   </div>
 </ion-content>

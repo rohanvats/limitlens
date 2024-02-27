@@ -9,7 +9,8 @@ import { MainActionButtonComponent } from './components/main-action-button/main-
 import { ImagePickerComponent } from './components/image-picker/image-picker.component';
 import { MasonryGalleryComponent } from './components/masonry-gallery/masonry-gallery.component';
 import { CustomRadioGroupComponent } from './components/custom-radio-group/custom-radio-group.component';
-
+// import { SliderComponent } from './components/slider/slider.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 @NgModule({
   declarations: [
     MainImageComponent,
@@ -18,6 +19,7 @@ import { CustomRadioGroupComponent } from './components/custom-radio-group/custo
     ImagePickerComponent,
     MasonryGalleryComponent,
     CustomRadioGroupComponent,
+    AppHeaderComponent,
   ],
   imports: [CommonModule, IonicModule, ReactiveFormsModule],
   exports: [
@@ -27,7 +29,9 @@ import { CustomRadioGroupComponent } from './components/custom-radio-group/custo
     ImagePickerComponent,
     MasonryGalleryComponent,
     CustomRadioGroupComponent,
+    AppHeaderComponent,
     ReactiveFormsModule,
+    CommonModule,
   ],
 })
 export class SharedModule {}
