@@ -1,0 +1,36 @@
+<div>
+  <swiper-container
+    [modules]="swiperModules"
+    [slidesPerView]="2"
+    depth="100"
+    modifier="1"
+    rotate="50"
+    scale="1"
+    slideShadows="true"
+    stretch="0"
+    [initialSlide]="1"
+    [spaceBetween]="20"
+    [loop]="true"
+    delay="500"
+    [autoplay]="true"
+  >
+    <ng-container *ngIf="slides.id === 0; else slide">
+      <swiper-slide *ngFor="let slide of slides?.images">
+        <ion-skeleton-text
+          class="skeleton"
+          [animated]="true"
+        ></ion-skeleton-text>
+      </swiper-slide>
+    </ng-container>
+    <ng-template #slide>
+      <swiper-slide *ngFor="let slide of slides?.images">
+        <img
+          *ngIf="slide.url"
+          (click)="selectCategory(slide.url)"
+          src="{{ slide?.url }}"
+          alt=""
+        />
+      </swiper-slide>
+    </ng-template>
+  </swiper-container>
+</div>

@@ -1,0 +1,34 @@
+<ion-content>
+  <ng-container *ngIf="category$ | async as category">
+    <app-custom-card-button
+      [height]="'18vh'"
+      [background-image]="
+        'assets/UI_Images/WebP_Regular_Size/App_Filters_Titles_small_size_opaque-assets/my_gallery.webp'
+      "
+      [classes]="'ion-no-margin custom-card custom-image custom-drop-shadow'"
+    >
+      <span class="nav-icon-background" routerLink="../../">
+        <ion-icon
+          size="large"
+          class="main-header-text"
+          name="arrow-back-outline"
+        ></ion-icon>
+      </span>
+      <div>
+        <h2 class="main-header-text">{{ category.name }}</h2>
+      </div>
+    </app-custom-card-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let image of category.images">
+          <ion-card
+            (click)="selectCategory(image.url)"
+            class="ion-no-padding ion-no-margin custom-drop-shadow"
+          >
+            <ion-img [src]="image.url"></ion-img>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

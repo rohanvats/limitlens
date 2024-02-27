@@ -1,0 +1,9 @@
+<ion-content>
+  <app-main-image [image]="image"></app-main-image>
+  <app-image-picker (imagePick)="getSelectedImage($event)"></app-image-picker>
+  <div class="main-button-container">
+    <app-main-action-button (click)="generateFaceswap()"
+      >{{ "face swap" | uppercase }}
+    </app-main-action-button>
+  </div>
+</ion-content>

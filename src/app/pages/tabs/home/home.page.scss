@@ -26,3 +26,21 @@ ion-segment {
 ion-segment-button.ios::part(indicator-background) {
   background-color: #d1236f;
 }
+ion-chip {
+  --background: #171515;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.skeleton-chip {
+  // width: 100px;
+  max-width: 25%;
+  height: 2vh;
+  border-radius: 10%;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
