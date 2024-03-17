@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent implements OnInit {
+  showLoader = true;
   @Input() slides: FaceswapCategory;
   swiperModules = [IonicSlides];
 

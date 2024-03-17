@@ -11,6 +11,8 @@ import { MasonryGalleryComponent } from './components/masonry-gallery/masonry-ga
 import { CustomRadioGroupComponent } from './components/custom-radio-group/custom-radio-group.component';
 // import { SliderComponent } from './components/slider/slider.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     MainImageComponent,
@@ -20,14 +22,16 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     MasonryGalleryComponent,
     CustomRadioGroupComponent,
     AppHeaderComponent,
+    SkeletonLoaderComponent,
   ],
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, IonicModule, ReactiveFormsModule],
   exports: [
     MainImageComponent,
     CustomCardButtonComponent,
     MainActionButtonComponent,
     ImagePickerComponent,
     MasonryGalleryComponent,
+    SkeletonLoaderComponent,
     CustomRadioGroupComponent,
     AppHeaderComponent,
     ReactiveFormsModule,

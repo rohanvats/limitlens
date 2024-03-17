@@ -9,7 +9,10 @@
 
 <ion-content>
   <div class="image-container">
-    <app-main-image [image]="imageDetails['url']"></app-main-image>
+    <app-main-image
+      [imgStyle]="'mainImgDefault'"
+      [image]="imageDetails['url']"
+    ></app-main-image>
     <ion-fab-button
       size="small"
       routerLink="../"
@@ -22,7 +25,7 @@
         <ion-icon size="small" name="expand"></ion-icon>
       </ion-fab-button>
       <ion-fab-button size="small" class="custom-sm-btn-background">
-        <ion-icon size="small" name="close"></ion-icon>
+        <ion-icon size="small" name="trash"></ion-icon>
       </ion-fab-button>
       <ion-fab-button
         size="small"
@@ -38,36 +41,40 @@
     <div class="ion-padding">
       <ion-chip (click)="presentAlert()" class="custom-drop-shadow">
         <ion-label>{{imageDetails?.name}}</ion-label>
+        <!-- <ion-text>{{imageDetails?.name}}</ion-text> -->
         <ion-icon name="pencil"></ion-icon>
       </ion-chip>
     </div>
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
       <ion-chip class="custom-drop-shadow">
         <ion-label>Screen Image 360 x 360</ion-label>
         <ion-badge class="ion-margin-start" color="warning">XO</ion-badge>
       </ion-chip>
-    </div>
+    </div> -->
 
     <ion-grid>
       <ion-row>
         <ion-col class="ion-padding">
-          <app-main-action-button
-            >{{'Share in global feed' | uppercase}}</app-main-action-button
-          >
+          <app-main-action-button>
+            <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+            <p class="button-text ion-no-margin">Remove Watermark</p>
+            <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+          </app-main-action-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-padding">
           <app-main-action-button
-            >{{'download' | uppercase}}</app-main-action-button
-          >
+            ><p class="button-text ion-no-margin">Upscale</p>
+            <ion-icon class="ion-padding-horizontal" name="download"></ion-icon
+          ></app-main-action-button>
         </ion-col>
-        <ion-col class="ion-padding">
+        <!-- <ion-col class="ion-padding">
           <app-main-action-button (click)="onClick()"
             >{{'print' | uppercase}}</app-main-action-button
           >
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </div>

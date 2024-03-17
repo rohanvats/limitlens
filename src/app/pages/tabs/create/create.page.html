@@ -9,20 +9,47 @@
         height="auto"
       >
         <ion-card-header>
-          <ion-card-subtitle>Your Prompt</ion-card-subtitle>
+          <ion-card-subtitle class="bold-text">Your Prompt</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <ion-text>
-            <p>{{promptPlaceholder}}</p>
-          </ion-text>
+          <ion-text> {{promptPlaceholder}} </ion-text>
         </ion-card-content>
       </app-custom-card-button>
+    </div>
+
+    <div class="prompt-card-container">
       <app-custom-card-button
-        (click)="openPromptModal()"
         [mode]="'ios'"
         [classes]="'ion-padding custom-card-border-radius'"
         height="auto"
       >
+        <ion-row>
+          <ion-col size="4" class="icon-container ion-no-padding ion-no-margin">
+            <app-image-picker [classFlag]="'create'"></app-image-picker>
+          </ion-col>
+          <ion-col size="8">
+            <p class="bold-text">Add photo for Face Swap (optional)</p>
+          </ion-col>
+        </ion-row>
+      </app-custom-card-button>
+    </div>
+
+    <div class="prompt-card-container">
+      <app-custom-card-button
+        [mode]="'ios'"
+        [classes]="'ion-padding custom-card-border-radius'"
+        height="auto"
+      >
+        <ion-card-header>
+          <ion-toggle (ionChange)="toggleNegavtivePrompt($event)">
+            <ion-card-subtitle class="bold-text"
+              >Negative Prompt</ion-card-subtitle
+            ></ion-toggle
+          >
+        </ion-card-header>
+        <ion-card-content *ngIf="showNegativePrompt">
+          <ion-text> {{promptPlaceholder}} </ion-text>
+        </ion-card-content>
       </app-custom-card-button>
     </div>
 
@@ -42,7 +69,7 @@
             class="custom-img-btn-text"
             *ngIf="item.name === 'format'; else elseBlock"
           >
-            <h6>{{item?.name | uppercase}}</h6>
+            <h6>{{item?.name | titlecase }}</h6>
           </ion-text>
           <ng-template #elseBlock>
             <span>
@@ -52,7 +79,7 @@
                   name="{{item?.iconName}}"
                   *ngIf="item?.value === 'format'"
                 ></ion-icon>
-                <h6>{{item?.name | uppercase}}</h6>
+                <h6>{{item?.name | titlecase}}</h6>
               </ion-text>
             </span>
           </ng-template>
@@ -60,8 +87,10 @@
       </ion-row>
     </div>
     <div class="main-button-container">
-      <app-main-action-button [type]="'submit'"
-        >{{'generate' | uppercase}}
+      <app-main-action-button [type]="'submit'">
+        <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+        <p class="button-text ion-no-margin">Create</p>
+        <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
       </app-main-action-button>
     </div>
   </div>

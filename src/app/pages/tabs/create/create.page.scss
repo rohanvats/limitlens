@@ -3,20 +3,20 @@ img {
   min-width: 100%;
 }
 
-ion-card-subtitle {
-  font-size: 2rem;
-  font-weight: 500;
-}
+// ion-card-subtitle {
+//   font-size: 2rem;
+//   font-weight: 500;
+// }
 
-h6 {
-  font-size: 1.6rem;
-  font-weight: 700;
-}
+// h6 {
+//   font-size: 1.6rem;
+//   font-weight: 700;
+// }
 
-p {
-  font-size: 1.6rem;
-  font-weight: 300;
-}
+// p {
+//   font-size: 1.6rem;
+//   font-weight: 300;
+// }
 
 .filter-card {
   padding: 1rem;
@@ -38,3 +38,14 @@ ion-card {
 .main-button-container {
   padding: 1rem 1rem 2rem 1rem;
 }
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// .bold-text {
+//   font-size: large;
+//   font-weight: 600;
+// }

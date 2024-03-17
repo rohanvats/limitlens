@@ -22,17 +22,21 @@
         [height]="'18vh'"
         [classes]="'custom-card-border-radius'"
       >
-        <ion-row>
-          <ion-col class="ion-text-center ion-padding-top">
-            <ion-badge>FREE</ion-badge>
-            <h4>0,00€/mo</h4>
+        <ion-row class="ion-margin">
+          <ion-col size="5" class="ion-text-center ion-padding-top">
+            <ion-badge class="freeSubBadge">Free</ion-badge>
           </ion-col>
-          <ion-col>
+          <ion-col size="7">
             <ion-text>
-              <h3 class="ion-no-margin">What you get :</h3>
-              <p class="ion-no-margin">3 image generation</p>
-              <p class="ion-no-margin">1 X2 upscaling</p>
-              <p class="ion-no-margin">up to 10 images in your gallery</p>
+              <ul>
+                <!-- <li>15 image generation</li>
+                <li>3 X 4 upscaling</li>
+                <li>up to 20 images in your gallery</li> -->
+                <li>Ads to generate</li>
+                <li>Regular generation</li>
+                <li>Watermark</li>
+                <li>Up to 15 images in our gallery</li>
+              </ul>
             </ion-text>
           </ion-col>
         </ion-row>
@@ -41,27 +45,33 @@
 
     <div class="ion-padding">
       <app-custom-card-button
-        [height]="'18vh'"
+        [height]="'20vh'"
         [classes]="'custom-card-border-radius'"
       >
-        <ion-row>
-          <ion-col class="ion-text-center ion-padding-top">
-            <ion-badge>BRONZE</ion-badge>
-            <h4>3,99€/mo</h4>
+        <ion-row class="ion-margin">
+          <ion-col size="5" class="ion-text-center ion-padding-top">
+            <ion-badge>Pro</ion-badge>
+            <h4 class="bold-text">2,99€/week</h4>
           </ion-col>
-          <ion-col>
+          <ion-col size="7">
             <ion-text>
-              <h3 class="ion-no-margin">What you get :</h3>
-              <p class="ion-no-margin">15 image generation</p>
-              <p class="ion-no-margin">3 X 4 upscaling</p>
-              <p class="ion-no-margin">up to 20 images in your gallery</p>
+              <ul>
+                <li>No ads</li>
+                <li>Faster generation</li>
+                <li>Negative prompt</li>
+                <li>No watermark</li>
+                <li>Unlimited images in your gallery</li>
+                <!-- <li>15 image generation</li>
+                <li>3 X 4 upscaling</li>
+                <li>up to 20 images in your gallery</li> -->
+              </ul>
             </ion-text>
           </ion-col>
         </ion-row>
       </app-custom-card-button>
     </div>
 
-    <div class="ion-padding">
+    <!-- <div class="ion-padding">
       <app-custom-card-button
         [height]="'18vh'"
         [classes]="'custom-card-border-radius'"
@@ -125,6 +135,6 @@
           </ion-col>
         </ion-row>
       </app-custom-card-button>
-    </div>
+    </div> -->
   </div>
 </ion-content>

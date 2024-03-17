@@ -23,10 +23,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./gallery/gallery.module').then((m) => m.GalleryPageModule),
       },
-      // {
-      //   path: 'cart',
-      //   loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
-      // },
       {
         path: 'user',
         loadChildren: () =>

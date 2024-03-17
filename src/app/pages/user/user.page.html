@@ -28,22 +28,43 @@
   <div class="main-container ion-text-center">
     <ion-grid>
       <ion-row>
-        <ion-col
-          size="6"
-          class="ion-padding"
-          *ngFor="let item of userOptions()"
-        >
-          <img
-            style="height: auto; width: 100%; border-radius: 20px"
-            [routerLink]="item.name === 'my info' ? 'user-info' : item.name "
-            [src]="item?.url"
-          />
+        <ng-container *ngIf="userOptions$ | async as userOptions">
+          <ng-container
+            *ngIf="userOptions[0].name !== 'skeleton'; else skeleton"
+          >
+            <ion-col
+              size="6"
+              class="ion-padding"
+              *ngFor="let userOption of userOptions"
+            >
+              <img
+                style="height: auto; width: 100%; border-radius: 20px"
+                [routerLink]="userOption.name === 'my info' ? 'user-info' : userOption.name "
+                [src]="userOption.url"
+              />
 
-          <ion-text>
-            <h6>{{item?.name | uppercase}}</h6>
-          </ion-text>
-          <span> </span>
-        </ion-col>
+              <ion-text>
+                <h6>{{userOption.name | uppercase}}</h6>
+              </ion-text>
+              <span> </span>
+            </ion-col>
+          </ng-container>
+          <ng-template #skeleton>
+            <ion-col
+              size="6"
+              class="ion-padding"
+              *ngFor="let userOption of userOptions"
+            >
+              <ion-skeleton-text
+                style="height: 100%; width: 100%; border-radius: 20px"
+                class="skeleton"
+                [animated]="true"
+              ></ion-skeleton-text>
+              <span> </span>
+            </ion-col>
+          </ng-template>
+        </ng-container>
+        <ng-template #skeleton> </ng-template>
       </ion-row>
     </ion-grid>
   </div>

@@ -1,7 +1,15 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Platform } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-image-picker',
@@ -11,15 +19,33 @@ import { Platform } from '@ionic/angular';
 export class ImagePickerComponent implements OnInit {
   @Output() imagePick = new EventEmitter<any>();
   selectedImage: any;
+  @Input() classFlag: string;
+  imgUploadClass: string;
+  @Input() imgPickerHeight: any;
 
-  constructor(private platform: Platform) {}
+  constructor(private platform: Platform, private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    // console.log('Mobile: ', this.platform.is('mobile'));
-    // console.log('desktop: ', this.platform.is('desktop'));
-    // console.log('ios: ', this.platform.is('ios'));
-    // console.log('android: ', this.platform.is('android'));
-    // console.log('hybrid: ', this.platform.is('hybrid'));
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['classFlag']) {
+      this.imgUploadStyle();
+    }
+  }
+
+  imgUploadStyle() {
+    switch (this.classFlag) {
+      case 'create':
+        this.imgUploadClass = 'optCreateImageUpload';
+        break;
+      case 'faceswap':
+        this.imgUploadClass = 'faceSwapImageUpload';
+        break;
+      case 'avatar':
+        this.imgUploadClass = 'avatarImageUpload';
+        break;
+    }
+    return this.imgUploadClass;
   }
 
   checkPlatformForWeb() {

@@ -45,9 +45,22 @@ html {
   font-family: Lato;
 }
 
-p {
+ion-card-content {
   font-size: 1.6rem;
-  font-weight: 300;
+  font-weight: 600;
+}
+
+ion-alert,
+ion-label,
+ion-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 600;
 }
 
 h6 {
@@ -74,11 +87,10 @@ ion-grid {
 }
 
 .main-container {
-  padding: 10px;
+  padding: 1rem;
 }
 
 ion-button {
-  // --padding: 0;
   margin: 0;
 }
 
@@ -162,3 +174,53 @@ ion-radio::part(flex) {
 // ion-radio {
 //   text-align: center !important;
 // }
+
+.faceSwapImageUpload {
+  border-radius: 0 0 1.0625rem 1.0625rem;
+  height: 42.765vh;
+  ion-icon {
+    height: 12rem;
+    width: 12rem;
+    color: white;
+  }
+}
+
+.avatarImageUpload {
+  border-radius: 50%;
+  height: 70vw;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  ion-icon {
+    height: 12rem;
+    width: 12rem;
+    color: white;
+  }
+}
+
+.bold-text {
+  font-size: large;
+  font-weight: 600;
+}
+
+.button-text {
+  font-size: medium;
+  font-weight: 600;
+}
+
+.mainImgDefault {
+  border-radius: 0 0 1.0625rem 1.0625rem;
+  height: 47vh;
+  width: 100%;
+}
+
+.optCreateImageUpload {
+  border-radius: 1.0625rem;
+  height: 100%;
+  ion-icon {
+    height: 7rem;
+    width: 7rem;
+    color: white;
+  }
+}

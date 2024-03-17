@@ -1,16 +1,37 @@
-<app-main-image
-  role="button"
-  (click)="onPickImage()"
-  *ngIf="selectedImage"
-  [image]="selectedImage"
->
-</app-main-image>
+<ng-container *ngIf="selectedImage">
+  <ng-container [ngSwitch]="classFlag">
+    <ng-container *ngSwitchCase="'create'">
+      <ion-avatar (click)="onPickImage()">
+        <img alt="Silhouette of a person's head" [src]="selectedImage" />
+      </ion-avatar>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'faceswap'">
+      <app-main-image
+        role="button"
+        (click)="onPickImage()"
+        *ngIf="selectedImage"
+        [image]="selectedImage"
+        [imgStyle]="imgUploadStyle()"
+      >
+      </app-main-image>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'avatar'">
+      <ion-avatar (click)="onPickImage()" class="avatar">
+        <img alt="Silhouette of a person's head" [src]="selectedImage" />
+      </ion-avatar>
+    </ng-container>
+  </ng-container>
+</ng-container>
 
 <div
   class="image-select custom-drop-shadow"
   role="button"
+  [ngClass]="imgUploadStyle()"
   (click)="onPickImage()"
   *ngIf="!selectedImage"
 >
   <ion-icon name="add-circle-outline"></ion-icon>
+  <ng-content></ng-content>
 </div>

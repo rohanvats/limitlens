@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MainImageComponent implements OnInit {
   @Input() image: string | undefined | null;
+  @Input() imgStyle: string;
 
   constructor() {}
 

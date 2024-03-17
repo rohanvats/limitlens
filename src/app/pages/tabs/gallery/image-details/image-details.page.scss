@@ -7,9 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 5%; /* Adjust the vertical position */
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.custom-alert {
+  font-size: larger;
+  font-weight: 600;
 }
 
 .icon-background {

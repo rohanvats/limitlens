@@ -16,6 +16,14 @@
 //   margin: 5px;
 // }
 
+ion-searchbar.custom {
+  --color: #fff;
+  --icon-color: #fff;
+  --clear-button-color: #fff;
+  --border-radius: 1.62rem;
+  --background: #171515;
+}
+
 ion-segment {
   background: #222222;
   position: sticky;

@@ -14,15 +14,7 @@
     delay="500"
     [autoplay]="true"
   >
-    <ng-container *ngIf="slides.id === 0; else slide">
-      <swiper-slide *ngFor="let slide of slides?.images">
-        <ion-skeleton-text
-          class="skeleton"
-          [animated]="true"
-        ></ion-skeleton-text>
-      </swiper-slide>
-    </ng-container>
-    <ng-template #slide>
+    <ng-container *ngIf="slides">
       <swiper-slide *ngFor="let slide of slides?.images">
         <img
           *ngIf="slide.url"
@@ -31,6 +23,6 @@
           alt=""
         />
       </swiper-slide>
-    </ng-template>
+    </ng-container>
   </swiper-container>
 </div>

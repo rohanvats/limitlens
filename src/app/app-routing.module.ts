@@ -16,11 +16,11 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserPageModule),
-  },  {
-    path: 'welcome-tutorial',
-    loadChildren: () => import('./pages/welcome-tutorial/welcome-tutorial.module').then( m => m.WelcomeTutorialPageModule)
   },
-
+  // {
+  //   path: 'welcome-tutorial',
+  //   loadChildren: () => import('./pages/welcome-tutorial/welcome-tutorial.module').then( m => m.WelcomeTutorialPageModule)
+  // },
 ];
 
 @NgModule({
