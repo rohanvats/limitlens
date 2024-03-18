@@ -1,12 +1,11 @@
 <form (ngSubmit)="onSubmit()" *ngIf="true" [formGroup]="userSignupForm">
-  <ion-list [inset]="true">
-    <ion-item>
-      <ion-input
-        label="Username"
-        formControlName="username"
-        labelPlacement="floating"
-      ></ion-input>
-    </ion-item>
+  <div class="ion-padding ion-margin-top">
+    <ion-input
+      label="Username"
+      formControlName="username"
+      fill="outline"
+      labelPlacement="floating"
+    ></ion-input>
     <ng-container *ngIf="controls.username.errors && controls.username.touched">
       <ion-text color="danger" *ngIf="controls.username.errors?.['required']"
         >Username is required</ion-text
@@ -34,14 +33,16 @@
       *ngIf="controls.username.errors?.['usernameExists']"
       >{{ "usename already exists" }}</ion-text
     >
+  </div>
 
-    <ion-item>
-      <ion-input
-        label="Email"
-        formControlName="email"
-        labelPlacement="floating"
-      ></ion-input>
-    </ion-item>
+  <div class="ion-padding">
+    <ion-input
+      label="Email"
+      formControlName="email"
+      fill="outline"
+      labelPlacement="floating"
+    ></ion-input>
+    <!-- </ion-item> -->
     <ng-container *ngIf="controls.email.errors && controls.email.touched">
       <ion-text color="danger" *ngIf="controls.email.errors?.['required']"
         >Email is required</ion-text
@@ -52,15 +53,18 @@
         >
       </ng-container>
     </ng-container>
+  </div>
 
-    <ion-item>
-      <ion-input
-        label="Password"
-        type="password"
-        formControlName="password"
-        labelPlacement="floating"
-      ></ion-input>
-    </ion-item>
+  <!-- <ion-item> -->
+  <div class="ion-padding">
+    <ion-input
+      label="Password"
+      type="password"
+      formControlName="password"
+      fill="outline"
+      labelPlacement="floating"
+    ></ion-input>
+    <!-- </ion-item> -->
     <ng-container *ngIf="controls.password.errors && controls.password.touched">
       <ion-text color="danger" *ngIf="controls.password.errors?.['required']">
         Password is required
@@ -86,15 +90,18 @@
         </ion-text>
       </ng-container>
     </ng-container>
+  </div>
 
-    <ion-item>
-      <ion-input
-        label="Password Confirmation"
-        type="password"
-        formControlName="passwordConfirmation"
-        labelPlacement="floating"
-      ></ion-input>
-    </ion-item>
+  <!-- <ion-item> -->
+  <div class="ion-padding">
+    <ion-input
+      label="Password Confirmation"
+      type="password"
+      fill="outline"
+      formControlName="passwordConfirmation"
+      labelPlacement="floating"
+    ></ion-input>
+    <!-- </ion-item> -->
     <ion-text
       color="danger"
       *ngIf="
@@ -105,7 +112,8 @@
     >
       Passwords dont match
     </ion-text>
-  </ion-list>
+  </div>
+  <!-- </ion-list> -->
 
   <div class="ion-padding">
     <!-- <app-main-action-button type="submit">SIGN IN</app-main-action-button> -->

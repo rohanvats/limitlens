@@ -285,6 +285,23 @@ export class DisplayOptionsService {
           },
         ],
       },
+      {
+        key: 'format',
+        data: [
+          {
+            name: 'Portrait',
+            styleImage: 'assets/icon/Portrait.png',
+          },
+          {
+            name: 'Square',
+            styleImage: 'assets/icon/Square.png',
+          },
+          {
+            name: 'LandScape',
+            styleImage: 'assets/icon/Landscape.png',
+          },
+        ],
+      },
     ]).pipe(map((options) => options.find((el) => el.key === option)));
   }
 }

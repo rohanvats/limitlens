@@ -1,0 +1,11 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" *ngFor="let item of galleryData">
+      <ion-card>
+        <ion-thumbnail>
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

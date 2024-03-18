@@ -21,8 +21,8 @@
 // }
 
 ion-text {
-  font-size: 10px;
-  line-height: 12.1px;
+  font-size: 1rem;
+  line-height: 1.21rem;
   font-weight: 500;
 }
 
@@ -63,15 +63,15 @@ ion-radio {
   opacity: 0;
 }
 
-.input-container .radio-tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  border: 2px solid green;
-  border-radius: 8px;
-  transition: all 300ms ease;
-}
+// .input-container .radio-tile {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   height: 100%;
+//   border: 2px solid green;
+//   border-radius: 8px;
+//   transition: all 300ms ease;
+// }
 
 // .input-container ion-icon {
 //   color: green;
@@ -90,6 +90,17 @@ ion-radio {
 //   background-color: green;
 //   box-shadow: 0 0 12px green;
 // }
+
+h2 {
+  font-size: 2.6rem;
+  font-weight: 600;
+}
+
+.verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 input:hover + .radio-tile {
   box-shadow: 0 0 12px var(--primary-color);

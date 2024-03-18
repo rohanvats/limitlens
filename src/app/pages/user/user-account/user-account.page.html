@@ -12,13 +12,21 @@
       ></ion-icon>
     </span>
     <div>
-      <h2 class="main-header-text">MY INFO</h2>
+      <h2 class="main-header-text">USER INFO</h2>
     </div>
   </app-custom-card-button>
 
   <div class="main-container">
+    <ng-container class="centered-content">
+      <app-image-picker classFlag="avatar">
+        <h1 class="bold-text ion-padding-top ion-no-margin ion-no-padding">
+          Add Avatar
+        </h1>
+      </app-image-picker>
+    </ng-container>
+
     <app-user-signup></app-user-signup>
 
-    <app-user-signin *ngIf="false"></app-user-signin>
+    <!-- <app-user-signin *ngIf="false"></app-user-signin> -->
   </div>
 </ion-content>

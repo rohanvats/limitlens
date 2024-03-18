@@ -8,98 +8,65 @@
       <ion-icon size="large" class="main-header-text" name="close"></ion-icon>
     </span>
     <h2 class="main-header-text">
-      {{ filterType | uppercase }}
+      {{ filterType | titlecase }}
     </h2>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="onCancel()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </app-custom-card-button>
-
-  <!-- <ng-container *ngIf="filterType === 'format'">
-    <form [formGroup]="formatForm" (ngSubmit)="onSaveFormat()">
-      <ion-list [inset]="true">
-        <ion-list-header>
-          <h2>Choose the purpose:</h2>
-        </ion-list-header>
-        <ion-radio-group formControlName="imageType">
-          <ion-item *ngFor="let purpose of purposeOptions">
-            <ion-thumbnail slot="start" class="thumbnail">
-              <ion-icon
-                size="large"
-                name="{{ purpose.iconName }}"
-                class="icon"
-              ></ion-icon>
-            </ion-thumbnail>
-            <ion-radio [value]="purpose">{{
-              purpose.name | uppercase
-            }}</ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-      <ion-list [inset]="true">
-        <ion-list-header>
-          <h2>Choose the ratio:</h2>
-        </ion-list-header>
-        <ion-radio-group formControlName="ratio">
-          <ion-item *ngFor="let ratio of radioOptions">
-            <ion-thumbnail slot="start">
-              <img
-                class="custom-img-btn"
-                alt="{{ ratio.name }}"
-                src="{{ ratio.image }}"
-              />
-            </ion-thumbnail>
-            <ion-radio [value]="ratio">{{ ratio.name | uppercase }}</ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </form>
-
-    <ion-row>
-      <ion-col class="ion-padding-horizontal">
-        <ion-list [inset]="true">
-          <app-main-action-button
-            class="ion-padding-horizontal"
-            [disableButton]="!formatForm.valid"
-            (click)="onSaveFormat()"
-            type="submit"
-            >SAVE</app-main-action-button
-          >
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ng-container> -->
 
   <ng-container *ngIf="dispayData$ | async as dispayData">
     <div class="main-container">
-      <ion-grid>
-        <ion-row>
-          <ion-col
-            *ngFor="let data of dispayData.data"
-            class="ion-text-center"
-            size="4"
+      <ng-container *ngIf="filterType === 'format'; else nonFormat">
+        <h2 class="ion-padding-start">Choose the ratio:</h2>
+        <div class="ion-margin" *ngFor="let format of dispayData.data">
+          <app-custom-card-button
+            height="14vh"
+            (click)="onSelectOption(format)"
+            [classes]="'custom-card-border-radius'"
           >
-            <div class="ion-activatable">
-              <ion-radio-group (click)="onSelectOption(data)">
-                <ion-radio labelPlacement="none" [value]="data">
-                  <img
-                    class="custom-img-btn custom-drop-shadow"
-                    [src]="data.styleImage"
-                  />
-                  <ion-text
-                    class="ion-text-center ion-text-wrap custom-img-btn-text"
-                  >
-                    <ion-note>{{ data?.name | uppercase }}</ion-note>
-                  </ion-text>
-                </ion-radio>
-                <ion-ripple-effect></ion-ripple-effect>
-              </ion-radio-group>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+            <ion-row class="ion-margin">
+              <ion-col size="4">
+                <img height="80rem" src="{{ format.styleImage }}" alt="" />
+              </ion-col>
+              <ion-col size="8">
+                <p class="ion-text-center">{{ format.name | titlecase }}</p>
+              </ion-col>
+            </ion-row>
+          </app-custom-card-button>
+        </div>
+      </ng-container>
+
+      <ng-template #nonFormat>
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              *ngFor="let data of dispayData.data"
+              class="ion-text-center"
+              size="4"
+            >
+              <div class="ion-activatable">
+                <ion-radio-group (click)="onSelectOption(data)">
+                  <ion-radio labelPlacement="none" [value]="data">
+                    <img
+                      class="custom-img-btn custom-drop-shadow"
+                      [src]="data.styleImage"
+                    />
+                    <ion-text
+                      class="ion-text-center ion-text-wrap custom-img-btn-text"
+                    >
+                      <ion-note>{{ data?.name | titlecase }}</ion-note>
+                    </ion-text>
+                  </ion-radio>
+                  <ion-ripple-effect></ion-ripple-effect>
+                </ion-radio-group>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-template>
     </div>
   </ng-container>
 </ion-content>

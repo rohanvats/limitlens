@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
 import { DisplayOptions } from 'src/app/interfaces/displayOptions.interface';
@@ -15,6 +14,7 @@ export class CreatePage implements OnInit {
   image = '';
   promptPlaceholder = 'Example : This photos as Indiana Jones';
   usingGlobalFeed = false;
+  showNegativePrompt = false;
   displayOptions: DisplayOptions[];
 
   constructor(
@@ -53,6 +53,10 @@ export class CreatePage implements OnInit {
           return;
         }
       });
+  }
+
+  toggleNegavtivePrompt(event) {
+    this.showNegativePrompt = event.detail.checked ? true : false;
   }
 
   onImagePicked(imagedata: any) {

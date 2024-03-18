@@ -29,6 +29,7 @@ export class FilterModalComponent implements OnInit {
   ngOnInit() {
     this.fetchDisplayOptionData(this.filterType);
     this.getBackGroundImage(this.filterType);
+    this.getFormatRatioData();
   }
 
   searchArtist(event: any) {}

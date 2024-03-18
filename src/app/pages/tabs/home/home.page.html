@@ -1,27 +1,27 @@
 <app-app-header></app-app-header>
+<!-- <ion-toolbar>
+  <ion-searchbar></ion-searchbar>
+</ion-toolbar> -->
 <ion-content>
   <ion-searchbar
+    class="custom"
     show-cancel-button="never"
     placeholder="Seach styleor tag"
   ></ion-searchbar>
-
   <div class="main-container">
-    <ng-container *ngIf="faceswapCategories$ | async">
-      <div *ngFor="let category of faceswapCategories$ | async">
-        <ng-container *ngIf="category.id !== 0; else skeleton">
-          <ion-chip (click)="toFaceswapCategory(category.id)"
-            >{{category.name}}</ion-chip
-          >
-        </ng-container>
-        <ng-template #skeleton>
-          <ion-skeleton-text
-            class="skeleton-chip"
-            animated="true"
-          ></ion-skeleton-text>
-        </ng-template>
+    <ng-container
+      *ngIf="faceswapCategories$ | async as faceswapCategories; else loader"
+    >
+      <ng-container *ngFor="let category of faceswapCategories">
+        <ion-chip (click)="toFaceswapCategory(category.id)">
+          <ion-label>{{category.name}}</ion-label>
+        </ion-chip>
         <app-slider [slides]="category"></app-slider>
-      </div>
+      </ng-container>
     </ng-container>
+    <ng-template #loader>
+      <app-skeleton-loader></app-skeleton-loader>
+    </ng-template>
   </div>
   <!-- <app-masonry-gallery (imageDetail)="toImageDetails($event)" [data]="globalData"></app-masonry-gallery> -->
 </ion-content>

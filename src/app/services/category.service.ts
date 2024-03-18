@@ -195,7 +195,7 @@ export class CategoryService {
           },
         ],
       },
-    ]).pipe(delay(3000), startWith(this.dummyData));
+    ]);
   }
 
   dummyData = [

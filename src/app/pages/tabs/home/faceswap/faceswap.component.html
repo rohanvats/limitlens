@@ -1,9 +1,18 @@
 <ion-content>
-  <app-main-image [image]="image"></app-main-image>
-  <app-image-picker (imagePick)="getSelectedImage($event)"></app-image-picker>
-  <div class="main-button-container">
-    <app-main-action-button (click)="generateFaceswap()"
-      >{{ "face swap" | uppercase }}
-    </app-main-action-button>
-  </div>
+  <app-main-image imgStyle="mainImgDefault" [image]="image"></app-main-image>
+  <app-image-picker
+    [classFlag]="'faceswap'"
+    (imagePick)="getSelectedImage($event)"
+  >
+    <h1 class="bold-text">Take or Add photo</h1>
+  </app-image-picker>
+  <ng-container class="main-container">
+    <div class="ion-padding ion-margin-vertical">
+      <app-main-action-button (click)="generateFaceswap()">
+        <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+        <p class="button-text ion-no-margin">Remove Watermark</p>
+        <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+      </app-main-action-button>
+    </div>
+  </ng-container>
 </ion-content>
