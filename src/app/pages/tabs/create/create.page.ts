@@ -82,8 +82,23 @@ export class CreatePage implements OnInit {
           (el) => el.value === result.data.key
         );
         if (element) {
-          element.name = result.data.name;
-          element.url = result.data.styleImage;
+          if (element.value === 'format') {
+            element.name = result.data.name;
+            switch (result.data.name) {
+              case 'portrait':
+                element.url = 'assets/icon/@2x-format_vertical.png';
+                break;
+              case 'square':
+                element.url = 'assets/icon/@2x-format_square.png';
+                break;
+              case 'landscape':
+                element.url = 'assets/icon/@2x-format_landscape.png';
+                break;
+            }
+          } else {
+            element.name = result.data.name;
+            element.url = result.data.styleImage;
+          }
         } else {
           return;
         }

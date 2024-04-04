@@ -24,6 +24,12 @@ ion-searchbar.custom {
   --background: #171515;
 }
 
+.select-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 ion-segment {
   background: #222222;
   position: sticky;

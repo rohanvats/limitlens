@@ -289,15 +289,15 @@ export class DisplayOptionsService {
         key: 'format',
         data: [
           {
-            name: 'Portrait',
+            name: 'portrait',
             styleImage: 'assets/icon/Portrait.png',
           },
           {
-            name: 'Square',
+            name: 'square',
             styleImage: 'assets/icon/Square.png',
           },
           {
-            name: 'LandScape',
+            name: 'landscape',
             styleImage: 'assets/icon/Landscape.png',
           },
         ],

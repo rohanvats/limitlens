@@ -4,18 +4,23 @@
 </ion-toolbar> -->
 <ion-content>
   <ion-searchbar
-    class="custom"
+    class="custom tadsa"
     show-cancel-button="never"
-    placeholder="Seach styleor tag"
+    placeholder="Seach style or tag"
   ></ion-searchbar>
   <div class="main-container">
     <ng-container
       *ngIf="faceswapCategories$ | async as faceswapCategories; else loader"
     >
       <ng-container *ngFor="let category of faceswapCategories">
-        <ion-chip (click)="toFaceswapCategory(category.id)">
-          <ion-label>{{category.name}}</ion-label>
-        </ion-chip>
+        <div class="select-chip">
+          <ion-chip>
+            <ion-label>{{category.name}}</ion-label>
+          </ion-chip>
+          <ion-text (click)="toFaceswapCategory(category.id)">
+            See all
+          </ion-text>
+        </div>
         <app-slider [slides]="category"></app-slider>
       </ng-container>
     </ng-container>
