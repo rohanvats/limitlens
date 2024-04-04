@@ -2,17 +2,20 @@
 <ion-content>
   <div class="main-container">
     <div class="prompt-card-container">
+      <!-- (click)="openPromptModal()" -->
       <app-custom-card-button
-        (click)="openPromptModal()"
         [mode]="'ios'"
         [classes]="'ion-padding custom-card-border-radius'"
         height="auto"
       >
         <ion-card-header>
-          <ion-card-subtitle class="bold-text">Your Prompt</ion-card-subtitle>
+          <ion-card-subtitle class="bold-text ion-no-margin ion-no-padding"
+            >Your Prompt</ion-card-subtitle
+          >
         </ion-card-header>
         <ion-card-content>
-          <ion-text> {{promptPlaceholder}} </ion-text>
+          <!-- <ion-text> {{promptPlaceholder}} </ion-text> -->
+          <ion-textarea></ion-textarea>
         </ion-card-content>
       </app-custom-card-button>
     </div>
