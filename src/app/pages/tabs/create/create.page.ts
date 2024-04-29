@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 
-import { DisplayOptions } from 'src/app/interfaces/displayOptions.interface';
-import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { DisplayOptionsService } from 'src/app/services/displayOptions.service';
+import { CreateService } from './create.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-create',
   templateUrl: './create.page.html',
@@ -12,17 +12,29 @@ import { DisplayOptionsService } from 'src/app/services/displayOptions.service';
 })
 export class CreatePage implements OnInit {
   image = '';
-  promptPlaceholder = 'Example : This photos as Indiana Jones';
+  positivePrompt = '';
   usingGlobalFeed = false;
   showNegativePrompt = false;
-  displayOptions: DisplayOptions[];
+  displayOptions: any;
+  user_uuid: string;
+  showSpinner = false;
+
+  customCounterFormatter(event) {
+    // console.log('aaa..', event);
+    // fromEvent(event)
+    // return `${maxLength - inputLength} words remaining`;
+  }
 
   constructor(
     private modalCtrl: ModalController,
-    public displayOptionsService: DisplayOptionsService
+    public displayOptionsService: DisplayOptionsService,
+    private createService: CreateService,
+    private authService: AuthService,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
+    this.createService.getDisplayOptions();
     this.getDisplayOptions();
   }
 
@@ -34,26 +46,29 @@ export class CreatePage implements OnInit {
       });
   }
 
-  openPromptModal() {
-    this.modalCtrl
-      .create({
-        component: PromptModalComponent,
-      })
-      .then((modalEl) => {
-        modalEl.present();
-        return modalEl.onDidDismiss();
-      })
-      .then((action) => {
-        if (action?.role === 'confirm') {
-          if (!action?.data) {
-            return;
-          }
-          this.promptPlaceholder = action?.data;
-        } else if (action?.role === 'cancel') {
-          return;
-        }
-      });
-  }
+  // openPromptModal() {
+  //   this.modalCtrl
+  //     .create({
+  //       showBackdrop: true,
+  //       initialBreakpoint: 0.4,
+  //       mode: 'ios',
+  //       component: PromptModalComponent,
+  //     })
+  //     .then((modalEl) => {
+  //       modalEl.present();
+  //       return modalEl.onDidDismiss();
+  //     })
+  //     .then((action) => {
+  //       if (action?.role === 'confirm') {
+  //         if (!action?.data) {
+  //           return;
+  //         }
+  //         this.promptPlaceholder = action?.data;
+  //       } else if (action?.role === 'cancel') {
+  //         return;
+  //       }
+  //     });
+  // }
 
   toggleNegavtivePrompt(event) {
     this.showNegativePrompt = event.detail.checked ? true : false;
@@ -79,7 +94,7 @@ export class CreatePage implements OnInit {
       })
       .then((result) => {
         const element = this.displayOptions.find(
-          (el) => el.value === result.data.key
+          (el) => el.value === result.data?.key
         );
         if (element) {
           if (element.value === 'format') {
@@ -96,8 +111,9 @@ export class CreatePage implements OnInit {
                 break;
             }
           } else {
+            element.id = result.data.id;
             element.name = result.data.name;
-            element.url = result.data.styleImage;
+            element.url = result.data.temporaryUrl;
           }
         } else {
           return;
@@ -106,17 +122,38 @@ export class CreatePage implements OnInit {
   }
 
   onSavePrompt() {
+    this.showSpinner = true;
+    this.authService.checkUserUUID().subscribe((data) => {
+      this.user_uuid = data;
+    });
     const filterOptions = this.displayOptions.reduce(
       (result: any, currentObject: any) => {
-        result[currentObject.value] = currentObject.name;
+        result[`id_${currentObject.value}`] = currentObject.id;
         return result;
       },
       {}
     );
-    console.log({
-      image: this.image,
-      prompt: this.promptPlaceholder,
-      filters: filterOptions,
-    });
+
+    const generateImagePayload = {
+      type: 1,
+      user_prompt: this.positivePrompt,
+      ...filterOptions,
+      user_uuid: this.user_uuid,
+    };
+
+    this.createService
+      .generateImage(generateImagePayload, this.user_uuid)
+      .subscribe(
+        (data) => {
+          console.log('generated image...', data);
+          this.navCtrl.navigateForward('/tabs/create/generatedImage', {
+            queryParams: { url: data.data.imageUrl, gallery: false },
+          });
+          this.showSpinner = false;
+        },
+        (error) => {
+          this.showSpinner = false;
+        }
+      );
   }
 }

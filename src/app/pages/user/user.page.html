@@ -44,7 +44,19 @@
               />
 
               <ion-text>
-                <h6>{{userOption.name | uppercase}}</h6>
+                <ng-container *ngIf="userOption.name === 'my info'; else other">
+                  <ng-container
+                    *ngIf="authService.isLoggedIn$ | async as isLoggedIn; else Register"
+                  >
+                    <h6>{{ userOption.name | uppercase}}</h6>
+                  </ng-container>
+                  <ng-template #Register>
+                    <h6>{{'Register' | uppercase}}</h6>
+                  </ng-template>
+                </ng-container>
+                <ng-template #other>
+                  <h6>{{userOption.name | uppercase}}</h6>
+                </ng-template>
               </ion-text>
               <span> </span>
             </ion-col>

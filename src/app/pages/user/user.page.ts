@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,10 +11,32 @@ import { UserService } from 'src/app/services/user.service';
 export class UserPage implements OnInit {
   userOptions$: Observable<{ name: string; url: string }[]>;
 
-  constructor(public userService: UserService) {}
+  constructor(
+    public userService: UserService,
+    public authService: AuthService
+  ) {}
+
+  ionViewWillLeave() {
+    console.log('will leave');
+  }
+
+  ionViewDidLeave() {
+    console.log('did leave');
+  }
+
+  ionViewDidEnter() {
+    console.log('did enter');
+  }
+
+  ionViewWillEnter() {
+    console.log('will enter');
+  }
 
   ngOnInit() {
     this.userOptions$ = this.userService.userOptions();
+    this.authService.isLoggedIn$.subscribe((data) => {
+      console.log('daatattata...', data);
+    });
   }
 
   // userOptions() {

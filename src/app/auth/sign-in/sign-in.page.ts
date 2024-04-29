@@ -3,21 +3,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Device } from '@capacitor/device';
 import { Preferences } from '@capacitor/preferences';
-import { ModalController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { ToastService } from 'src/app/helper/toast.service';
+import { UserSignupComponent } from 'src/app/pages/user/user-account/user-signup/user-signup.component';
 
 @Component({
-  selector: 'app-user-signin',
-  templateUrl: './user-signin.component.html',
-  styleUrls: ['./user-signin.component.scss'],
+  selector: 'app-signin',
+  templateUrl: './sign-in.page.html',
+  styleUrls: ['./sign-in.page.scss'],
 })
-export class UserSigninComponent implements OnInit {
-  showModal: any;
+export class SignInPage implements OnInit {
+  component = UserSignupComponent;
   constructor(
     private authService: AuthService,
     private navCtrl: NavController,
-    public toastService: ToastService,
-    private modalCtrl: ModalController
+    private toastService: ToastService
   ) {}
 
   get controls() {
@@ -48,6 +48,7 @@ export class UserSigninComponent implements OnInit {
     this.toastService.updateSpinner(true);
     this.authService.login(this.userLoginForm.value).subscribe(
       async (data: any) => {
+        debugger;
         console.log('user data...', data);
         if (data && data.success) {
           this.toastService.updateSpinner(false);
@@ -63,8 +64,7 @@ export class UserSigninComponent implements OnInit {
             key: 'auth-data',
             value: JSON.stringify(authData),
           });
-          this.modalCtrl.dismiss();
-          // this.navCtrl.navigateForward('/');
+          this.navCtrl.navigateForward('/');
         }
       },
       (error) => {

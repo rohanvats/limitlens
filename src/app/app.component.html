@@ -1,3 +1,10 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-backdrop [visible]="false"> -->
+  <ion-router-outlet *ngIf="!showSpinner"></ion-router-outlet>
+  <!-- </ion-backdrop> -->
+  <ion-spinner
+    class="spinnerPosition"
+    name="lines"
+    *ngIf="showSpinner"
+  ></ion-spinner>
 </ion-app>

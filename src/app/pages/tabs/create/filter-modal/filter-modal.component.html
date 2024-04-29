@@ -28,22 +28,22 @@
             [classes]="'custom-card-border-radius'"
           >
             <ion-row class="ion-margin">
+              {{ format?.temporaryUrl }}
               <ion-col size="4">
-                <img height="80rem" src="{{ format.styleImage }}" alt="" />
+                <img height="80rem" src="{{ format?.temporaryUrl }}" alt="" />
               </ion-col>
               <ion-col size="8">
-                <p class="ion-text-center">{{ format.name | titlecase }}</p>
+                <p class="ion-text-center">{{ format?.name | titlecase }}</p>
               </ion-col>
             </ion-row>
           </app-custom-card-button>
         </div>
       </ng-container>
-
       <ng-template #nonFormat>
         <ion-grid>
           <ion-row>
             <ion-col
-              *ngFor="let data of dispayData.data"
+              *ngFor="let data of dispayData.data.new_data"
               class="ion-text-center"
               size="4"
             >
@@ -52,7 +52,7 @@
                   <ion-radio labelPlacement="none" [value]="data">
                     <img
                       class="custom-img-btn custom-drop-shadow"
-                      [src]="data.styleImage"
+                      [src]="data?.temporaryUrl"
                     />
                     <ion-text
                       class="ion-text-center ion-text-wrap custom-img-btn-text"

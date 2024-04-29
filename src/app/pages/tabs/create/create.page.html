@@ -1,100 +1,141 @@
 <app-app-header></app-app-header>
 <ion-content>
-  <div class="main-container">
-    <div class="prompt-card-container">
-      <!-- (click)="openPromptModal()" -->
-      <app-custom-card-button
-        [mode]="'ios'"
-        [classes]="'ion-padding custom-card-border-radius'"
-        height="auto"
-      >
-        <ion-card-header>
-          <ion-card-subtitle class="bold-text ion-no-margin ion-no-padding"
-            >Your Prompt</ion-card-subtitle
-          >
-        </ion-card-header>
-        <ion-card-content>
-          <!-- <ion-text> {{promptPlaceholder}} </ion-text> -->
-          <ion-textarea></ion-textarea>
-        </ion-card-content>
-      </app-custom-card-button>
-    </div>
+  <ng-container *ngIf="!showSpinner">
+    <div class="main-container">
+      <div class="prompt-card-container">
+        <!-- (click)="openPromptModal()" -->
+        <app-custom-card-button
+          [mode]="'ios'"
+          [classes]="'ion-padding custom-card-border-radius'"
+          height="auto"
+        >
+          <ion-card-header>
+            <ion-card-subtitle class="bold-text ion-no-margin ion-no-padding"
+              >Your Prompt</ion-card-subtitle
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <!-- <ion-item lines="none"> -->
+            <ion-textarea
+              class="custom"
+              aria-label="Custom textarea"
+              [autoGrow]="true"
+              [counter]="true"
+              (keyup)="customCounterFormatter($event)"
+              [(ngModel)]="positivePrompt"
+              maxlength="1000"
+              placeholder="Example: This photos as Indiana Jones"
+            >
+            </ion-textarea>
+            <!-- </ion-item> -->
+          </ion-card-content>
+        </app-custom-card-button>
+      </div>
 
-    <div class="prompt-card-container">
-      <app-custom-card-button
-        [mode]="'ios'"
-        [classes]="'ion-padding custom-card-border-radius'"
-        height="auto"
-      >
-        <ion-row>
-          <ion-col size="4" class="icon-container ion-no-padding ion-no-margin">
-            <app-image-picker [classFlag]="'create'"></app-image-picker>
-          </ion-col>
-          <ion-col size="8">
-            <p class="bold-text">Add photo for Face Swap (optional)</p>
+      <div>
+        <ion-img [src]=""></ion-img>
+      </div>
+
+      <div class="prompt-card-container">
+        <app-custom-card-button
+          [mode]="'ios'"
+          [classes]="'ion-padding custom-card-border-radius'"
+          height="auto"
+        >
+          <ion-row>
+            <ion-col
+              size="4"
+              class="icon-container ion-no-padding ion-no-margin"
+            >
+              <app-image-picker [classFlag]="'create'"></app-image-picker>
+            </ion-col>
+            <ion-col size="8">
+              <p class="bold-text">Add photo for Face Swap (optional)</p>
+            </ion-col>
+          </ion-row>
+        </app-custom-card-button>
+      </div>
+
+      <div class="prompt-card-container">
+        <app-custom-card-button
+          [mode]="'ios'"
+          [classes]="'ion-padding custom-card-border-radius'"
+          height="auto"
+        >
+          <ion-card-header>
+            <ion-toggle (ionChange)="toggleNegavtivePrompt($event)">
+              <ion-card-subtitle class="bold-text"
+                >Negative Prompt</ion-card-subtitle
+              ></ion-toggle
+            >
+          </ion-card-header>
+          <ion-card-content *ngIf="showNegativePrompt">
+            <!-- <ion-text> {{promptPlaceholder}} </ion-text>
+          <ion-card-header>
+            <ion-card-subtitle class="bold-text ion-no-margin ion-no-padding"
+              >Your Prompt</ion-card-subtitle
+            >
+          </ion-card-header> -->
+            <!-- <ion-card-content> -->
+            <!-- <ion-item lines="none"> -->
+            <ion-textarea
+              class="custom"
+              aria-label="Custom textarea"
+              rows="4"
+              placeholder="Example: This photos as Indiana Jones"
+            >
+            </ion-textarea>
+            <!-- </ion-item> -->
+          </ion-card-content>
+          <!-- </ion-card-content> -->
+        </app-custom-card-button>
+      </div>
+
+      <div class="style-row-container">
+        <ion-row *ngIf="!usingGlobalFeed">
+          <ion-col
+            size="6"
+            class="ion-text-center filter-card"
+            *ngFor="let item of displayOptions"
+          >
+            <img
+              class="custom-drop-shadow custom-img-btn"
+              (click)="openFilterModal(item?.value)"
+              [src]="item?.temporaryUrl ? item?.temporaryUrl : item.url"
+            />
+            <ion-text
+              class="custom-img-btn-text"
+              *ngIf="item.name === 'format'; else elseBlock"
+            >
+              <h6>{{item?.name | titlecase }}</h6>
+            </ion-text>
+            <ng-template #elseBlock>
+              <span>
+                <ion-text class="custom-img-btn-text">
+                  <ion-icon
+                    size="large"
+                    name="{{item?.iconName}}"
+                    *ngIf="item?.value === 'format'"
+                  ></ion-icon>
+                  <h6>{{item?.name | titlecase}}</h6>
+                </ion-text>
+              </span>
+            </ng-template>
           </ion-col>
         </ion-row>
-      </app-custom-card-button>
+      </div>
+      <div class="main-button-container">
+        <app-main-action-button (click)="onSavePrompt()">
+          <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+          <p class="button-text ion-no-margin">Create</p>
+          <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+        </app-main-action-button>
+      </div>
     </div>
-
-    <div class="prompt-card-container">
-      <app-custom-card-button
-        [mode]="'ios'"
-        [classes]="'ion-padding custom-card-border-radius'"
-        height="auto"
-      >
-        <ion-card-header>
-          <ion-toggle (ionChange)="toggleNegavtivePrompt($event)">
-            <ion-card-subtitle class="bold-text"
-              >Negative Prompt</ion-card-subtitle
-            ></ion-toggle
-          >
-        </ion-card-header>
-        <ion-card-content *ngIf="showNegativePrompt">
-          <ion-text> {{promptPlaceholder}} </ion-text>
-        </ion-card-content>
-      </app-custom-card-button>
-    </div>
-
-    <div class="style-row-container">
-      <ion-row *ngIf="!usingGlobalFeed">
-        <ion-col
-          size="6"
-          class="ion-text-center filter-card"
-          *ngFor="let item of displayOptions"
-        >
-          <img
-            class="custom-drop-shadow custom-img-btn"
-            (click)="openFilterModal(item?.value)"
-            [src]="item?.styleImage ? item?.styleImage : item.url"
-          />
-          <ion-text
-            class="custom-img-btn-text"
-            *ngIf="item.name === 'format'; else elseBlock"
-          >
-            <h6>{{item?.name | titlecase }}</h6>
-          </ion-text>
-          <ng-template #elseBlock>
-            <span>
-              <ion-text class="custom-img-btn-text">
-                <ion-icon
-                  size="large"
-                  name="{{item?.iconName}}"
-                  *ngIf="item?.value === 'format'"
-                ></ion-icon>
-                <h6>{{item?.name | titlecase}}</h6>
-              </ion-text>
-            </span>
-          </ng-template>
-        </ion-col>
-      </ion-row>
-    </div>
-    <div class="main-button-container">
-      <app-main-action-button [type]="'submit'">
-        <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
-        <p class="button-text ion-no-margin">Create</p>
-        <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
-      </app-main-action-button>
-    </div>
-  </div>
+  </ng-container>
+  <ion-spinner
+    class="spinnerPosition"
+    name="lines"
+    *ngIf="showSpinner"
+  ></ion-spinner>
 </ion-content>

@@ -17,6 +17,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserPageModule),
   },
+  {
+    path: 'sign-in',
+    loadChildren: () =>
+      import('./auth/sign-in/sign-in.module').then((m) => m.SignInPageModule),
+  },
+
   // {
   //   path: 'welcome-tutorial',
   //   loadChildren: () => import('./pages/welcome-tutorial/welcome-tutorial.module').then( m => m.WelcomeTutorialPageModule)
