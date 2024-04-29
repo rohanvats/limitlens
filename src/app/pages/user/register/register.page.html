@@ -71,9 +71,7 @@
       *ngIf="controls.user_name?.errors?.['usernameExists']"
       >{{ "Username already exists" }}</ion-text
     >
-    <ion-text
-      color="danger"
-      *ngIf="controls.user_name?.errors?.['noInternet']"
+    <ion-text color="danger" *ngIf="controls.user_name?.errors?.['noInternet']"
       >{{ "Check internet connection" }}</ion-text
     >
   </div>
@@ -173,6 +171,7 @@
   <!-- </ion-list> -->
 
   <div class="ion-padding" *ngIf="!myInfoMode; else UpdateInfo">
+    <!-- <app-main-action-button type="submit">SIGN IN</app-main-action-button> -->
     <app-main-action-button type="submit"
       >CREATE ACCOUNT</app-main-action-button
     >

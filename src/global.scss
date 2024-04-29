@@ -57,6 +57,11 @@ ion-text {
   font-weight: 600;
 }
 
+.custom-alert {
+  --font-size: larger;
+  --font-weight: 600;
+}
+
 p {
   font-size: 2rem;
   color: #fff;
@@ -185,6 +190,13 @@ ion-radio::part(flex) {
   }
 }
 
+.spinnerPosition {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .avatarImageUpload {
   border-radius: 50%;
   height: 70vw;
@@ -197,6 +209,11 @@ ion-radio::part(flex) {
     width: 12rem;
     color: white;
   }
+}
+
+.toast-text {
+  font-size: medium;
+  font-weight: 600;
 }
 
 .bold-text {

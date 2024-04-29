@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ImageDetailsPageRoutingModule } from './image-details-routing.module';
+import { SignInPageRoutingModule } from './sign-in-routing.module';
 
-import { ImageDetailsPage } from './image-details.page';
+import { SignInPage } from './sign-in.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    ImageDetailsPageRoutingModule,
     SharedModule,
+    // SignInPageRoutingModule,
   ],
-  declarations: [ImageDetailsPage],
+  declarations: [SignInPage],
 })
-export class ImageDetailsPageModule {}
+export class SignInPageModule {}

@@ -7,45 +7,42 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
 })
-
 export class GalleryPage implements OnInit {
+  liked = false;
 
-  liked=false;
-
-  galleryData:any = []
+  galleryData: any = [];
 
   constructor(
     private navCtrl: NavController,
     private dataService: DataService
-    ) { }
+  ) {}
 
   ngOnInit() {
-    this.getGalleryData()
+    this.getGalleryData();
   }
 
-  getGalleryData(){
-    this.dataService.getGalleryData().subscribe(data => {
+  getGalleryData() {
+    this.dataService.getGalleryData().subscribe((data) => {
       this.galleryData = data;
-    })
+    });
   }
 
-  go(item:any){
+  go(item: any) {
     console.log('go');
-    this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
-      queryParams: item,
-    })
+    this.navCtrl.navigateForward(['/tabs/gallery/image-details'], {
+      queryParams: { ...item, gallery: true },
+    });
   }
 
-  toggleLike(){
+  toggleLike() {
     console.log(this.liked);
     this.liked = !this.liked;
   }
 
-  toImageDetails(event: any){
-    console.log('item: ',event, typeof(event));
-    this.navCtrl.navigateForward(['/tabs/gallery/image-details'],{
+  toImageDetails(event: any) {
+    console.log('item: ', event, typeof event);
+    this.navCtrl.navigateForward(['/tabs/gallery/image-details'], {
       queryParams: event,
-    })
+    });
   }
-
 }

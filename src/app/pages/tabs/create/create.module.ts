@@ -19,12 +19,8 @@ import { FilterModalComponent } from './filter-modal/filter-modal.component';
     ReactiveFormsModule,
     IonicModule,
     CreatePageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [
-    CreatePage,
-    PromptModalComponent,
-    FilterModalComponent
-  ]
+  declarations: [CreatePage, PromptModalComponent, FilterModalComponent],
 })
 export class CreatePageModule {}

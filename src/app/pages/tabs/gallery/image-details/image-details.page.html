@@ -24,9 +24,20 @@
       <ion-fab-button size="small" class="custom-sm-btn-background">
         <ion-icon size="small" name="expand"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button size="small" class="custom-sm-btn-background">
+      <ion-fab-button
+        id="delete-image-alert"
+        size="small"
+        class="custom-sm-btn-background"
+      >
         <ion-icon size="small" name="trash"></ion-icon>
       </ion-fab-button>
+      <ion-alert
+        mode="ios"
+        trigger="delete-image-alert"
+        class="custom-alert"
+        header="Are you sure?"
+        [buttons]="deleteButtons"
+      ></ion-alert>
       <ion-fab-button
         size="small"
         class="custom-sm-btn-background"
@@ -39,11 +50,19 @@
 
   <div class="main-container ion-text-center">
     <div class="ion-padding">
-      <ion-chip (click)="presentAlert()" class="custom-drop-shadow">
+      <ion-chip class="custom-drop-shadow" *ngIf="gallery">
         <ion-label>{{imageDetails?.name}}</ion-label>
         <!-- <ion-text>{{imageDetails?.name}}</ion-text> -->
-        <ion-icon name="pencil"></ion-icon>
+        <ion-icon (click)="presentAlert()" name="pencil"></ion-icon>
       </ion-chip>
+      <!-- <ion-alert
+        mode="ios"
+        trigger="rename-image-alert"
+        class="custom-alert"
+        header="Rename the picture"
+        [inputs]="editInputs"
+        [buttons]="deleteButtons"
+      ></ion-alert> -->
     </div>
 
     <!-- <div class="ion-padding">
@@ -54,6 +73,15 @@
     </div> -->
 
     <ion-grid>
+      <ion-row *ngIf="!gallery">
+        <ion-col class="ion-padding">
+          <app-main-action-button>
+            <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+            <p class="button-text ion-no-margin">Generate Another</p>
+            <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+          </app-main-action-button>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col class="ion-padding">
           <app-main-action-button>

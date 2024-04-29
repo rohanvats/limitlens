@@ -1,5 +1,5 @@
 import { HttpClient, HttpInterceptor } from '@angular/common/http';
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   Subscription,
@@ -14,15 +14,16 @@ import { MatchPassword } from 'src/app/helper/validators/match-password';
 import { UniqueEmail } from 'src/app/helper/validators/unique-email';
 import { UniqueUsername } from 'src/app/helper/validators/unique-username';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-user-signup',
-  templateUrl: './user-signup.component.html',
-  styleUrls: ['./user-signup.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class UserSignupComponent implements OnInit {
+export class RegisterPage implements OnInit {
   myInfoMode: boolean = false;
-  @Input() userData: any;
+  authData: Subscription;
 
   constructor(
     private uniqueUsername: UniqueUsername,
@@ -39,16 +40,20 @@ export class UserSignupComponent implements OnInit {
       phone_number: new FormControl('', [Validators.required]),
       user_name: new FormControl(
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(10)]
-        // [this.uniqueUsername.validate]
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(10),
+        ],
+        [this.uniqueUsername.validate]
       ),
       email: new FormControl(
         '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/),
-        ]
-        // [this.uniqueEmail.validate]
+        ],
+        [this.uniqueEmail.validate]
       ),
       password: new FormControl('', [
         Validators.required,
@@ -66,15 +71,28 @@ export class UserSignupComponent implements OnInit {
     return this.userSignupForm.controls;
   }
 
-  ngOnChanges(change: SimpleChange) {
-    if (change) {
-      this.myInfoMode = true;
-      console.log('user dataaa..', this.userData);
-      this.userSignupForm.patchValue(this.userData);
-    }
-  }
+  ngOnInit() {
+    this.authData = this.authService.getAuthData$
+      .pipe(
+        map((value) => value.uuid),
+        exhaustMap((uuid) =>
+          this.http.get(`${environment.URL}/user/${uuid}/info`)
+        ),
+        catchError((err) => of({})),
+        finalize(() => {
+          this.myInfoMode = false;
+        })
+      )
+      .subscribe((data: any) => {
+        console.log('asdasasdf...', data.data);
+        if (data.success) {
+          this.myInfoMode = true;
+          this.userSignupForm.patchValue(data.data);
+        }
+      });
 
-  ngOnInit() {}
+    console.log('cotrols..', this.controls);
+  }
 
   onSubmit() {
     if (this.userSignupForm.status === 'INVALID') {
@@ -92,16 +110,14 @@ export class UserSignupComponent implements OnInit {
           passwordConfirmation: userData.passwordConfirmation,
         };
 
-        if (!this.myInfoMode) {
-          this.authService.signup(user).subscribe((data) => {
-            console.log(data);
-          });
-        } else {
-          this.authService.updateUser(user).subscribe((data) => {
-            console.log('data...', data);
-          });
-        }
+        this.authService.signup(user).subscribe((data) => {
+          console.log(data);
+        });
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.authData.unsubscribe();
   }
 }

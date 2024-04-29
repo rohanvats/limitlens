@@ -24,9 +24,11 @@
         </h1>
       </app-image-picker>
     </ng-container>
-
-    <app-user-signup></app-user-signup>
-
-    <!-- <app-user-signin *ngIf="false"></app-user-signin> -->
+    <ion-spinner
+      class="spinnerPosition"
+      name="lines"
+      *ngIf="!userdata"
+    ></ion-spinner>
+    <app-user-signup *ngIf="userdata" [userData]="userdata"></app-user-signup>
   </div>
 </ion-content>

@@ -18,7 +18,7 @@ export class FilterModalComponent implements OnInit {
   radioOptions: any = [];
   purposeOptions: any = [];
   backgroundImage: string = '';
-  dispayData$: Observable<displayOption>;
+  dispayData$: Observable<any>;
 
   constructor(
     private modalCtrl: ModalController,

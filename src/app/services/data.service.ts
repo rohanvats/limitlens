@@ -9,8 +9,12 @@ import { environment } from 'src/environments/environment';
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  getExamples() {
-    return this.http.get('http://localhost:3000/api/v1/example');
+  // getExamples() {
+  //   return this.http.get('http://localhost:3000/api/v1/example');
+  // }
+
+  getCameras() {
+    return this.http.get(`${environment.URL}/cameras`);
   }
 
   getLightingData() {
