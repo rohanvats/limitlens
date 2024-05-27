@@ -43,38 +43,38 @@ export class UserSigninComponent implements OnInit {
     this.navCtrl.navigateForward('/user/user-info');
   }
 
-  onSubmit() {
-    console.log('value...', this.userLoginForm.value);
-    this.toastService.updateSpinner(true);
-    this.authService.login(this.userLoginForm.value).subscribe(
-      async (data: any) => {
-        console.log('user data...', data);
-        if (data && data.success) {
-          this.toastService.updateSpinner(false);
-          this.toastService.PresentToast(
-            'Login successful!',
-            '',
-            'finger-print-outline'
-          );
-          const authData = { uuid: data.uuid, jwt: data.token };
-          this.authService.updateAuthData(authData);
-          this.authService.updateloggedIn(true);
-          await Preferences.set({
-            key: 'auth-data',
-            value: JSON.stringify(authData),
-          });
-          this.modalCtrl.dismiss();
-          // this.navCtrl.navigateForward('/');
-        }
-      },
-      (error) => {
-        this.toastService.updateSpinner(false);
-        this.toastService.PresentToast(
-          error.error.error,
-          '',
-          'alert-circle-outline'
-        );
-      }
-    );
-  }
+  // onSubmit() {
+  //   console.log('value...', this.userLoginForm.value);
+  //   this.toastService.updateSpinner(true);
+  //   this.authService.login(this.userLoginForm.value).subscribe(
+  //     async (data: any) => {
+  //       console.log('user data...', data);
+  //       if (data && data.success) {
+  //         this.toastService.updateSpinner(false);
+  //         this.toastService.PresentToast(
+  //           'Login successful!',
+  //           '',
+  //           'finger-print-outline'
+  //         );
+  //         const authData = { uuid: data.uuid, jwt: data.token };
+  //         this.authService.updateAuthData(authData);
+  //         this.authService.updateloggedIn(true);
+  //         await Preferences.set({
+  //           key: 'auth-data',
+  //           value: JSON.stringify(authData),
+  //         });
+  //         this.modalCtrl.dismiss();
+  //         // this.navCtrl.navigateForward('/');
+  //       }
+  //     },
+  //     (error) => {
+  //       this.toastService.updateSpinner(false);
+  //       this.toastService.PresentToast(
+  //         error.error.error,
+  //         '',
+  //         'alert-circle-outline'
+  //       );
+  //     }
+  //   );
+  // }
 }

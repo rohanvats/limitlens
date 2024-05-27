@@ -18,7 +18,7 @@
   </app-custom-card-button> -->
   <ion-grid>
     <ion-row>
-      <ion-segment value="generated">
+      <ion-segment #segmentValue value="generated">
         <ion-segment-button value="generated">
           <ion-label>Generated</ion-label>
         </ion-segment-button>
@@ -27,11 +27,48 @@
         </ion-segment-button>
       </ion-segment>
 
-      <ion-col size="4" *ngFor="let item of galleryData" (click)="go(item)">
+      <ng-container *ngIf="segmentValue.value === 'generated'">
+        <ng-container
+          *ngIf="galleryService.galleryImages$ | async as galleryImages"
+        >
+          <ion-col
+            size="4"
+            *ngFor="let item of galleryImages"
+            (click)="go(item)"
+          >
+            <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
+              <ion-img [src]="item?.imageUrl"></ion-img>
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="segmentValue.value === 'faceswapped'">
+        <ng-container
+          *ngIf="galleryService.faceswapImages$ | async as faceswapImages"
+        >
+          <ion-col
+            size="4"
+            *ngFor="let item of faceswapImages"
+            (click)="go(item)"
+          >
+            <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
+              <ion-img [src]="item?.imageUrl"></ion-img>
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ng-container>
+
+      <!-- <ion-col size="4" *ngFor="let item of galleryData" (click)="go(item)">
         <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
           <ion-img [src]="item.url"></ion-img>
         </ion-card>
-      </ion-col>
+      </ion-col> -->
+
+      <!-- <ion-col size="4" *ngFor="let item of galleryData" (click)="go(item)">
+        <ion-card class="ion-no-padding ion-no-margin custom-drop-shadow">
+          <ion-img [src]="item.url"></ion-img>
+        </ion-card>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 

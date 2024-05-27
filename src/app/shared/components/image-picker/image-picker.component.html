@@ -32,6 +32,14 @@
   (click)="onPickImage()"
   *ngIf="!selectedImage"
 >
-  <ion-icon name="add-circle-outline"></ion-icon>
+  <ng-container
+    *ngIf="toastService.spinnerValue$ | async as showSpinner; else uploadSign"
+  >
+    <ion-spinner class="spinnerPosition" name="lines"></ion-spinner>
+    <ion-icon name="ellipse-outline"></ion-icon>
+  </ng-container>
+  <ng-template #uploadSign>
+    <ion-icon name="add-circle-outline"></ion-icon>
+  </ng-template>
   <ng-content></ng-content>
 </div>

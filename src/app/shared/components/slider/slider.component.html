@@ -17,9 +17,9 @@
     <ng-container *ngIf="slides">
       <swiper-slide *ngFor="let slide of slides?.images">
         <img
-          *ngIf="slide.url"
-          (click)="selectCategory(slide.url)"
-          src="{{ slide?.url }}"
+          *ngIf="slide.imageUrl"
+          (click)="selectCategory(slide.imageUrl, slide.id)"
+          src="{{ slide?.imageUrl }}"
           alt=""
         />
       </swiper-slide>

@@ -21,9 +21,9 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {}
 
-  selectCategory(imageUrl: string) {
+  selectCategory(imageUrl: string, bankUUID: string) {
     this.navCtrl.navigateForward(['/tabs/home/faceswap'], {
-      queryParams: { image: imageUrl },
+      queryParams: { image: imageUrl, uiid: bankUUID },
     });
   }
 }

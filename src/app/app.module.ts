@@ -12,6 +12,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { AuthService } from './services/auth.service';
 
 export function initializeApp(authService: AuthService) {
+  console.log('App init');
   return () => authService.initialApp();
 }
 @NgModule({

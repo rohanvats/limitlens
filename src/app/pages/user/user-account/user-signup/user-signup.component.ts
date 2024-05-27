@@ -1,29 +1,22 @@
-import { HttpClient, HttpInterceptor } from '@angular/common/http';
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, SimpleChange, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  Subscription,
-  catchError,
-  exhaustMap,
-  finalize,
-  map,
-  of,
-  throwError,
-} from 'rxjs';
+import { noop } from 'rxjs';
+import { ToastService } from 'src/app/helper/toast.service';
 import { MatchPassword } from 'src/app/helper/validators/match-password';
 import { UniqueEmail } from 'src/app/helper/validators/unique-email';
 import { UniqueUsername } from 'src/app/helper/validators/unique-username';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'app-user-signup',
   templateUrl: './user-signup.component.html',
   styleUrls: ['./user-signup.component.scss'],
 })
 export class UserSignupComponent implements OnInit {
-  myInfoMode: boolean = false;
+  myInfoMode = false;
   @Input() userData: any;
 
+  toastService = inject(ToastService);
   constructor(
     private uniqueUsername: UniqueUsername,
     private http: HttpClient,
@@ -39,16 +32,20 @@ export class UserSignupComponent implements OnInit {
       phone_number: new FormControl('', [Validators.required]),
       user_name: new FormControl(
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(10)]
-        // [this.uniqueUsername.validate]
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(10),
+        ],
+        [this.uniqueUsername.validate]
       ),
       email: new FormControl(
         '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/),
-        ]
-        // [this.uniqueEmail.validate]
+        ],
+        [this.uniqueEmail.validate]
       ),
       password: new FormControl('', [
         Validators.required,
@@ -68,9 +65,11 @@ export class UserSignupComponent implements OnInit {
 
   ngOnChanges(change: SimpleChange) {
     if (change) {
-      this.myInfoMode = true;
-      console.log('user dataaa..', this.userData);
-      this.userSignupForm.patchValue(this.userData);
+      if (this.userData) {
+        console.log('user data...', this.userData);
+        this.myInfoMode = true;
+        this.userSignupForm.patchValue(this.userData.data);
+      }
     }
   }
 
@@ -78,6 +77,7 @@ export class UserSignupComponent implements OnInit {
 
   onSubmit() {
     if (this.userSignupForm.status === 'INVALID') {
+      this.toastService.PresentToast('The form is not valid');
       return;
     } else {
       const userData = this.userSignupForm?.value;
@@ -95,10 +95,12 @@ export class UserSignupComponent implements OnInit {
         if (!this.myInfoMode) {
           this.authService.signup(user).subscribe((data) => {
             console.log(data);
+            noop;
           });
         } else {
           this.authService.updateUser(user).subscribe((data) => {
             console.log('data...', data);
+            noop;
           });
         }
       }

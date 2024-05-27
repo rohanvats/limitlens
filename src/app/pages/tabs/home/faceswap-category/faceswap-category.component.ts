@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./faceswap-category.component.scss'],
 })
 export class FaceswapCategoryComponent implements OnInit {
-  category$!: Observable<FaceswapCategory>;
+  category$!: Observable<any>;
   categoryId!: number;
 
   constructor(
@@ -28,12 +28,19 @@ export class FaceswapCategoryComponent implements OnInit {
   ngOnInit() {
     if (this.categoryId) {
       this.category$ = this.fetchCategoryData(this.categoryId);
+
+      // pending to be removed
+      this.fetchCategoryData(this.categoryId).subscribe((data) =>
+        console.log('data...', data)
+      );
     }
   }
 
-  selectCategory(imageUrl: string) {
+  selectCategory(imageUrl: string, bank_uiid: string) {
+    console.log('bank uuid..', bank_uiid);
+
     this.navCtrl.navigateForward(['/tabs/home/faceswap'], {
-      queryParams: { image: imageUrl },
+      queryParams: { image: imageUrl, uiid: bank_uiid },
     });
   }
 

@@ -29,7 +29,5 @@ export class UniqueEmail implements AsyncValidator {
         }
       })
     );
-
-    return of([]);
   };
 }

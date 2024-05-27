@@ -11,7 +11,7 @@
   <div class="image-container">
     <app-main-image
       [imgStyle]="'mainImgDefault'"
-      [image]="imageDetails['url']"
+      [image]="imageDetails['imageUrl']"
     ></app-main-image>
     <ion-fab-button
       size="small"
@@ -25,6 +25,7 @@
         <ion-icon size="small" name="expand"></ion-icon>
       </ion-fab-button>
       <ion-fab-button
+        *ngIf="gallery"
         id="delete-image-alert"
         size="small"
         class="custom-sm-btn-background"
@@ -38,13 +39,13 @@
         header="Are you sure?"
         [buttons]="deleteButtons"
       ></ion-alert>
-      <ion-fab-button
+      <!-- <ion-fab-button
         size="small"
         class="custom-sm-btn-background"
         (click)="shareImage()"
       >
         <ion-icon size="small" name="share-social"></ion-icon>
-      </ion-fab-button>
+      </ion-fab-button> -->
     </div>
   </div>
 
@@ -83,6 +84,17 @@
         </ion-col>
       </ion-row>
       <ion-row>
+        <ion-col class="ion-padding">
+          <app-main-action-button (click)="shareImage()">
+            <!-- <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon> -->
+            <ion-icon
+              class="ion-padding-horizontal"
+              name="share-social"
+            ></ion-icon>
+            <p class="button-text ion-no-margin">Share your art !</p>
+            <!-- <ion-icon class="ion-padding-horizontal" name="play"></ion-icon> -->
+          </app-main-action-button>
+        </ion-col>
         <ion-col class="ion-padding">
           <app-main-action-button>
             <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>

@@ -1,22 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {
-  Subscription,
-  catchError,
-  exhaustMap,
-  finalize,
-  map,
-  of,
-  tap,
-} from 'rxjs';
-import { MatchPassword } from 'src/app/helper/validators/match-password';
-import { UniqueUsername } from 'src/app/helper/validators/unique-username';
+import { Subscription, exhaustMap, map } from 'rxjs';
+import { ToastService } from 'src/app/helper/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
@@ -27,39 +12,45 @@ import { environment } from 'src/environments/environment';
 })
 export class UserAccountPage implements OnInit {
   userdata: any;
-  userDataSub: Subscription;
 
   constructor(
-    private matchValidator: MatchPassword,
-    private uniqueUsername: UniqueUsername,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    public toastService: ToastService
   ) {}
 
   ngOnInit() {}
 
-  ionViewWillEnter() {
-    console.log('will enter');
-    this.userDataSub = this.authService.getAuthData$
-      .pipe(
-        map((value) => value?.uuid),
-        exhaustMap((uuid) =>
-          this.http.get(`${environment.URL}/user/${uuid}/info`)
-        ),
-        catchError((err) => of({})),
-        finalize(() => {
-          // this.myInfoMode = false;
-        })
-      )
-      .subscribe((data: any) => {
-        console.log('asdasasdf...', data.data);
-        if (data.success) {
-          this.userdata = data.data;
-        }
-      });
-  }
-
-  ionViewDidLeave() {
-    this.userDataSub.unsubscribe();
+  // On enter User Info Page
+  async ionViewWillEnter() {
+    console.log('User account page will enter...');
+    let userLoggedIn = false;
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      console.log('logged in...', loggedIn);
+      userLoggedIn = loggedIn;
+    });
+    if (userLoggedIn) {
+      this.toastService.toggleSpinner(true);
+      this.authService.getAuthData$
+        .pipe(
+          map((value) => value?.uuid),
+          exhaustMap((uuid) => {
+            return this.http.get(`${environment.URL}/user/${uuid}/info`);
+          })
+        )
+        .subscribe({
+          next: (userData: any) => {
+            this.toastService.toggleSpinner(false);
+            console.log('asdasasdf...', userData);
+            if (userData?.success) {
+              this.userdata = userData;
+            }
+          },
+          error: (err) => {
+            this.toastService.toggleSpinner(false);
+            console.log('No uuid found', err);
+          },
+        });
+    }
   }
 }
