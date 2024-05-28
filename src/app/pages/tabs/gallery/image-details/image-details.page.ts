@@ -6,13 +6,15 @@ import {
   NavController,
 } from '@ionic/angular';
 import { Share } from '@capacitor/share';
+import { GalleryService } from 'src/app/services/gallery.service';
+import { ToastService } from 'src/app/helper/toast.service';
 @Component({
   selector: 'app-image-details',
   templateUrl: './image-details.page.html',
   styleUrls: ['./image-details.page.scss'],
 })
 export class ImageDetailsPage implements OnInit {
-  imageDetails: any;
+  imageDetails: any = {};
   gallery: string;
   public deleteButtons = [
     {
@@ -25,8 +27,19 @@ export class ImageDetailsPage implements OnInit {
       cssClass: 'custom-alert',
       role: 'confirm',
       handler: () => {
-        console.log('Alert canceled');
-        this.navCtrl.navigateBack('/tabs/gallery');
+        console.log('data');
+
+        this.galleryService
+          .deleteImage(this.imageDetails['uuid'])
+          .subscribe((data: any) => {
+            if (data.success) {
+              this.toastService.PresentToast(data.message);
+              this.galleryService.fetchGallerySavedImages();
+              this.galleryService.fetchFaceSwapSavedImages();
+              this.navCtrl.navigateBack('/tabs/gallery');
+            }
+            console.log('deleted...', data);
+          });
       },
     },
   ];
@@ -40,7 +53,9 @@ export class ImageDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private actionSheetCtrl: ActionSheetController,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private galleryService: GalleryService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -51,9 +66,15 @@ export class ImageDetailsPage implements OnInit {
     });
   }
 
+  deleteImage(imgUUID: string) {
+    this.galleryService
+      .deleteImage(imgUUID)
+      .subscribe((data) => console.log('deleted?..', data));
+  }
+
   async shareImage() {
     await Share.share({
-      url: this.imageDetails?.url,
+      url: this.imageDetails?.imageUrl,
     });
   }
 

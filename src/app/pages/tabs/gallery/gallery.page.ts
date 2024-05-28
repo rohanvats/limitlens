@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
+import { GalleryService } from 'src/app/services/gallery.service';
 
 @Component({
   selector: 'app-gallery',
@@ -9,26 +11,30 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class GalleryPage implements OnInit {
   liked = false;
-
+  galleryImages$: Observable<any>;
   galleryData: any = [];
 
   constructor(
     private navCtrl: NavController,
-    private dataService: DataService
+    private dataService: DataService,
+    public galleryService: GalleryService
   ) {}
 
   ngOnInit() {
-    this.getGalleryData();
+    this.galleryService.fetchGallerySavedImages();
+    this.galleryService.fetchFaceSwapSavedImages();
   }
 
-  getGalleryData() {
-    this.dataService.getGalleryData().subscribe((data) => {
-      this.galleryData = data;
-    });
+  checkValue(event: any) {
+    console.log('event value...', event.detail.value);
+  }
+
+  getGallerySavedImages() {
+    // this.galleryImages$ = this.galleryService.fetchGallerySavedImages();
   }
 
   go(item: any) {
-    console.log('go');
+    console.log('go..', item);
     this.navCtrl.navigateForward(['/tabs/gallery/image-details'], {
       queryParams: { ...item, gallery: true },
     });

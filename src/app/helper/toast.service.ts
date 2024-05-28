@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 export class ToastService {
   constructor(private toastController: ToastController) {}
 
-  private spinner$ = new BehaviorSubject(false);
+  private spinnerSubject = new BehaviorSubject<boolean>(false);
 
-  spinnerValue$ = this.spinner$.asObservable();
+  spinnerValue$: Observable<boolean> = this.spinnerSubject.asObservable();
 
-  updateSpinner(value: boolean) {
-    this.spinner$.next(value);
+  toggleSpinner(value: boolean): void {
+    console.log('Spinner Toggled:', value);
+    this.spinnerSubject.next(value);
   }
 
   async PresentToast(message: string, color?: string, icon?: string) {
@@ -22,7 +23,7 @@ export class ToastService {
       cssClass: 'toast-text',
       icon: icon,
       color: color,
-      duration: 3000,
+      duration: 5000,
     });
     toast.present();
   }

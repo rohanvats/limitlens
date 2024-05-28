@@ -24,11 +24,15 @@
         </h1>
       </app-image-picker>
     </ng-container>
-    <ion-spinner
-      class="spinnerPosition"
-      name="lines"
-      *ngIf="!userdata"
-    ></ion-spinner>
-    <app-user-signup *ngIf="userdata" [userData]="userdata"></app-user-signup>
+    <ng-container>
+      <ion-spinner
+        *ngIf="toastService.spinnerValue$ | async; else user"
+        class="spinnerPosition"
+        name="lines"
+      ></ion-spinner>
+      <ng-template #user>
+        <app-user-signup [userData]="userdata"></app-user-signup>
+      </ng-template>
+    </ng-container>
   </div>
 </ion-content>

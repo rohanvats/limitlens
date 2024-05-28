@@ -26,12 +26,11 @@ ion-text {
   font-weight: 500;
 }
 
-ion-radio {
-  .native-wrapper .radio-icon {
-    // /* width: 0.9375rem; *
-    height: 1.5rem;
-  }
-}
+// ion-radio {
+//   .native-wrapper .radio-icon {
+//     height: 1.5rem;
+//   }
+// }
 
 .container {
   display: flex;
@@ -163,12 +162,12 @@ input:checked + .radio-tile label {
 //   position: relative;
 // }
 
-ion-text {
-  position: absolute;
-  bottom: 4px;
-  color: white;
-  font-weight: bold;
-}
+// ion-text {
+//   position: absolute;
+//   bottom: 4px;
+//   color: white;
+//   font-weight: bold;
+// }
 
 // filter modal css img {
 //   border-radius: 20px;

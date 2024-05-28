@@ -8,13 +8,15 @@ import {
   BehaviorSubject,
   catchError,
   exhaustMap,
+  finalize,
   map,
-  of,
   take,
   tap,
+  throwError,
 } from 'rxjs';
-import { ModalController } from '@ionic/angular';
-import { UserSigninComponent } from '../pages/user/user-account/user-signin/user-signin.component';
+import { ModalController, NavController } from '@ionic/angular';
+import { ToastService } from '../helper/toast.service';
+import { SignInPage } from '../auth/sign-in/sign-in.page';
 
 export interface User {
   username: string;
@@ -38,9 +40,14 @@ export interface loginUser {
 })
 export class AuthService {
   uuid: any;
-  devId: any;
+  deviceID: any;
 
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
+  constructor(
+    private http: HttpClient,
+    private modalCtrl: ModalController,
+    private navCtrl: NavController,
+    private toastService: ToastService
+  ) {}
 
   // If user is logged In
   private loggedInSubject = new BehaviorSubject(null);
@@ -67,7 +74,7 @@ export class AuthService {
       .create({
         breakpoints: [0, 1],
         initialBreakpoint: 1,
-        component: UserSigninComponent,
+        component: SignInPage,
       })
       .then((modalEl) => {
         modalEl.present();
@@ -109,19 +116,48 @@ export class AuthService {
   }
 
   login(user: any) {
-    return this.http.post(`${environment.URL}/user/authenticate`, {
-      ...user,
-      device_id: this.devId.identifier,
-    });
+    return this.http
+      .post(`${environment.URL}/user/authenticate`, {
+        ...user,
+        device_id: this.deviceID.identifier,
+      })
+      .pipe(
+        catchError((err) => {
+          this.toastService.toggleSpinner(false);
+          this.toastService.PresentToast(
+            err.error.error,
+            '',
+            'alert-circle-outline'
+          );
+          return throwError('error: ', err);
+        }),
+        finalize(() => console.log('An error occured')),
+        tap(async (data: any) => {
+          this.toastService.toggleSpinner(false);
+          this.toastService.PresentToast(
+            'Login successful!',
+            '',
+            'finger-print-outline'
+          );
+          const authData = { uuid: data.uuid, jwt: data.token };
+          this.updateAuthData(authData);
+          this.updateloggedIn(true);
+          await Preferences.set({
+            key: 'auth-data',
+            value: JSON.stringify(authData),
+          });
+          this.navCtrl.navigateForward('/');
+        })
+      );
   }
 
   async getNonAuthUUID() {
-    return await Preferences.get({ key: 'nonAuthUserUUID' });
+    return Preferences.get({ key: 'nonAuthUserUUID' });
   }
 
   checkUserUUID() {
     return this.isLoggedIn$.pipe(
-      catchError(() => of('')),
+      tap((loggedIn) => console.log('Is user logged in...', loggedIn)),
       exhaustMap((loggedIn) => {
         if (loggedIn) {
           return this.getAuthData$.pipe(
@@ -129,19 +165,17 @@ export class AuthService {
             take(1)
           );
         }
-        return this.getNonAuthUUID$.pipe(take(1));
+        return this.getNonAuthUUID$.pipe(
+          tap((nuuid) => {
+            if (nuuid) {
+              console.log('nuuuid....', nuuid);
+              take(1);
+            }
+          })
+        );
       })
     );
   }
-
-  deviceInfo = async () => {
-    const info = await Device.getInfo();
-    const info2 = await Device.getId();
-    if (info2) {
-      this.devId = info2;
-    }
-    return { mobileInfo: info, deviceId: info2 };
-  };
 
   registerForNonUser(body) {
     return this.http.post(`${environment.URL}/register`, body).pipe(
@@ -149,6 +183,16 @@ export class AuthService {
       tap((data) => console.log(data))
     );
   }
+
+  // Device Info
+  deviceInfo = async () => {
+    const DeviceInfo = await Device.getInfo();
+    const deviceID = await Device.getId();
+    if (deviceID) {
+      this.deviceID = deviceID;
+    }
+    return { mobileInfo: DeviceInfo, deviceId: deviceID };
+  };
 
   initialApp = async () => {
     const deviceInfo = await this.deviceInfo();
@@ -168,10 +212,11 @@ export class AuthService {
         value: JSON.stringify({ nonAuthUUID }),
       });
 
-      let notUserUUID = await this.getNonAuthUUID();
-      notUserUUID = JSON.parse(notUserUUID.value);
-      if (notUserUUID) {
-        this.updateNonAuthUUID(notUserUUID['nonAuthUUID']);
+      let nonUserUUID = await this.getNonAuthUUID();
+      nonUserUUID = JSON.parse(nonUserUUID.value);
+      if (nonUserUUID) {
+        console.log('non uuid...', nonUserUUID['nonAuthUUID']);
+        this.updateNonAuthUUID(nonUserUUID['nonAuthUUID']);
       }
     });
   };

@@ -15,17 +15,17 @@
         ></ion-icon>
       </span>
       <div>
-        <h2 class="main-header-text">{{ category.name }}</h2>
+        <h2 class="main-header-text">{{ category?.name }}</h2>
       </div>
     </app-custom-card-button>
     <ion-grid>
       <ion-row>
-        <ion-col size="6" *ngFor="let image of category.images">
+        <ion-col size="6" *ngFor="let image of category?.images">
           <ion-card
-            (click)="selectCategory(image.url)"
+            (click)="selectCategory(image.imageUrl, image.uuid)"
             class="ion-no-padding ion-no-margin custom-drop-shadow"
           >
-            <ion-img [src]="image.url"></ion-img>
+            <ion-img [src]="image.imageUrl"></ion-img>
           </ion-card>
         </ion-col>
       </ion-row>

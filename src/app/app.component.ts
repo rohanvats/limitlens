@@ -28,7 +28,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      console.log('app now running');
+      console.log('Limitlens is now running...');
     });
   }
 }

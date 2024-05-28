@@ -7,6 +7,7 @@ import {
 } from 'src/app/interfaces/displayOptions.interface';
 import { DataService } from 'src/app/services/data.service';
 import { DisplayOptionsService } from 'src/app/services/displayOptions.service';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-filter-modal',
@@ -23,6 +24,7 @@ export class FilterModalComponent implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private dataService: DataService,
+    private createService: CreateService,
     private displayOptionsService: DisplayOptionsService
   ) {}
 
@@ -36,8 +38,7 @@ export class FilterModalComponent implements OnInit {
 
   fetchDisplayOptionData(displayOption: string) {
     if (this.filterType) {
-      this.dispayData$ =
-        this.displayOptionsService.getDisplayOption(displayOption);
+      this.dispayData$ = this.createService.getDisplayOption(displayOption);
     } else {
       throw new Error('No display option provided');
     }

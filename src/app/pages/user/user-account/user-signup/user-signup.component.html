@@ -31,7 +31,7 @@
     </ng-container>
   </div>
 
-  <div class="ion-padding ion-margin-top">
+  <div class="ion-padding ion-margin-top" *ngIf="!userData">
     <ion-input
       label="Username"
       formControlName="user_name"

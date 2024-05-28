@@ -26,6 +26,10 @@ export class HomePage {
 
   fetchFaceswapCategories() {
     this.faceswapCategories$ = this.categoryService.faceswapCategories();
+
+    this.categoryService
+      .faceswapCategories()
+      .subscribe((data) => console.log('data...', data));
   }
 
   toFaceswapCategory(id: number) {
