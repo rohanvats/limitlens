@@ -18,30 +18,26 @@ export class GalleryService implements OnInit {
   public faceswapImages$: Observable<any> =
     this.faceswapImagesSubject.asObservable();
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.authService.checkUserUUID().subscribe((uuid) => {
-      console.log('gllery service uuid...', uuid);
-      this.uuid = uuid;
-    });
-
-    const a = this.authService.deviceInfo();
-    console.log('aaaa...', a);
-  }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  async getDeviceInfo() {
-    // await this.authService.
-  }
-
   fetchGallerySavedImages() {
+    // if (this.authService.userLoggedIn) {
     return this.http
       .get(
-        `${environment.URL}/user/gallery/new/${this.uuid}/${this.authService.deviceID}`
+        `${environment.URL}/user/gallery/new/${this.authService.uuid}/${this.authService.deviceID.identifier}`
       )
       .pipe(map((images) => images['data']?.['new_images']))
       .subscribe(
-        (images) => this.galleryImagesSubject.next(images),
+        (images: any) => {
+          if (images.length > 0) {
+            console.log('gallery images..', images);
+            this.galleryImagesSubject.next(images);
+          } else {
+            this.galleryImagesSubject.next([]);
+          }
+        },
         (error) => console.log('err at gallery..', error)
       );
   }
@@ -49,12 +45,19 @@ export class GalleryService implements OnInit {
   fetchFaceSwapSavedImages() {
     return this.http
       .get(
-        `${environment.URL}/user/faceswap/new/${this.uuid}/${this.authService.deviceID}`
+        `${environment.URL}/user/faceswap/new/${this.authService.uuid}/${this.authService.deviceID.identifier}`
       )
       .pipe(map((images) => images['data']?.['new_images']))
       .subscribe(
-        (images) => this.faceswapImagesSubject.next(images),
-        (error) => console.log('err at gallery..', error)
+        (images: any) => {
+          if (images.length > 0) {
+            console.log('gallery images..', images);
+            this.faceswapImagesSubject.next(images);
+          } else {
+            this.faceswapImagesSubject.next([]);
+          }
+        },
+        (error) => console.log('err at faceswap..', error)
       );
   }
 

@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'subscription',
-    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./subscription/subscription.module').then(
         (m) => m.SubscriptionPageModule
@@ -41,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () =>
+      import('./register/register.module').then((m) => m.RegisterPageModule),
   },
 ];
 

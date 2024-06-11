@@ -16,7 +16,7 @@ import { noop } from 'rxjs';
 export class SignInPage implements OnInit {
   component = UserSignupComponent;
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
     private toastService: ToastService

@@ -4,69 +4,46 @@
     [classes]="'ion-no-margin custom-card custom-image'"
     [background-image]="backgroundImage"
   >
-    <span class="nav-icon-background" (click)="onCancel()">
-      <ion-icon size="large" class="main-header-text" name="close"></ion-icon>
-    </span>
+    <ion-fab-button
+      size="small"
+      (click)="onCancel()"
+      class="custom-sm-btn-background back-btn"
+    >
+      <ion-icon size="small" name="close"></ion-icon>
+    </ion-fab-button>
     <h2 class="main-header-text">
       {{ filterType | titlecase }}
     </h2>
-    <!-- <ion-buttons slot="end">
-      <ion-button (click)="onCancel()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
   </app-custom-card-button>
 
   <ng-container *ngIf="dispayData$ | async as dispayData">
     <div class="main-container">
-      <ng-container *ngIf="filterType === 'format'; else nonFormat">
-        <h2 class="ion-padding-start">Choose the ratio:</h2>
-        <div class="ion-margin" *ngFor="let format of dispayData.data">
-          <app-custom-card-button
-            height="14vh"
-            (click)="onSelectOption(format)"
-            [classes]="'custom-card-border-radius'"
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            *ngFor="let data of dispayData.data.new_data"
+            class="ion-text-center"
+            size="4"
           >
-            <ion-row class="ion-margin">
-              {{ format?.temporaryUrl }}
-              <ion-col size="4">
-                <img height="80rem" src="{{ format?.temporaryUrl }}" alt="" />
-              </ion-col>
-              <ion-col size="8">
-                <p class="ion-text-center">{{ format?.name | titlecase }}</p>
-              </ion-col>
-            </ion-row>
-          </app-custom-card-button>
-        </div>
-      </ng-container>
-      <ng-template #nonFormat>
-        <ion-grid>
-          <ion-row>
-            <ion-col
-              *ngFor="let data of dispayData.data.new_data"
-              class="ion-text-center"
-              size="4"
-            >
-              <div class="ion-activatable">
-                <ion-radio-group (click)="onSelectOption(data)">
-                  <ion-radio labelPlacement="none" [value]="data">
-                    <img
-                      class="custom-img-btn custom-drop-shadow"
-                      [src]="data?.temporaryUrl"
-                    />
-                    <ion-text
-                      class="ion-text-center ion-text-wrap custom-img-btn-text"
-                    >
-                      <ion-note>{{ data?.name | titlecase }}</ion-note>
-                    </ion-text>
-                  </ion-radio>
-                  <ion-ripple-effect></ion-ripple-effect>
-                </ion-radio-group>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ng-template>
+            <div class="ion-activatable">
+              <ion-radio-group (click)="onSelectOption(data)">
+                <ion-radio labelPlacement="none" [value]="data">
+                  <img
+                    class="custom-img-btn custom-drop-shadow"
+                    [src]="data?.imageUrl"
+                  />
+                  <ion-text
+                    class="ion-text-center ion-text-wrap custom-img-btn-text"
+                  >
+                    <ion-note>{{ data?.name | titlecase }}</ion-note>
+                  </ion-text>
+                </ion-radio>
+                <ion-ripple-effect></ion-ripple-effect>
+              </ion-radio-group>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </ng-container>
 </ion-content>

@@ -4,13 +4,20 @@
     [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Settings.webp'"
     [classes]="'ion-no-margin custom-card custom-image'"
   >
-    <span class="nav-icon-background" routerLink="../">
+    <!-- <span class="nav-icon-background" routerLink="../">
       <ion-icon
         size="large"
         class="main-header-text"
         name="arrow-back-outline"
       ></ion-icon>
-    </span>
+    </span> -->
+    <ion-fab-button
+      size="small"
+      routerLink="../"
+      class="custom-sm-btn-background back-btn"
+    >
+      <ion-icon size="small" name="arrow-back"></ion-icon>
+    </ion-fab-button>
     <h2 class="main-header-text">SETTINGS</h2>
   </app-custom-card-button>
 

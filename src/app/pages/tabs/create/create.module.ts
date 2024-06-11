@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreatePage } from './create.page';
 import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
+import { ToastService } from 'src/app/helper/toast.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FilterModalComponent } from './filter-modal/filter-modal.component';
     CreatePageRoutingModule,
     SharedModule,
   ],
+  providers: [ToastService],
   declarations: [CreatePage, PromptModalComponent, FilterModalComponent],
 })
 export class CreatePageModule {}

@@ -1,1 +1,20 @@
-<img [src]="image" [ngClass]="imgStyle" />
+<div>
+  <!-- <swiper-container> -->
+  <swiper-slider [config]="config">
+    <!-- <div class="swiper-zoom-container"> -->
+    <swiper-zoom-conatiner>
+      <img [src]="image" [ngClass]="imgStyle" />
+    </swiper-zoom-conatiner>
+    <!-- </div> -->
+  </swiper-slider>
+
+  <!-- </swiper-container> -->
+
+  <ion-fab-button
+    size="small"
+    routerLink="../"
+    class="custom-sm-btn-background back-btn"
+  >
+    <ion-icon size="small" name="arrow-back"></ion-icon>
+  </ion-fab-button>
+</div>

@@ -8,12 +8,10 @@ import {
 } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Platform } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
-import { Observable, finalize, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ToastService } from 'src/app/helper/toast.service';
 
 @Component({
@@ -38,20 +36,12 @@ export class ImagePickerComponent implements OnInit {
     public toastService: ToastService
   ) {}
 
-  ngOnInit() {
-    this.toastService.spinnerValue$.subscribe((data) => {
-      console.log('spinner value...', data);
-    });
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['classFlag']) {
       this.imgUploadStyle();
     }
-  }
-
-  ionViewWillEnter() {
-    // this.loadFiles();
   }
 
   imgUploadStyle() {
@@ -94,19 +84,9 @@ export class ImagePickerComponent implements OnInit {
       });
 
       if (image) {
-        this.authService
-          .checkUserUUID()
-          .pipe(
-            tap(async (uuid) => {
-              await this.fileUpload(image, uuid);
-              return console.log('uuid..', uuid, image);
-            })
-          )
-          .subscribe((uuid) => {
-            console.log('user uuid...', uuid);
-          });
+        await this.fileUpload(image, this.authService.uuid);
+        console.log(`${image.webPath}.${image.format}`);
       }
-      console.log(`${image.webPath}.${image.format}`);
     } catch (error) {
       console.log('error occured: ', error);
     }
@@ -123,21 +103,26 @@ export class ImagePickerComponent implements OnInit {
   }
 
   async uploadData(formData: FormData, image) {
-    // Use your own API!
     this.toastService.toggleSpinner(true);
     const url = `${environment.URL}/user/image/upload`;
 
-    this.http.post(url, formData).subscribe((res: any) => {
-      if (res['success']) {
-        this.selectedImage = image.webPath;
-        this.imagePick.emit(image.webPath);
-        this.userImageUUID.emit(res.uuid);
+    this.http.post(url, formData).subscribe({
+      next: (res: any) => {
+        if (res['success']) {
+          this.selectedImage = image.webPath;
+          this.imagePick.emit(image.webPath);
+          this.userImageUUID.emit(res.uuid);
+          this.toastService.toggleSpinner(false);
+          this.toastService.PresentToast(res['message']);
+        } else {
+          this.toastService.toggleSpinner(false);
+          this.toastService.PresentToast('File upload failed.');
+        }
+      },
+      error: () => {
         this.toastService.toggleSpinner(false);
-        this.toastService.PresentToast(res['message']);
-      } else {
-        this.toastService.toggleSpinner(false);
-        this.toastService.PresentToast('File upload failed.');
-      }
+        this.toastService.PresentToast('Upload image failed');
+      },
     });
   }
 }

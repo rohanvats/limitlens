@@ -27,11 +27,10 @@ import { ModalController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root',
 })
-export class CreateService implements OnInit, OnDestroy {
+export class CreateService implements OnInit {
   private displayOptionsSubject = new BehaviorSubject<any>(null);
   public displayOptions$ = this.displayOptionsSubject.asObservable();
   uuidSub: Subscription;
-  user_uuid: string = '';
 
   updateDisplayOptions(value) {
     this.displayOptionsSubject.next(value);
@@ -46,11 +45,11 @@ export class CreateService implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.uuidSub = this.authService
-      .checkUserUUID()
-      .subscribe((uuid: string) => {
-        this.user_uuid = uuid;
-      });
+    // this.uuidSub = this.authService
+    //   .checkUserUUID()
+    //   .subscribe((uuid: string) => {
+    //     this.user_uuid = uuid;
+    //   });
   }
 
   getDisplayOption(option: string): any {
@@ -63,7 +62,9 @@ export class CreateService implements OnInit, OnDestroy {
   generateImage(payload, uuid): Observable<any> {
     return this.http.post(`${environment.URL}/generated-prompts`, payload).pipe(
       catchError((err) => {
-        this.toastService.PresentToast(err.message);
+        console.log('catch...', err);
+
+        this.toastService.PresentToast(err.error);
         return throwError((err) => {
           console.log('erroor');
         });
@@ -148,33 +149,12 @@ export class CreateService implements OnInit, OnDestroy {
           .fetchDisplayOptions()
           ?.find((el) => el.value === result.data?.key);
         if (element) {
-          if (element.value === 'format') {
-            element.name = result.data.name;
-            switch (result.data.name) {
-              case 'portrait':
-                element.url = 'assets/icon/@2x-format_vertical.png';
-                break;
-              case 'square':
-                element.url = 'assets/icon/@2x-format_square.png';
-                break;
-              case 'landscape':
-                element.url = 'assets/icon/@2x-format_landscape.png';
-                break;
-            }
-          } else {
-            element['id'] = result.data.id;
-            element.name = result.data.name;
-            console.log(this.displayOptionsService.fetchDisplayOptions());
+          element['id'] = result.data.id;
+          element.name = result.data.name;
+          console.log(this.displayOptionsService.fetchDisplayOptions());
 
-            element.url = result.data.imageUrl;
-          }
-        } else {
-          return;
+          element.url = result.data.imageUrl;
         }
       });
-  }
-
-  ngOnDestroy() {
-    this.uuidSub.unsubscribe();
   }
 }

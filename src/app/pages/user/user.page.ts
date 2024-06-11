@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { ToastService } from 'src/app/helper/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +15,9 @@ export class UserPage implements OnInit {
 
   constructor(
     public userService: UserService,
-    public authService: AuthService
+    public authService: AuthService,
+    private toastServie: ToastService,
+    private navCtrl: NavController
   ) {}
 
   ionViewWillLeave() {
@@ -34,9 +38,22 @@ export class UserPage implements OnInit {
 
   ngOnInit() {
     this.userOptions$ = this.userService.userOptions();
-    this.authService.isLoggedIn$.subscribe((data) => {
-      console.log('daatattata...', data);
-    });
+    // this.authService.isLoggedIn$.subscribe((data) => {
+    //   console.log('daatattata...', data);
+    // });
+  }
+
+  logout() {
+    this.authService.logout().subscribe(
+      (data) => {
+        this.toastServie.PresentToast('Logged out successfully');
+        this.navCtrl.navigateBack('/');
+        console.log('logout...', data);
+      },
+      (err) => {
+        this.toastServie.PresentToast('Couldnt log out');
+      }
+    );
   }
 
   // userOptions() {

@@ -1,0 +1,145 @@
+<!-- <ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="arrow-back-outline" [routerLink]="['/tabs/gallery']" ></ion-icon>
+    </ion-buttons>
+    <ion-title>Image Details</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ng-container *ngIf="fragment$ |async as fragment">
+    <div class="image-container">
+      <app-main-image
+        [imgStyle]="'mainImgDefault'"
+        [image]="imageDetails['imageUrl']"
+      ></app-main-image>
+      <!-- <ion-fab-button
+        size="small"
+        routerLink="../"
+        class="custom-sm-btn-background back-btn"
+      >
+        <ion-icon size="small" name="arrow-back"></ion-icon>
+      </ion-fab-button> -->
+      <div class="icon-container">
+        <ion-fab-button size="small" class="custom-sm-btn-background">
+          <ion-icon size="small" name="expand"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button
+          size="small"
+          class="custom-sm-btn-background"
+          *ngIf="fragment === 'faceswapImage' || 'generatedImage'"
+        >
+          <ion-icon name="save-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button
+          *ngIf="fragment === 'galleryImage'"
+          id="delete-image-alert"
+          size="small"
+          class="custom-sm-btn-background"
+        >
+          <ion-icon size="small" name="trash"></ion-icon>
+        </ion-fab-button>
+        <ion-alert
+          mode="ios"
+          trigger="delete-image-alert"
+          class="custom-alert"
+          header="Are you sure?"
+          [buttons]="deleteButtons"
+        ></ion-alert>
+        <!-- <ion-fab-button
+        size="small"
+        class="custom-sm-btn-background"
+        (click)="shareImage()"
+      >
+        <ion-icon size="small" name="share-social"></ion-icon>
+      </ion-fab-button> -->
+      </div>
+    </div>
+
+    <div class="main-container ion-text-center">
+      <div class="ion-padding">
+        <ion-chip
+          class="custom-drop-shadow"
+          *ngIf="fragment === 'galleryImage'"
+        >
+          <ion-label>{{imageDetails?.name}}</ion-label>
+          <!-- <ion-text>{{imageDetails?.name}}</ion-text> -->
+          <ion-icon (click)="presentAlert()" name="pencil"></ion-icon>
+        </ion-chip>
+        <!-- <ion-alert
+        mode="ios"
+        trigger="rename-image-alert"
+        class="custom-alert"
+        header="Rename the picture"
+        [inputs]="editInputs"
+        [buttons]="deleteButtons"
+      ></ion-alert> -->
+      </div>
+
+      <!-- <div class="ion-padding">
+      <ion-chip class="custom-drop-shadow">
+        <ion-label>Screen Image 360 x 360</ion-label>
+        <ion-badge class="ion-margin-start" color="warning">XO</ion-badge>
+      </ion-chip>
+    </div> -->
+
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-padding">
+            <app-main-action-button (click)="shareImage()">
+              <!-- <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon> -->
+              <ion-icon
+                class="ion-padding-horizontal"
+                name="share-social"
+              ></ion-icon>
+              <p class="button-text ion-no-margin">Share your art !</p>
+              <!-- <ion-icon class="ion-padding-horizontal" name="play"></ion-icon> -->
+            </app-main-action-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-padding">
+            <app-main-action-button>
+              <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+              <p class="button-text ion-no-margin">Remove Watermark</p>
+              <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+            </app-main-action-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-padding" *ngIf="fragment === 'galleryImage'">
+            <app-main-action-button
+              ><p class="button-text ion-no-margin">Upscale</p>
+              <ion-icon
+                class="ion-padding-horizontal"
+                name="download"
+              ></ion-icon
+            ></app-main-action-button>
+          </ion-col>
+          <!-- <ion-col class="ion-padding">
+          <app-main-action-button (click)="onClick()"
+            >{{'print' | uppercase}}</app-main-action-button
+          >
+        </ion-col> -->
+        </ion-row>
+        <ion-row *ngIf="fragment === 'generatedImage'">
+          <ion-col class="ion-padding">
+            <app-main-action-button (click)="generateAnother()">
+              <ng-container
+                *ngIf="toastService.spinnerValue$ | async as showSpinner; else generateImage"
+              >
+                <ion-spinner class="spinnerPosition" name="lines"></ion-spinner>
+              </ng-container>
+              <ng-template #generateImage>
+                <ion-icon class="ion-padding-horizontal" name="tv"></ion-icon>
+                <p class="button-text ion-no-margin">Generate Another</p>
+                <ion-icon class="ion-padding-horizontal" name="play"></ion-icon>
+              </ng-template>
+            </app-main-action-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ng-container>
+</ion-content>
