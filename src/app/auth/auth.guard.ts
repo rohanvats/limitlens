@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
+  CanActivate,
   CanLoad,
   Route,
   RouterStateSnapshot,
@@ -14,35 +14,28 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanLoad {
+export class AuthGuard implements CanActivate {
   constructor(
     private navCtrl: NavController,
     private authService: AuthService
   ) {}
-
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return true;
-  // }
-  canLoad(
+  canActivate(
     route: Route,
-    segments: UrlSegment[]
+    // segments: UrlSegment[]
+    // route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('route...', route);
-
-    return this.authService.isLoggedIn$.pipe(
-      skipWhile((value) => value === null),
-      take(1),
-      tap((authenticated) => {
-        if (!authenticated) {
-          this.authService.openSignInModal();
-        }
-      })
-    );
+    console.log('route segments guard...', route);
+    if (!this.authService.userLoggedIn) {
+      console.log('auth guard...', this.authService.userLoggedIn);
+      this.authService.openSignInModal();
+      return false;
+    }
+    console.log('auth guard...', this.authService.userLoggedIn);
+    return this.authService.userLoggedIn;
   }
 }

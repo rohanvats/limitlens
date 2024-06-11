@@ -1,5 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { IonicSlides } from '@ionic/angular';
+import { SwiperOptions, ZoomOptions } from 'swiper/types';
+// import { ZoomEvents } from 'swiper/types';
 
 @Component({
   selector: 'app-main-image',
@@ -9,6 +16,10 @@ import { Observable } from 'rxjs';
 export class MainImageComponent implements OnInit {
   @Input() image: string | undefined | null;
   @Input() imgStyle: string;
+  swiperModules = [IonicSlides];
+  config: SwiperOptions = {
+    zoom: true,
+  };
 
   constructor() {}
 

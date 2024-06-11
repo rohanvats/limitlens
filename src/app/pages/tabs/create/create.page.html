@@ -107,26 +107,26 @@
             <img
               class="custom-drop-shadow custom-img-btn"
               (click)="openFilterModal(item?.value)"
-              [src]="item?.imageUrl ? item?.imageUrl : item.url"
+              [src]="item?.temporaryUrl ? item?.temporaryUrl : item.url"
             />
-            <ion-text
+            <!-- <ion-text
               class="custom-img-btn-text"
               *ngIf="item.name === 'format'; else otherOptions"
             >
               <h6>{{item?.name | titlecase }}</h6>
-            </ion-text>
-            <ng-template #otherOptions>
-              <span>
-                <ion-text class="custom-img-btn-text">
-                  <ion-icon
-                    size="large"
-                    name="{{item?.iconName}}"
-                    *ngIf="item?.value === 'format'"
-                  ></ion-icon>
-                  <h6>{{item?.name | titlecase}}</h6>
-                </ion-text>
-              </span>
-            </ng-template>
+            </ion-text> -->
+            <!-- <ng-template #otherOptions> -->
+            <span>
+              <ion-text class="custom-img-btn-text">
+                <ion-icon
+                  size="large"
+                  name="{{item?.iconName}}"
+                  *ngIf="item?.value === 'format'"
+                ></ion-icon>
+                <h6>{{item?.name | titlecase}}</h6>
+              </ion-text>
+            </span>
+            <!-- </ng-template> -->
           </ion-col>
         </ion-row>
       </div>

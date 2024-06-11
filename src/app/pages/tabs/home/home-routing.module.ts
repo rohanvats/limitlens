@@ -18,6 +18,11 @@ const routes: Routes = [
     path: 'faceswapCategory/:id',
     component: FaceswapCategoryComponent,
   },
+  {
+    path: 'faceswappedImage',
+    loadChildren: () => import('../../../shared/pages/image-details/image-details.module').then(m => m.ImageDetailsPageModule)
+    // component: FaceswapCategoryComponent,
+  },
 ];
 
 @NgModule({

@@ -9,11 +9,11 @@ import { Share } from '@capacitor/share';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { ToastService } from 'src/app/helper/toast.service';
 @Component({
-  selector: 'app-image-details',
-  templateUrl: './image-details.page.html',
-  styleUrls: ['./image-details.page.scss'],
+  selector: 'app-image-detail',
+  templateUrl: './image-detail.component.html',
+  styleUrls: ['./image-detail.component.scss'],
 })
-export class ImageDetailsPage implements OnInit {
+export class ImageDetailComponent implements OnInit {
   imageDetails: any = {};
   gallery: string;
   public deleteButtons = [
@@ -59,12 +59,31 @@ export class ImageDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('img details on init');
     this.route.queryParams.subscribe((image: any) => {
       console.log(image);
       this.gallery = image.gallery;
       this.imageDetails = image;
     });
   }
+
+  // ionViewWillEnter() {
+  //   console.log('img details will enter');
+  //   this.route.queryParams.subscribe((image: any) => {
+  //     console.log(image);
+  //     this.gallery = image.gallery;
+  //     this.imageDetails = image;
+  //   });
+  // }
+
+  // ionViewDidEnter() {
+  //   console.log('img details did enter');
+  //   this.route.queryParams.subscribe((image: any) => {
+  //     console.log(image);
+  //     this.gallery = image.gallery;
+  //     this.imageDetails = image;
+  //   });
+  // }
 
   deleteImage(imgUUID: string) {
     this.galleryService

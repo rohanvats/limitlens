@@ -6,12 +6,15 @@ import { GalleryPage } from './gallery.page';
 const routes: Routes = [
   {
     path: '',
-    component: GalleryPage
-  },  {
+    component: GalleryPage,
+  },
+  {
     path: 'image-details',
-    loadChildren: () => import('./image-details/image-details.module').then( m => m.ImageDetailsPageModule)
-  }
-
+    loadChildren: () =>
+      import('../../../shared/pages/image-details/image-details.module').then(
+        (m) => m.ImageDetailsPageModule
+      ),
+  },
 ];
 
 @NgModule({

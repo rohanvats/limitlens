@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CreatePage } from './create.page';
-import { ImageDetailsPage } from '../gallery/image-details/image-details.page';
+import { ImageDetailsPage } from '../../../shared/pages/image-details/image-details.page';
 
 const routes: Routes = [
   {
@@ -11,7 +11,10 @@ const routes: Routes = [
   },
   {
     path: 'generatedImage',
-    component: ImageDetailsPage,
+    loadChildren: () =>
+      import('../../../shared/pages/image-details/image-details.module').then(
+        (m) => m.ImageDetailsPageModule
+      ),
   },
 ];
 

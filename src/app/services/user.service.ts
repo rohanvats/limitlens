@@ -28,11 +28,13 @@ export class UserService {
   private userOptionsList: { name: string; url: string }[] = [
     {
       name: 'my info',
-      url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/User_Info.webp',
+      // url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/User_Info.webp',
+      url: 'assets/UI_Images/Latest App Icons/My_info.webp',
     },
     {
       name: 'subscription',
-      url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Subscription.webp',
+      // url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Subscription.webp',
+      url: 'assets/UI_Images/Latest App Icons/Subscription.webp',
     },
     // {
     //   name: 'orders',
@@ -40,11 +42,13 @@ export class UserService {
     // },
     {
       name: 'settings',
-      url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Settings.webp',
+      // url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Settings.webp',
+      url: 'assets/UI_Images/Latest App Icons/Settings.webp',
     },
     {
       name: 'help',
-      url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Help.webp',
+      // url: 'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size-assets/Help.webp',
+      url: 'assets/UI_Images/Latest App Icons/Help.webp',
     },
   ];
 }

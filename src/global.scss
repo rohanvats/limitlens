@@ -75,6 +75,7 @@ h6 {
 
 ion-note {
   color: #ffffff;
+  font-weight: 600;
 }
 
 ion-icon {
@@ -240,4 +241,20 @@ ion-radio::part(flex) {
     width: 7rem;
     color: white;
   }
+}
+
+.custom-sm-btn-background {
+  --background: rgba(48, 48, 48, 0.8);
+  --background-activated: #303030;
+  --background-hover: #303030;
+  // --opacity: 0.5;
+  --border-radius: 1rem;
+  // --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --color: #ffffff;
+}
+
+.back-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }

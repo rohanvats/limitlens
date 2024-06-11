@@ -1,25 +1,16 @@
-<!-- <ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon size="large" name="arrow-back-outline" routerLink="../" ></ion-icon>
-    </ion-buttons>
-    <ion-title>USER</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <app-custom-card-button
     [height]="'18vh'"
     [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/User_account.webp'"
     [classes]="'ion-no-margin custom-card custom-image'"
   >
-    <span class="nav-icon-background" routerLink="../">
-      <ion-icon
-        size="large"
-        class="main-header-text"
-        name="arrow-back-outline"
-      ></ion-icon>
-    </span>
+    <ion-fab-button
+      size="small"
+      routerLink="../"
+      class="custom-sm-btn-background back-btn"
+    >
+      <ion-icon size="small" name="arrow-back"></ion-icon>
+    </ion-fab-button>
     <div>
       <h2 class="main-header-text">MY ACCOUNT</h2>
     </div>
@@ -45,9 +36,7 @@
 
               <ion-text>
                 <ng-container *ngIf="userOption.name === 'my info'; else other">
-                  <ng-container
-                    *ngIf="authService.isLoggedIn$ | async as isLoggedIn; else Register"
-                  >
+                  <ng-container *ngIf="authService.userLoggedIn; else Register">
                     <h6>{{ userOption.name | uppercase}}</h6>
                   </ng-container>
                   <ng-template #Register>
@@ -80,6 +69,15 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-row *ngIf="authService.userLoggedIn">
+    <ion-col class="ion-padding">
+      <app-main-action-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <p class="button-text ion-no-margin"></p>
+        Logout
+      </app-main-action-button>
+    </ion-col>
+  </ion-row>
   <!-- <ion-grid>
 
     <ion-row>

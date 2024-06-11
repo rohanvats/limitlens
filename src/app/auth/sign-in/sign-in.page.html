@@ -1,9 +1,9 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
-  <div class="main-container">
-    <div class="ion-padding-top ion-margin-top">
-      <ion-img style="height: 197px" src="\assets\icon\Frame 1.svg"></ion-img>
-    </div>
+<div class="main-container">
+  <div class="ion-padding-top ion-margin-top">
+    <ion-img style="height: 197px" src="\assets\icon\Frame 1.svg"></ion-img>
+  </div>
 
+  <form (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
     <div class="ion-padding ion-margin-top">
       <ion-input
         label="Email"
@@ -42,36 +42,32 @@
         type="submit"
         [disableButton]="!userLoginForm.valid"
       >
-        <ion-text class="btn-text" type="submit"
-          >SIGN IN</ion-text
-        ></app-main-action-button
+        <ion-text class="btn-text">SIGN IN</ion-text></app-main-action-button
       >
     </div>
-    <hr class="divider" />
-    <div class="ion-padding">
+  </form>
+  <hr class="divider" />
+  <div class="ion-padding">
+    <app-main-action-button>
       <ion-nav-link router-direction="forward" [component]="component">
-        <app-main-action-button>
-          <ion-text class="btn-text"
-            >CREATE ACCOUNT</ion-text
-          ></app-main-action-button
-        ></ion-nav-link
-      >
-    </div>
-    <div class="ion-padding">
-      <app-main-action-button>
-        <div class="ion-padding">
-          <ion-img src="\assets\icon\google.png"></ion-img>
-        </div>
-        <ion-text class="btn-text">Sign in with google</ion-text>
-      </app-main-action-button>
-    </div>
-    <div class="ion-padding">
-      <app-main-action-button>
-        <div class="ion-padding">
-          <ion-img src="\assets\icon\apple.png"></ion-img>
-        </div>
-        Sign in with apple
-      </app-main-action-button>
-    </div>
+        <ion-text class="btn-text">CREATE ACCOUNT</ion-text></ion-nav-link
+      ></app-main-action-button
+    >
   </div>
-</form>
+  <div class="ion-padding">
+    <app-main-action-button (click)="authService.googleSignIn()">
+      <div class="ion-padding">
+        <ion-img src="\assets\icon\google.png"></ion-img>
+      </div>
+      <ion-text class="btn-text">Sign in with google</ion-text>
+    </app-main-action-button>
+  </div>
+  <div class="ion-padding">
+    <app-main-action-button>
+      <div class="ion-padding">
+        <ion-img src="\assets\icon\apple.png"></ion-img>
+      </div>
+      Sign in with apple
+    </app-main-action-button>
+  </div>
+</div>

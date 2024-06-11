@@ -22,22 +22,13 @@ export class UserAccountPage implements OnInit {
   ngOnInit() {}
 
   // On enter User Info Page
-  async ionViewWillEnter() {
-    console.log('User account page will enter...');
-    let userLoggedIn = false;
-    this.authService.isLoggedIn$.subscribe((loggedIn) => {
-      console.log('logged in...', loggedIn);
-      userLoggedIn = loggedIn;
-    });
-    if (userLoggedIn) {
+  ionViewWillEnter() {
+    if (this.authService.userLoggedIn) {
       this.toastService.toggleSpinner(true);
-      this.authService.getAuthData$
-        .pipe(
-          map((value) => value?.uuid),
-          exhaustMap((uuid) => {
-            return this.http.get(`${environment.URL}/user/${uuid}/info`);
-          })
-        )
+      console.log('uuid...', this.authService.uuid);
+
+      this.http
+        .get(`${environment.URL}/user/${this.authService.uuid}/info`)
         .subscribe({
           next: (userData: any) => {
             this.toastService.toggleSpinner(false);

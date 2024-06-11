@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Preferences } from '@capacitor/preferences';
 import { Device } from '@capacitor/device';
 import { AdvertisingId } from '@capacitor-community/advertising-id';
+import { Browser } from '@capacitor/browser';
 import {
   BehaviorSubject,
   catchError,
-  exhaustMap,
-  finalize,
   map,
-  take,
+  mergeMap,
   tap,
   throwError,
 } from 'rxjs';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, Platform } from '@ionic/angular';
 import { ToastService } from '../helper/toast.service';
 import { SignInPage } from '../auth/sign-in/sign-in.page';
+// import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 export interface User {
   username: string;
@@ -38,32 +38,26 @@ export interface loginUser {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  uuid: any;
+export class AuthService implements OnInit {
+  private nonAuthUUID: string;
+  userLoggedIn: boolean = false;
+  uuid: string;
   deviceID: any;
+  user = null;
 
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private platform: Platform
   ) {}
 
-  // If user is logged In
-  private loggedInSubject = new BehaviorSubject(null);
-  public isLoggedIn$ = this.loggedInSubject.asObservable();
+  ngOnInit(): void {}
 
   // To collect auth data
   private authDataSubject = new BehaviorSubject<any>(null);
   public getAuthData$ = this.authDataSubject.asObservable();
-
-  // To collect uuid for non-authenticated users
-  private nonAuthUUIDSubject = new BehaviorSubject(null);
-  public getNonAuthUUID$ = this.nonAuthUUIDSubject.asObservable();
-
-  updateNonAuthUUID(value) {
-    this.nonAuthUUIDSubject.next(value);
-  }
 
   updateAuthData(value) {
     this.authDataSubject.next(value);
@@ -82,10 +76,6 @@ export class AuthService {
       });
   }
 
-  updateloggedIn(value) {
-    this.loggedInSubject.next(value);
-  }
-
   getAdvertisingId = async () => {
     const advertisingId = await AdvertisingId.getAdvertisingId();
     return advertisingId;
@@ -95,24 +85,28 @@ export class AuthService {
     let { value } = await Preferences.get({ key: 'auth-data' });
     const newvalue = JSON.parse(value);
     if (newvalue?.uuid && newvalue?.jwt) {
-      this.updateloggedIn(true);
+      this.uuid = newvalue?.uuid;
+      console.log('auth service check auth uuid...', this.uuid);
+      this.userLoggedIn = true;
       this.updateAuthData(newvalue);
     } else {
-      this.updateloggedIn(false);
+      this.uuid = this.nonAuthUUID;
+      console.log('auth service check auth uuid...', this.uuid);
+      this.userLoggedIn = false;
       this.updateAuthData(null);
     }
   };
 
+  // User signup
   signup(user: any) {
     return this.http.post(
-      `${environment.URL}/users/${this.uuid.uuid.uuid}/register-email`,
+      `${environment.URL}/users/${this.uuid}/register-email`,
       user
     );
   }
 
   updateUser(user: any) {
-    const uuid = this.authDataSubject.getValue();
-    return this.http.post(`${environment.URL}/user/update/${uuid}`, user);
+    return this.http.post(`${environment.URL}/user/update/${this.uuid}`, user);
   }
 
   login(user: any) {
@@ -129,9 +123,8 @@ export class AuthService {
             '',
             'alert-circle-outline'
           );
-          return throwError('error: ', err);
+          return throwError('LOGIN ERROR...', err);
         }),
-        finalize(() => console.log('An error occured')),
         tap(async (data: any) => {
           this.toastService.toggleSpinner(false);
           this.toastService.PresentToast(
@@ -139,9 +132,12 @@ export class AuthService {
             '',
             'finger-print-outline'
           );
+          // await this.saveAuthData(data);
           const authData = { uuid: data.uuid, jwt: data.token };
           this.updateAuthData(authData);
-          this.updateloggedIn(true);
+          this.uuid = data.uuid;
+          console.log('uuid after login...', this.uuid);
+          this.userLoggedIn = true;
           await Preferences.set({
             key: 'auth-data',
             value: JSON.stringify(authData),
@@ -151,36 +147,102 @@ export class AuthService {
       );
   }
 
+  // google signin
+  // async googleSignIn() {
+  //   // try {
+  //   const user = await GoogleAuth.signIn();
+  //   console.log('user...', user, environment.URL);
+  //   if (user) {
+  //     this.http
+  //       .post(`${environment.URL}/auth/google/callback`, {
+  //         device_id: this.deviceID.identifier,
+  //         uuid: this.uuid,
+  //         code: user.serverAuthCode,
+  //       })
+  //       .pipe(
+  //         catchError((err) => {
+  //           this.toastService.toggleSpinner(false);
+  //           this.toastService.PresentToast(
+  //             err.error.error,
+  //             '',
+  //             'alert-circle-outline'
+  //           );
+  //           return throwError('LOGIN ERROR...', err);
+  //         }),
+  //         tap(async (data: any) => {
+  //           this.toastService.toggleSpinner(false);
+  //           this.toastService.PresentToast(
+  //             'Login successful!',
+  //             '',
+  //             'finger-print-outline'
+  //           );
+  //           // await this.saveAuthData(data);
+  //           const authData = { uuid: data.uuid, jwt: data.token };
+  //           this.updateAuthData(authData);
+  //           this.uuid = data.uuid;
+  //           console.log('uuid after login...', this.uuid);
+  //           this.userLoggedIn = true;
+  //           await Preferences.set({
+  //             key: 'auth-data',
+  //             value: JSON.stringify(authData),
+  //           });
+  //           // this.navCtrl.navigateForward('/');
+  //         })
+  //       )
+  //       .subscribe((data) => {
+  //         console.log('google auth data...', data);
+  //       });
+  //   }
+  // }
+
+  googleSignIn() {
+    this.http
+      .get('https://dev-front-api.limitlens.ai/api/auth/google/redirect')
+      .subscribe(async (data) => {
+        console.log('data..', data);
+        window.location.href = data['url'];
+      });
+  }
+
+  openCapacitorSite = async (url) => {
+    await Browser.open({ url });
+  };
+
+  // google signout
+  async googleSignout() {
+    // await GoogleAuth.signOut();
+    // console.log('user...', user);
+  }
+
+  // User Logout
+  logout() {
+    console.log('DEVICE ID..', this.deviceID.identifier);
+    return this.http
+      .post(`${environment.URL}/logout`, {
+        device_id: this.deviceID.identifier,
+      })
+      .pipe(
+        tap(async () => {
+          console.log('uuid before..', this.uuid);
+          await Preferences.remove({ key: 'auth-data' });
+          this.updateAuthData(null);
+          this.uuid = this.nonAuthUUID;
+          console.log('uuid after..', this.uuid);
+          this.userLoggedIn = false;
+        })
+      );
+  }
+
+  // Obtain Non Authenticated UUID
   async getNonAuthUUID() {
     return Preferences.get({ key: 'nonAuthUserUUID' });
   }
 
-  checkUserUUID() {
-    return this.isLoggedIn$.pipe(
-      tap((loggedIn) => console.log('Is user logged in...', loggedIn)),
-      exhaustMap((loggedIn) => {
-        if (loggedIn) {
-          return this.getAuthData$.pipe(
-            map((data) => data.uuid),
-            take(1)
-          );
-        }
-        return this.getNonAuthUUID$.pipe(
-          tap((nuuid) => {
-            if (nuuid) {
-              console.log('nuuuid....', nuuid);
-              take(1);
-            }
-          })
-        );
-      })
-    );
-  }
-
-  registerForNonUser(body) {
-    return this.http.post(`${environment.URL}/register`, body).pipe(
-      map((uuid: any) => uuid.uuid),
-      tap((data) => console.log(data))
+  // Registeration for Non Authenticated User
+  registerForNonUser(appVersionCreds: unknown) {
+    return this.http.post(`${environment.URL}/register`, appVersionCreds).pipe(
+      map((nonAuthUUID: any) => nonAuthUUID?.uuid),
+      tap((nonAuthUUID) => console.log('NO AUTHENTICATED UUID...', nonAuthUUID))
     );
   }
 
@@ -194,30 +256,43 @@ export class AuthService {
     return { mobileInfo: DeviceInfo, deviceId: deviceID };
   };
 
-  initialApp = async () => {
+  initializeApp = async () => {
+    //Device Information
     const deviceInfo = await this.deviceInfo();
-    const body = {
+
+    // GoogleAuth.initialize({
+    //   clientId:
+    //     '891600124643-milg6gi5i82o8v2747rmj9r4mbnh6d61.apps.googleusercontent.com',
+    //   scopes: ['profile', 'email'],
+    //   grantOfflineAccess: true,
+    // });
+
+    // App version credentials
+    const versionCreds = {
       app_name: 'coconuts',
       app_number: 'v1.0.0',
       device_id: deviceInfo.deviceId.identifier,
-      // device_ad_id: ' 38400000-8cf0-11bd-b23e-10b96e40000d ',
       device_model: deviceInfo.mobileInfo.model,
       device_manufacturer: deviceInfo.mobileInfo.manufacturer,
       os_version: `${deviceInfo.mobileInfo.operatingSystem} ${deviceInfo.mobileInfo.osVersion}`,
     };
 
-    this.registerForNonUser(body).subscribe(async (nonAuthUUID) => {
+    //Registering Non authenticated User for UUID
+    this.registerForNonUser(versionCreds).subscribe(async (nonAuthUUID) => {
       await Preferences.set({
         key: 'nonAuthUserUUID',
         value: JSON.stringify({ nonAuthUUID }),
       });
 
-      let nonUserUUID = await this.getNonAuthUUID();
-      nonUserUUID = JSON.parse(nonUserUUID.value);
-      if (nonUserUUID) {
-        console.log('non uuid...', nonUserUUID['nonAuthUUID']);
-        this.updateNonAuthUUID(nonUserUUID['nonAuthUUID']);
+      let nonAuthUserUUID = await this.getNonAuthUUID();
+      nonAuthUserUUID = JSON.parse(nonAuthUserUUID.value);
+      if (nonAuthUserUUID) {
+        console.log('non auth uuid...', nonAuthUserUUID['nonAuthUUID']);
+        this.nonAuthUUID = nonAuthUserUUID['nonAuthUUID'];
+        this.uuid = nonAuthUserUUID['nonAuthUUID'];
       }
+
+      await this.checkAuth();
     });
   };
 }

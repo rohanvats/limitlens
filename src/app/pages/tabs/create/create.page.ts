@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, SimpleChange } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { Component, OnInit, SimpleChange } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 import { DisplayOptionsService } from 'src/app/services/displayOptions.service';
 import { CreateService } from './create.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './create.page.html',
   styleUrls: ['./create.page.scss'],
 })
-export class CreatePage implements OnInit, OnDestroy {
+export class CreatePage implements OnInit {
   imageUUID: string;
   image = '';
   positivePrompt = '';
@@ -20,7 +20,6 @@ export class CreatePage implements OnInit, OnDestroy {
   showNegativePrompt = false;
   displayOptions: any;
   user_uuid: string;
-  // showSpinner = false;
 
   userUUIDSub: Subscription;
 
@@ -75,10 +74,9 @@ export class CreatePage implements OnInit, OnDestroy {
     }
 
     // this.showSpinner = true;
-    this.toastService.toggleSpinner(true);
-    this.userUUIDSub = this.authService.checkUserUUID().subscribe((data) => {
-      this.user_uuid = data;
-    });
+    // spinnerValue
+    // this.userUUIDSub = this.authService.checthis.toastService.toggleSpinner(true);kUserUUID().subscribe((data) => {});
+    this.user_uuid = this.authService.uuid;
     const filterOptions = this.displayOptions.reduce(
       (result: any, currentObject: any) => {
         result[`id_${currentObject.value}`] = currentObject.id;
@@ -96,6 +94,7 @@ export class CreatePage implements OnInit, OnDestroy {
       user_uuid: this.user_uuid,
     };
 
+    this.toastService.toggleSpinner(true);
     this.createService
       .generateImage(generateImagePayload, this.user_uuid)
       .subscribe({
@@ -103,14 +102,16 @@ export class CreatePage implements OnInit, OnDestroy {
           console.log('generated image...', data);
           this.resetPrompts();
           this.navCtrl.navigateForward('/tabs/create/generatedImage', {
-            queryParams: { url: data.data.imageUrl, gallery: false },
+            queryParams: {
+              imageUrl: data.data.imageUrl,
+              generatePayload: JSON.stringify({ ...generateImagePayload }),
+            },
+            fragment: 'generatedImage',
           });
-          // this.showSpinner = false;
           this.toastService.toggleSpinner(false);
         },
         error: (error) => {
           this.resetPrompts();
-          // this.showSpinner = false;
           this.toastService.toggleSpinner(false);
         },
       });
@@ -140,12 +141,7 @@ export class CreatePage implements OnInit, OnDestroy {
   resetPrompts() {
     this.positivePrompt = '';
     this.negativePrompt = '';
+    this.displayOptionsService.fetchDisplayOptions();
     // this.getDisplayOptions();
-  }
-
-  ngOnDestroy(): void {
-    if (this.userUUIDSub) {
-      this.userUUIDSub.unsubscribe();
-    }
   }
 }

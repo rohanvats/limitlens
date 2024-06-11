@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { CustomRadioGroupComponent } from './components/custom-radio-group/custo
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
 import { RouterModule } from '@angular/router';
+import { ImageDetailComponent } from './components/image-detail/image-detail.component';
 @NgModule({
   declarations: [
     MainImageComponent,
@@ -22,9 +23,11 @@ import { RouterModule } from '@angular/router';
     MasonryGalleryComponent,
     CustomRadioGroupComponent,
     AppHeaderComponent,
+    ImageDetailComponent,
     SkeletonLoaderComponent,
   ],
   imports: [CommonModule, RouterModule, IonicModule, ReactiveFormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     MainImageComponent,
     CustomCardButtonComponent,
@@ -33,6 +36,7 @@ import { RouterModule } from '@angular/router';
     MasonryGalleryComponent,
     SkeletonLoaderComponent,
     CustomRadioGroupComponent,
+    ImageDetailComponent,
     AppHeaderComponent,
     ReactiveFormsModule,
     CommonModule,

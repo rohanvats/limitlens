@@ -51,9 +51,10 @@ export class FaceswapComponent implements OnInit, OnDestroy {
       uuid_uploaded_image: this.uploadedImageUUID,
       user_uuid: '',
     };
-    this.uuidSub = this.authService.checkUserUUID().subscribe((uuid) => {
-      payload.user_uuid = uuid;
-    });
+    // this.uuidSub = this.authService.checkUserUUID().subscribe((uuid) => {
+    //   payload.user_uuid = uuid;
+    // });
+    payload.user_uuid = this.authService.uuid;
     console.log('asdasd...', payload.user_uuid);
 
     if (!payload.uuid_uploaded_image) {
@@ -67,9 +68,11 @@ export class FaceswapComponent implements OnInit, OnDestroy {
         (image) => {
           console.log('face swap image : ..', image);
           if (image.success) {
+            console.log('IMAGE RECIEVED...', image?.data?.imageUrl);
             this.toastService.toggleSpinner(false);
-            this.navCtrl.navigateForward('/tabs/create/generatedImage', {
-              queryParams: { url: image?.data?.imageUrl, gallery: false },
+            this.navCtrl.navigateForward('/tabs/home/faceswappedImage', {
+              queryParams: { imageUrl: image?.data?.imageUrl },
+              fragment: 'faceswapImage',
             });
           }
         },

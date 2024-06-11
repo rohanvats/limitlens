@@ -21,8 +21,12 @@ export class GalleryPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.galleryService.fetchGallerySavedImages();
-    this.galleryService.fetchFaceSwapSavedImages();
+    this.galleryService.galleryImages$.subscribe((data) => {
+      console.log('gallery data...', data);
+    });
+    this.galleryService.faceswapImages$.subscribe((data) => {
+      console.log('faceswap data...', data);
+    });
   }
 
   checkValue(event: any) {
@@ -36,7 +40,8 @@ export class GalleryPage implements OnInit {
   go(item: any) {
     console.log('go..', item);
     this.navCtrl.navigateForward(['/tabs/gallery/image-details'], {
-      queryParams: { ...item, gallery: true },
+      queryParams: { ...item },
+      fragment: 'galleryImage',
     });
   }
 
