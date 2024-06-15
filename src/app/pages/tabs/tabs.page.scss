@@ -19,7 +19,10 @@ ion-tabs {
       background: #171515;
       --color: #656565;
       ion-icon {
-        font-size: 1.5rem;
+        font-size: 1rem;
+      }
+      ion-label {
+        font-size: 1.2rem;
       }
     }
   }

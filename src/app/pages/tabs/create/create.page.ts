@@ -104,6 +104,7 @@ export class CreatePage implements OnInit {
           this.navCtrl.navigateForward('/tabs/create/generatedImage', {
             queryParams: {
               imageUrl: data.data.imageUrl,
+              imageUUID: data.data.uuid,
               generatePayload: JSON.stringify({ ...generateImagePayload }),
             },
             fragment: 'generatedImage',

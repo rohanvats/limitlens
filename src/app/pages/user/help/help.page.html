@@ -4,13 +4,6 @@
     [background-image]="'assets/UI_Images/WebP_Regular_Size/App_UI_Buttons_small_size_Opaque-assets/Help.webp'"
     [classes]="'ion-no-margin custom-card custom-image'"
   >
-    <!-- <span class="nav-icon-background" routerLink="../">
-      <ion-icon
-        size="large"
-        class="main-header-text"
-        name="arrow-back-outline"
-      ></ion-icon>
-    </span> -->
     <ion-fab-button
       size="small"
       routerLink="../"
@@ -21,29 +14,6 @@
     <h2 class="main-header-text">HELP</h2>
   </app-custom-card-button>
 
-  <!-- <div class="main-container ion-text-center">
-    <ion-grid>
-      <ion-row class="ion-padding">
-        <ion-col
-          size="6"
-          class="ion-text-center"
-          *ngFor="let item of helpOptions()"
-        >
-          <img
-            style="height: 150px; width: 150px; border-radius: 20px"
-            [routerLink]="item.name === 'my info' ? 'user-info' : item.name "
-            [src]="item?.url"
-          />
-
-          <ion-text>
-            <h6>{{item?.name | uppercase}}</h6>
-          </ion-text>
-          <span> </span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
-
   <div class="main-container ion-text-center">
     <ion-grid>
       <ion-row>
@@ -52,8 +22,9 @@
           class="ion-padding"
           *ngFor="let item of helpOptions()"
         >
+          <!-- style="height: auto; width: 100%; border-radius: 2rem" -->
           <img
-            style="height: auto; width: 100%; border-radius: 20px"
+            class="image-container custom-img-btn custom-drop-shadow"
             [routerLink]="item.name === 'upscaling guide' ? 'upscaling-guide' :  ''"
             [src]="item?.url"
           />
@@ -66,27 +37,4 @@
       </ion-row>
     </ion-grid>
   </div>
-
-  <!-- 
-        <app-custom-card-button
-          [height]="'18vh'"
-          [classes]="'custom-card'"
-         >
-          <div>
-            <h2>
-              UPSCALING GUIDE
-            </h2>
-          </div>
-        </app-custom-card-button>
-
-        <app-custom-card-button
-          [height]="'18vh'"
-          [classes]="'ion-no-margin ion-margin-start ion-margin-end custom-card custom-image'"
-         >
-          <div>
-            <h2>
-              FAQ
-            </h2>
-          </div>
-        </app-custom-card-button> -->
 </ion-content>

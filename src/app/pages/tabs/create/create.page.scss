@@ -1,25 +1,17 @@
+ion-col {
+  border: 5px beige;
+}
+
 img {
   height: auto;
   min-width: 100%;
 }
 
-// ion-card-subtitle {
-//   font-size: 2rem;
-//   font-weight: 500;
-// }
-
-// h6 {
-//   font-size: 1.6rem;
-//   font-weight: 700;
-// }
-
-// p {
-//   font-size: 1.6rem;
-//   font-weight: 300;
-// }
-
 .filter-card {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 ion-card {
@@ -53,8 +45,3 @@ ion-content {
   justify-content: center;
   align-items: center;
 }
-
-// .bold-text {
-//   font-size: large;
-//   font-weight: 600;
-// }

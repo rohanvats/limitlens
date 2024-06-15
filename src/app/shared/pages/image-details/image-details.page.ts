@@ -69,13 +69,7 @@ export class ImageDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('img details on init');
-
     this.fragment$ = this.route.fragment;
-
-    // .subscribe((data) => {
-    //   console.log('img details url..', data);
-    // });
 
     this.route.queryParams.subscribe((image: any) => {
       console.log('image...', image, image.generatePayload);
@@ -88,10 +82,47 @@ export class ImageDetailsPage implements OnInit {
     });
   }
 
-  generateAnother() {
-    console.log('pay...', this.generateAnotherPayload);
+  removeWaterMark() {
+    console.log(
+      'uuid..',
+      this.generateAnotherPayload,
+      this.imageDetails.imageUUID
+    );
+    this.toastService.toggleSpinner(true);
+    this.createService
+      .removeWaterMark(
+        // this.generateAnotherPayload.user_uuid,
+        this.authService.uuid,
+        this.imageDetails.imageUUID
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log('generated image...', data);
+          this.navCtrl.navigateForward('/tabs/create/generatedImage', {
+            queryParams: {
+              imageUrl: data.data.imageUrl,
+              imageUUID: data.data.uuid,
+              generatePayload: JSON.stringify({
+                ...this.generateAnotherPayload,
+              }),
+            },
+            fragment: 'generatedImage',
+          });
+          this.displayOptionsService.fetchDisplayOptions();
+          this.toastService.toggleSpinner(false);
+        },
+        error: (error) => {
+          this.displayOptionsService.fetchDisplayOptions();
+          this.toastService.toggleSpinner(false);
+        },
+        complete: () => {
+          this.displayOptionsService.fetchDisplayOptions();
+          this.toastService.toggleSpinner(false);
+        },
+      });
+  }
 
-    // return;
+  generateAnother() {
     this.toastService.toggleSpinner(true);
     this.createService
       .generateImage(
@@ -105,19 +136,17 @@ export class ImageDetailsPage implements OnInit {
           this.navCtrl.navigateForward('/tabs/create/generatedImage', {
             queryParams: {
               imageUrl: data.data.imageUrl,
+              imageUUID: data.data.uuid,
               generatePayload: JSON.stringify({
                 ...this.generateAnotherPayload,
               }),
             },
             fragment: 'generatedImage',
           });
-          // this.showSpinner = false;
           this.displayOptionsService.fetchDisplayOptions();
           this.toastService.toggleSpinner(false);
         },
         error: (error) => {
-          // this.resetPrompts();
-          // this.showSpinner = false;
           this.displayOptionsService.fetchDisplayOptions();
           this.toastService.toggleSpinner(false);
         },
@@ -127,24 +156,6 @@ export class ImageDetailsPage implements OnInit {
         },
       });
   }
-
-  // ionViewWillEnter() {
-  //   console.log('img details will enter');
-  //   this.route.queryParams.subscribe((image: any) => {
-  //     console.log(image);
-  //     this.gallery = image.gallery;
-  //     this.imageDetails = image;
-  //   });
-  // }
-
-  // ionViewDidEnter() {
-  //   console.log('img details did enter');
-  //   this.route.queryParams.subscribe((image: any) => {
-  //     console.log(image);
-  //     this.gallery = image.gallery;
-  //     this.imageDetails = image;
-  //   });
-  // }
 
   deleteImage(imgUUID: string) {
     this.galleryService
