@@ -15,12 +15,14 @@
   >
     <ng-container *ngIf="slides">
       <swiper-slide *ngFor="let slide of slides?.images">
-        <img
-          *ngIf="slide.imageUrl"
-          (click)="selectCategory(slide.imageUrl, slide.id)"
-          src="{{ slide?.imageUrl }}"
-          alt=""
-        />
+        <div class="image-container custom-img-btn">
+          <img
+            *ngIf="slide.imageUrl"
+            (click)="selectCategory(slide.imageUrl, slide.id)"
+            src="{{ slide?.imageUrl }}"
+            alt=""
+          />
+        </div>
       </swiper-slide>
     </ng-container>
   </swiper-container>

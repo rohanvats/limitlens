@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
@@ -44,13 +44,7 @@ export class CreateService implements OnInit {
     private displayOptionsService: DisplayOptionsService
   ) {}
 
-  ngOnInit(): void {
-    // this.uuidSub = this.authService
-    //   .checkUserUUID()
-    //   .subscribe((uuid: string) => {
-    //     this.user_uuid = uuid;
-    //   });
-  }
+  ngOnInit(): void {}
 
   getDisplayOption(option: string): any {
     return this.displayOptions$.pipe(
@@ -75,6 +69,12 @@ export class CreateService implements OnInit {
         return this.checkImageState(uuid, value, 1);
       })
     );
+  }
+
+  removeWaterMark(uuid: any, imageUUId: string) {
+    return this.http.post(`${environment.URL}/update-watermarked/${uuid}`, {
+      imageUUId,
+    });
   }
 
   generateFaceSwappedImage(payload, uuid): Observable<any> {

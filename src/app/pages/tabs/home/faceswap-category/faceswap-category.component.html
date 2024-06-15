@@ -5,15 +5,8 @@
       [background-image]="
         'assets/UI_Images/WebP_Regular_Size/App_Filters_Titles_small_size_opaque-assets/my_gallery.webp'
       "
-      [classes]="'ion-no-margin custom-card custom-image custom-drop-shadow'"
+      [classes]="'ion-no-margin custom-card custom-image'"
     >
-      <!-- <span class="nav-icon-background" routerLink="../../">
-        <ion-icon
-          size="large"
-          class="main-header-text"
-          name="arrow-back-outline"
-        ></ion-icon>
-      </span> -->
       <ion-fab-button
         size="small"
         routerLink="../../"
@@ -28,9 +21,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let image of category?.images">
+          <!-- <div class="image-container"> -->
           <ion-card
             (click)="selectCategory(image.imageUrl, image.uuid)"
-            class="ion-no-padding ion-no-margin custom-drop-shadow"
+            class="ion-no-padding ion-no-margin image-container custom-card-border-radius"
           >
             <ion-img [src]="image.imageUrl"></ion-img>
           </ion-card>

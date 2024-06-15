@@ -21,17 +21,14 @@
       <ion-grid>
         <ion-row>
           <ion-col
-            *ngFor="let data of dispayData.data.new_data"
+            *ngFor="let data of dispayData?.data?.new_data"
             class="ion-text-center"
             size="4"
           >
             <div class="ion-activatable">
               <ion-radio-group (click)="onSelectOption(data)">
                 <ion-radio labelPlacement="none" [value]="data">
-                  <img
-                    class="custom-img-btn custom-drop-shadow"
-                    [src]="data?.imageUrl"
-                  />
+                  <img class="custom-img-btn" [src]="data?.imageUrl" />
                   <ion-text
                     class="ion-text-center ion-text-wrap custom-img-btn-text"
                   >

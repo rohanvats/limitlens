@@ -1,36 +1,14 @@
-// ion-col {
-//   padding: 0%;
-//   margin: 0%;
-// }
-
-// ion-card {
-//   border: 1px solid green;
-//   align-items: center;
-//   ion-card-content {
-//     width: 81px;
-//     height: 81px;
-//     position: relative;
-//   }
-// }
-
-// .centered-text {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// }
-
 ion-text {
   font-size: 1rem;
   line-height: 1.21rem;
   font-weight: 500;
 }
 
-// ion-radio {
-//   .native-wrapper .radio-icon {
-//     height: 1.5rem;
-//   }
-// }
+.custom-img-btn {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 2rem;
+}
 
 .container {
   display: flex;
@@ -44,51 +22,6 @@ ion-text {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-// .input-container {
-//   position: relative;
-//   height: 7rem;
-//   width: 7rem;
-//   margin: 0.5rem;
-// }
-
-// .input-container input {
-//   position: absolute;
-//   height: 100%;
-//   width: 100%;
-//   margin: 0;
-//   cursor: pointer;
-//   z-index: 2;
-//   opacity: 0;
-// }
-
-// .input-container .radio-tile {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   height: 100%;
-//   border: 2px solid green;
-//   border-radius: 8px;
-//   transition: all 300ms ease;
-// }
-
-// .input-container ion-icon {
-//   color: green;
-//   font-size: 3rem;
-// }
-
-// .input-container label {
-//   color: green;
-//   font-size: 0.8rem;
-//   font-weight: 600;
-//   text-transform: uppercase;
-//   letter-spacing: 1px;
-// }
-
-// input:checked + .radio-tile {
-//   background-color: green;
-//   box-shadow: 0 0 12px green;
-// }
 
 h2 {
   font-size: 2.6rem;
@@ -137,59 +70,33 @@ input:checked + .radio-tile label {
 }
 
 .custom-thumbnail {
-  width: 90px; /* Set your desired width */
-  height: 90px; /* Set your desired height */
+  width: 90px;
+  height: 90px;
 }
-
-// .thumbnail {
-//   background-color: grey;
-//   border-radius: 1.5rem;
-//   width: 80px; /* Adjust the thumbnail size as needed */
-//   height: 80px; /* Adjust the thumbnail size as needed */
-//   position: relative; /* Needed for absolute positioning of the icon */
-// }
 
 .icon {
   position: absolute;
-  top: 50%; /* Position the icon vertically at 50% of the parent's height */
-  left: 50%; /* Position the icon horizontally at 50% of the parent's width */
-  transform: translate(-50%, -50%); /* Center the icon perfectly */
-  font-size: 30px; /* Adjust the icon size as needed */
-  // color: grey;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
 }
 
-// .ion-card {
-//   position: relative;
-// }
-
-// ion-text {
-//   position: absolute;
-//   bottom: 4px;
-//   color: white;
-//   font-weight: bold;
-// }
-
-// filter modal css img {
-//   border-radius: 20px;
-// }
-
-// ion-text {
-//   left: 45%;
-//   bottom: 20px;
-// }
-
-// .select-border {
-//   border: 4px solid red;
-// }
-
-// ion-radio-group img .ng-invalid {
-//   border: 2px solid red;
-// }
+.custom-img-btn-text {
+  position: absolute;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  bottom: 1.2rem;
+  h6 {
+    font-weight: 700;
+    line-height: 1.452rem;
+  }
+}
 
 ion-item {
   --ripple-color: red;
-  // border-radius: 25px;
-  // box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.5);
 }
 
 ion-searchbar {

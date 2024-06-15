@@ -71,7 +71,10 @@ export class FaceswapComponent implements OnInit, OnDestroy {
             console.log('IMAGE RECIEVED...', image?.data?.imageUrl);
             this.toastService.toggleSpinner(false);
             this.navCtrl.navigateForward('/tabs/home/faceswappedImage', {
-              queryParams: { imageUrl: image?.data?.imageUrl },
+              queryParams: {
+                imageUrl: image?.data?.imageUrl,
+                imageUUID: image?.data.uuid,
+              },
               fragment: 'faceswapImage',
             });
           }

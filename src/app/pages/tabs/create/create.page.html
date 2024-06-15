@@ -3,7 +3,6 @@
   <ng-container>
     <div class="main-container">
       <div class="prompt-card-container">
-        <!-- (click)="openPromptModal()" -->
         <app-custom-card-button
           [mode]="'ios'"
           [classes]="'ion-padding custom-card-border-radius'"
@@ -97,25 +96,21 @@
         </app-custom-card-button>
       </div>
 
-      <div class="style-row-container">
+      <div class="style-row-container ion-margin-top">
         <ion-row *ngIf="!usingGlobalFeed">
           <ion-col
             size="6"
             class="ion-text-center filter-card"
             *ngFor="let item of displayOptions"
           >
+            <!-- <ng-container class="image-container custom-img-btn"> -->
             <img
-              class="custom-drop-shadow custom-img-btn"
+              class="custom-img-btn custom-drop-shadow"
               (click)="openFilterModal(item?.value)"
               [src]="item?.temporaryUrl ? item?.temporaryUrl : item.url"
             />
-            <!-- <ion-text
-              class="custom-img-btn-text"
-              *ngIf="item.name === 'format'; else otherOptions"
-            >
-              <h6>{{item?.name | titlecase }}</h6>
-            </ion-text> -->
-            <!-- <ng-template #otherOptions> -->
+            <!-- </ng-container> -->
+
             <span>
               <ion-text class="custom-img-btn-text">
                 <ion-icon

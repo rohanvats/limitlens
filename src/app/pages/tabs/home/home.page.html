@@ -1,19 +1,11 @@
 <app-app-header></app-app-header>
-<!-- <ion-toolbar>
-  <ion-searchbar></ion-searchbar>
-</ion-toolbar> -->
 <ion-content>
-  <!-- <ion-searchbar
-    class="custom tadsa"
-    show-cancel-button="never"
-    placeholder="Seach style or tag"
-  ></ion-searchbar> -->
   <div class="main-container">
     <ng-container
       *ngIf="faceswapCategories$ | async as faceswapCategories; else loader"
     >
       <ng-container *ngFor="let category of faceswapCategories">
-        <div class="select-chip">
+        <div class="select-chip ion-padding-vertical">
           <ion-chip>
             <ion-label>{{category.name}}</ion-label>
           </ion-chip>
@@ -26,8 +18,6 @@
     </ng-container>
     <ng-template #loader>
       <app-skeleton-loader></app-skeleton-loader>
-      <!-- <app-spinner></app-spinner> -->
     </ng-template>
   </div>
-  <!-- <app-masonry-gallery (imageDetail)="toImageDetails($event)" [data]="globalData"></app-masonry-gallery> -->
 </ion-content>
